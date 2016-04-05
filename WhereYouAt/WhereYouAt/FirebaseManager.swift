@@ -11,14 +11,13 @@ import Firebase
 
 class FirebaseManager {
     
-    var rootURL : String = ""
+    var rootURL : String = "https://whereareu.firebaseio.com/"
     var rootRef : Firebase!
     var myUID : String = ""
     var myName : String = ""
     var userRef : Firebase!
     
-    init(URL: String, myUID: String, myName: String) {
-        rootURL = URL
+    init(myUID: String, myName: String) {
         rootRef = Firebase(url: rootURL)
         self.myUID = myUID
         self.myName = myName
@@ -34,20 +33,20 @@ class FirebaseManager {
         rootRef.childByAppendingPath("Users/\(uid)/Friends/Requests/\(myUID)").setValue(myName)
     }
     
-//    func getAllFriends() -> [String:String] {
-//        var friends : [String : String] = [:]
-//        let friendsRef = userRef.childByAppendingPath("Friends")
-//        
-//        friendsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-//            for child in snapshot.children {
-//                let uid = child.key as String
-//                let username = child.value as String
-//                friends[uid] = username
-//            }
-//            
-//            return friends
-//        })
-//    }
+    func getAllFriends(callback: [String:String] -> ()) {
+        var friends : [String : String] = [:]
+        let friendsRef = userRef.childByAppendingPath("Friends")
+        
+        friendsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            for child in snapshot.children {
+                let uid = child.key as String
+                let username = child.value as String
+                friends[uid] = username
+            }
+            
+            callback(friends)
+        })
+    }
     
     // Creates dictionary out of Profile's properties and sets appropriate node
     func updateProfile(profile: Profile) {
@@ -70,27 +69,59 @@ class FirebaseManager {
         
     }
     
-//    func getProfile(uid: String) -> Profile {
-//        var userData : [String : String] = [:]
-//        let desiredRef = rootRef.childByAppendingPath("Users").childByAppendingPath(uid).childByAppendingPath("Profile")
+    func getProfile(uid: String, callback: (Profile) -> ()) {
+        var userData : [String : String] = [:]
+        let desiredRef = rootRef.childByAppendingPath("Users").childByAppendingPath(uid).childByAppendingPath("Profile")
+        desiredRef.observeSingleEventOfType(.Value, withBlock: {
+            (snapshot) in
+            for child in snapshot.children {
+                let key = child.key as String
+                let value = child.value as String
+                userData[key] = value
+            }
+            
+            // Initialize different Profile depending on which details are available
+            if let dob = userData["dateOfBirth"], home = userData["dorm"] {
+                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob, dorm: home))
+            } else if let dob = userData["dateOfBirth"] {
+                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob))
+            } else if let home = userData["dorm"] {
+                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dorm: home))
+            } else {
+                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!))
+            }
+        })
+    }
+    
+//    func getEventData(callback: ([Event]) -> () ) {
+//        let desiredRef = rootRef.childByAppendingPath("Events")
+//        var events = ["1": "Brothers", "2": "O'Rourke's"]
+//        desiredRef.setValue(events)
 //        
-//        desiredRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+//        desiredRef.observeEventType(.Value) {
+//            (snapshot) in
+//            for child in snapshot.children {
+//                let key = child.key as String
+//                let value = child.value
+//                value.
+//            }
+//        }
+//    }
+    
+//    func getLocations(callback: ([Location]) -> () ) {
+//        let desiredRef = rootRef.childByAppendingPath("Locations")
+//        let locations = ["1": ["name": "Brothers", "type": "Bar", "latitude": 40, "longitude": 45, "locationId": "1"]]
+//        desiredRef.setValue(locations)
+//        var locationData: [String:String] = [:]
+//        desiredRef.observeEventType(.Value, withBlock: {
+//            (snapshot) in
 //            for child in snapshot.children {
 //                let key = child.key as String
 //                let value = child.value as String
-//                userData[key] = value
+//                locationData[key] = value
 //            }
-//            
-//            // Initialize different Profile depending on which details are available
-//            if let dob = userData["dateOfBirth"], home = userData["dorm"] {
-//                return Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phoneNumber"]!, dateOfBirth: dob, dorm: home)
-//            } else if let dob = userData["dateOfBirth"] {
-//                return Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phoneNumber"]!, dateOfBirth: dob)
-//            } else if let home = userData["dorm"] {
-//                return Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phoneNumber"]!, dorm: home)
-//            }else{
-//                return Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phoneNumber"]!, dateOfBirth: dob)
-//            }
+//            callback([Location(locationId: locationData["locationId"]!, locationName: locationData["name"]!, locationType: LocationType(rawValue: locationData["type"]!)!, latitude: Double(locationData["latitude"]!)!, longitude: Double(locationData["longitude"]!)!)])
 //        })
+//        
 //    }
 }

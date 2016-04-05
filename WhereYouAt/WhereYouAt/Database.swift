@@ -17,17 +17,29 @@ class Database {
     var eventData : [Event] = []
     var locations: [Location] = []
     var profile: Profile?
-    //var firebase: Firebase
+    var firebase: FirebaseManager
     
     //The init method calls the methods in the Firebase class
     init() {
-//        firebase = Firebase()
-//        friendsList = self.firebase.getAllFriends()
-//        eventData = self.firebase.getEventData()
-//        locations = self.firebase.getLocations()
-//        profile = self.firebase.getProfile()
+        firebase = FirebaseManager(myUID: "107819875842607976572", myName: "Cory Jbara")
+        self.firebase.getAllFriends() {
+            (friends) in
+            self.friendsList = friends
+        }
+        /*self.firebase.getEventData() {
+            (events) in
+            self.eventData = events
+        }
+        self.firebase.getLocations() {
+            (locations) in
+            self.locations = locations
+        }*/
+        self.firebase.getProfile("107819875842607976572") {
+            (profile) in
+            self.profile = profile
+        }
     }
-    
+
     //This gets your feed for your friend's statuses
     func getStatusFeed() -> [Status] {
         var friendsStatuses: [Status] = []
