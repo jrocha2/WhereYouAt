@@ -7,29 +7,30 @@
 //
 
 import Foundation
+import Firebase
 
 class Database {
-    var userId: String {
-        return profile.userId
+    var userId: String? {
+        return profile?.userId
     }
-    var friendsList: [String: String]
-    var eventData: [Event]
-    var locations: [Location]
-    var profile: Profile
-    var firebase: Firebase
+    var friendsList: [String: String] = [:]
+    var eventData : [Event] = []
+    var locations: [Location] = []
+    var profile: Profile?
+    //var firebase: Firebase
     
     //The init method calls the methods in the Firebase class
     init() {
-        firebase = Firebase()
-        friendsList = self.firebase.getAllFriends()
-        eventData = self.firebase.getEventData()
-        locations = self.firebase.getLocations()
-        profile = self.firebase.getProfile()
+//        firebase = Firebase()
+//        friendsList = self.firebase.getAllFriends()
+//        eventData = self.firebase.getEventData()
+//        locations = self.firebase.getLocations()
+//        profile = self.firebase.getProfile()
     }
     
     //This gets your feed for your friend's statuses
     func getStatusFeed() -> [Status] {
-        var friendsStatuses: [Status]
+        var friendsStatuses: [Status] = []
         for event in eventData {
             for status in event.statuses {
                 if let _ = friendsList[status.personId] {
@@ -45,7 +46,7 @@ class Database {
     
     //This gets an array of events which your friends are going to sorted by friends going
     func getEventsForFriends() -> [Event] {
-        var friendsEvents: [Event]
+        var friendsEvents: [Event] = []
         for event in eventData {
             for status in event.statuses {
                 if let _ = friendsList[status.personId] {
