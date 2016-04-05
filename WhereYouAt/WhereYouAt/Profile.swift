@@ -15,20 +15,20 @@ class Profile {
     var gender: Gender
     var year: Year
     var phone: String
-    var dateOfBirth: NSDate?
+    var dateOfBirth: String?
     var dorm: String?
     //var picture: UIImage?
     
     enum Gender: String {
-        case Male
-        case Female
+        case Male = "Male"
+        case Female = "Female"
     }
     
     enum Year: String {
-        case Senior
-        case Junior
-        case Sophomore
-        case Freshman
+        case Senior = "Senior"
+        case Junior = "Junior"
+        case Sophomore = "Sophomore"
+        case Freshman = "Freshman"
     }
     
     init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String) {
@@ -42,7 +42,7 @@ class Profile {
         self.dorm = nil
     }
     
-    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: NSDate) {
+    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String) {
         self.init(userId: userId, firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dateOfBirth = dateOfBirth
     }
@@ -52,7 +52,7 @@ class Profile {
         self.dorm = dorm
     }
     
-    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: NSDate, dorm: String) {
+    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String, dorm: String) {
         self.init(userId: userId, firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dateOfBirth = dateOfBirth
         self.dorm = dorm

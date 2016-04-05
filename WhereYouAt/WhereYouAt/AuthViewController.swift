@@ -46,7 +46,15 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 // User is logged in!
                 print("LOGGED IN!")
                 let userEmail = authData.providerData["email"] as! String
-                print(userEmail)
+                let userId = authData.providerData["id"] as! String
+                let userName = authData.providerData["displayName"] as! String
+                print(userEmail, " ", userId, " ", userName)
+                
+                let manager = FirebaseManager(URL: "https://whereareu.firebaseio.com/", myUID: userId, myName: userName)
+                manager.addNewUser(userId)
+                let myProfile = Profile(userId: userId, firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554", dateOfBirth: "06-20-1995", dorm: "Keough")
+                manager.updateProfile(myProfile)
+                manager.addFriend("5246535135", userId: "meeeeeeeeee")
             })
             
         } else {
