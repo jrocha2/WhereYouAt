@@ -47,11 +47,53 @@
                     <navigationItem key="navigationItem" id="B35-Yo-06r"/>
                     <connections>
                         <segue destination="Bjn-RB-u5I" kind="show" identifier="addUser" id="10n-j6-IOT"/>
+                        <segue destination="set-Yz-fFE" kind="show" identifier="login" id="2Jp-u4-777"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1232" y="280"/>
+        </scene>
+        <!--Home View Controller-->
+        <scene sceneID="R3E-QI-5pA">
+            <objects>
+                <viewController id="set-Yz-fFE" customClass="HomeViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dAm-5I-9sp"/>
+                        <viewControllerLayoutGuide type="bottom" id="463-9o-LRb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GmG-MH-zyN">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2M-Op-03u">
+                                <rect key="frame" x="277.5" y="115" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logged in as:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ua-3T-jIR">
+                                <rect key="frame" x="248.5" y="80" width="103" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J2M-Op-03u" firstAttribute="centerX" secondItem="6Ua-3T-jIR" secondAttribute="centerX" id="JYv-mU-P0a"/>
+                            <constraint firstItem="J2M-Op-03u" firstAttribute="top" secondItem="6Ua-3T-jIR" secondAttribute="bottom" constant="14" id="dIr-LG-LN0"/>
+                            <constraint firstItem="6Ua-3T-jIR" firstAttribute="centerX" secondItem="GmG-MH-zyN" secondAttribute="centerX" id="sP7-Te-qVV"/>
+                            <constraint firstItem="6Ua-3T-jIR" firstAttribute="top" secondItem="dAm-5I-9sp" secondAttribute="bottom" constant="16" id="uvq-WA-b2k"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="name" destination="J2M-Op-03u" id="1r7-8s-kZd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jI2-RX-dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1531" y="1069"/>
         </scene>
         <!--New User Info-->
         <scene sceneID="Tb6-mG-Svs">
@@ -216,6 +258,7 @@
                         <outlet property="gender" destination="3wT-jt-ScS" id="A7e-5V-vyA"/>
                         <outlet property="lastName" destination="1Fw-et-klN" id="viO-kE-Q9g"/>
                         <outlet property="phoneNumber" destination="B3a-ct-S7r" id="WPZ-PL-KLE"/>
+                        <segue destination="set-Yz-fFE" kind="show" identifier="loginFromUserInfo" id="Yl4-Bf-9wh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5cf-gq-Nm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,4 +284,7 @@
             <point key="canvasLocation" x="420" y="280"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Yl4-Bf-9wh"/>
+    </inferredMetricsTieBreakers>
 </document>

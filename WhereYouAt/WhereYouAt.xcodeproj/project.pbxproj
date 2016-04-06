@@ -15,6 +15,7 @@
 		9142CA821CB1EB0D009B78E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142CA801CB1EB0D009B78E1 /* LaunchScreen.storyboard */; };
 		9142CA8D1CB1EB0D009B78E1 /* WhereYouAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA8C1CB1EB0D009B78E1 /* WhereYouAtTests.swift */; };
 		9142CA981CB1EB0D009B78E1 /* WhereYouAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */; };
+		91C30D5A1CB4D78C00E8B552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C30D591CB4D78C00E8B552 /* HomeViewController.swift */; };
 		91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7265E1CB1EBF3008A3618 /* Database.swift */; };
 		91F726611CB1EC6D008A3618 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726601CB1EC6D008A3618 /* Profile.swift */; };
 		91F726631CB1EE1D008A3618 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726621CB1EE1D008A3618 /* Event.swift */; };
@@ -66,6 +67,7 @@
 		9142CA931CB1EB0D009B78E1 /* WhereYouAtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereYouAtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereYouAtUITests.swift; sourceTree = "<group>"; };
 		9142CA991CB1EB0D009B78E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91C30D591CB4D78C00E8B552 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		91F7265E1CB1EBF3008A3618 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		91F726601CB1EC6D008A3618 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		91F726621CB1EE1D008A3618 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		E72C77B91CB39BE2002E3A3E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				91C30D591CB4D78C00E8B552 /* HomeViewController.swift */,
 				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
 				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
 			);
@@ -484,6 +487,7 @@
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
+				91C30D5A1CB4D78C00E8B552 /* HomeViewController.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,
 				E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */,
