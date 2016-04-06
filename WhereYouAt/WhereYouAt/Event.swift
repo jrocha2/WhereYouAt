@@ -9,7 +9,7 @@
 import Foundation
 
 class Event: CustomStringConvertible {
-    var eventId: String
+    var eventId: String?
     var statuses: [Status]
     var location: Location
     
@@ -21,8 +21,19 @@ class Event: CustomStringConvertible {
         return "\(eventId) = \(location) = \(statuses)"
     }
     
-    init(eventId: String, statuses: [Status], location: Location){
-        self.eventId = eventId
+    var fbDescription: [String: AnyObject] {
+        let statusArray = [:] as NSMutableDictionary
+        for status in statuses {
+            //statusArray[status.statusId!] = status.fbDescription
+        }
+        return ["Location": location.fbDescription, "Statuses": statusArray]
+    }
+    
+    func setEventId(id: String) {
+        self.eventId = id
+    }
+    
+    init(statuses: [Status], location: Location){
         self.statuses = statuses
         self.location = location
     }
