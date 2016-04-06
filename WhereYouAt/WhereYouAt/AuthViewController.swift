@@ -14,6 +14,8 @@ import Google
 class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     var ref: Firebase!
+    var userId : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Firebase(url: "https://whereareu.firebaseio.com/")
@@ -46,16 +48,17 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 // User is logged in!
                 print("LOGGED IN!")
                 let userEmail = authData.providerData["email"] as! String
-                let userId = authData.providerData["id"] as! String
+                self.userId = authData.providerData["id"] as! String
                 let userName = authData.providerData["displayName"] as! String
-                print(userEmail, " ", userId, " ", userName)
+                print(userEmail, " ", self.userId, " ", userName)
                 
-                let manager = FirebaseManager(myUID: userId, myName: userName)
-                manager.addNewUser(userId)
-                let myProfile = Profile(firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
-                manager.updateProfile(myProfile)
-                manager.addFriend("5246535135", userId: "meeeeeeeeee")
-                let db = Database(myUID: userId)
+                
+//                let manager = FirebaseManager(myUID: userId, myName: userName)
+//                manager.addNewUser(userId)
+//                let myProfile = Profile(firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
+//                manager.updateProfile(myProfile)
+//                manager.addFriend("5246535135", userId: "meeeeeeeeee")
+//                let db = Database(myUID: userId)
                 
                 self.performSegueWithIdentifier("addUser", sender: self)
 
@@ -72,5 +75,11 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     func signIn(signIn: GIDSignIn!, didDisconnectWithUser user:GIDGoogleUser!,
                 withError error: NSError!) {
         ref.unauth();
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dest = segue.destinationViewController as? NewUserTableViewController {
+            dest.myUID = self.userId
+        }
     }
 }
