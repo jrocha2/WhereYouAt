@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 class Location: CustomStringConvertible {
-    var locationId: String
+    var locationId: String?
     var name: String
     var type: LocationType
     var latitude: CLLocationDegrees //CLLocationDegrees is a type alias for Double
@@ -20,13 +20,23 @@ class Location: CustomStringConvertible {
     }
     
     var fbDescription: [String:AnyObject] {
-        return ["latitude": self.latitude, "longitude": self.longitude, "name": self.name, "type": String(type)]
+        return ["Info": ["latitude": self.latitude, "longitude": self.longitude, "name": self.name, "type": String(type)]]
     }
     
     var description: String {
         return "\(name) - \(type)"
     }
     
+    func setLocationId(id: String) {
+        self.locationId = id
+    }
+    
+    init(locationName: String, locationType: LocationType, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        self.name = locationName
+        self.type = locationType
+        self.latitude = latitude
+        self.longitude = longitude
+    }
     init(locationId: String, locationName: String, locationType: LocationType, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.locationId = locationId
         self.name = locationName
