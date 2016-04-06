@@ -31,7 +31,31 @@ class FirebaseManager {
     
     //Adds a new location to the database
     func addNewLocation(loc: Location) {
-        rootRef.childByAppendingPath("Locations").childByAutoId().setValue(loc.fbDescription)
+        rootRef.childByAppendingPath("Locations").childByAutoId().setValue(loc.fbDescription) {
+            (error, snapshot) in
+            loc.setLocationId(snapshot.key as String)
+        }
+    }
+    
+//    //Adds a new event to the database
+//    func addNewEvent(event: Event) {
+//        rootRef.childByAppendingPath("Events").childByAutoId().setValue(event.fbDescription)
+//    }
+    
+    //Adds a new status to a particular location
+    func addNewStatus(status: Status, locationId: String) {
+        let newRef = rootRef.childByAppendingPath("Locations/"+locationId)
+        newRef.observeSingleEventOfType(.Value, withBlock: {
+            (snapshot) in
+            if snapshot.exists() {
+                newRef.childByAppendingPath("Statuses").childByAutoId().setValue(status.fbDescription, withCompletionBlock: {
+                    (error, snapshot) in
+                    status.setStatusId(snapshot.key as String)
+                })
+            } else {
+                print("error: This location does not exist")
+            }
+        })
     }
     
     //Checks if a user is has a profile
@@ -47,6 +71,7 @@ class FirebaseManager {
             }
         })
     }
+    
     /*
     func addFriend(uid: String, userId: String) {
         userRef.childByAppendingPath("Friends").childByAppendingPath(uid).setValue(userId)
@@ -115,7 +140,7 @@ class FirebaseManager {
         statusRef.childByAutoId().setValue(broStatus2)
         
     }
-    
+    /*
     func getEventData(locations: [Location], callback: ([Event]) -> () ) {
         let eventRef = rootRef.childByAppendingPath("Events")
         var eventData: [Event] = []
@@ -125,21 +150,21 @@ class FirebaseManager {
             (snapshot) in
             //For each event
             for child in snapshot.children {
-                let eventId = child.key as String
+                //let eventId = child.key as String
                 let locationId = child.value["locationId"] as! String
                 //For each status that belongs to an event
                 for status in child.value["statuses"] as! NSDictionary {
-                    let statusId = status.key as! String
+                    //let statusId = status.key as! String
                     let userId = status.value["userId"] as! String
                     let userName = status.value["userName"] as! String
                     let body = status.value["body"] as! String
                     let time = status.value["timestamp"] as! Double
-                    statuses.append(Status(statusId: statusId, userId: userId, userName: userName, body: body, time: time))
+                    statuses.append(Status(userId: userId, userName: userName, body: body, time: time))
                 }
                 //Find the location in the list of locations
                 for location in locations {
                     if location.locationId == locationId {
-                        eventData.append(Event(eventId: eventId, statuses: statuses, location: location))
+                        eventData.append(Event(statuses: statuses, location: location))
                     }
                 }
                 statuses = []
@@ -147,7 +172,7 @@ class FirebaseManager {
             callback(eventData)
             eventData = []
         })
-    }
+    }*/
  
     func getLocations(callback: ([Location]) -> () ) {
         let locationRef = rootRef.childByAppendingPath("Locations")
