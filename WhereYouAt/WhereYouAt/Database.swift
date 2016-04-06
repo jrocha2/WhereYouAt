@@ -73,7 +73,7 @@ class Database {
     
     //Creates a new location
     func createNewLocation(location: Location) {
-        
+        self.firebase.addNewLocation(location)
     }
     
     //This gets your feed for your friend's statuses

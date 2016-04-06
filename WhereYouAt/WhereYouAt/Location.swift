@@ -19,6 +19,10 @@ class Location: CustomStringConvertible {
         return CLLocation(latitude: self.latitude, longitude: self.longitude);
     }
     
+    var fbDescription: [String:AnyObject] {
+        return ["latitude": self.latitude, "longitude": self.longitude, "name": self.name, "type": String(type)]
+    }
+    
     var description: String {
         return "\(name) - \(type)"
     }

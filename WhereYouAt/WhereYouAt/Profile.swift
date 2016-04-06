@@ -22,6 +22,23 @@ class Profile: CustomStringConvertible {
         return firstName+" "+lastName
     }
     
+    var fbDescription: [String: AnyObject] {
+        var userData : [String : String] = [:]
+        //userData["userId"] = profile.userId
+        userData["firstName"] = self.firstName
+        userData["lastName"] = self.lastName
+        userData["gender"] = String(self.gender)
+        userData["year"] = String(self.year)
+        userData["phone"] = self.phone
+        if let dob = self.dateOfBirth {
+            userData["dateOfBirth"] = dob
+        }
+        if let home = self.dorm {
+            userData["dorm"] = home
+        }
+        return userData
+    }
+    
     var description: String {
         return name
     }
@@ -63,5 +80,27 @@ class Profile: CustomStringConvertible {
         self.init(firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dateOfBirth = dateOfBirth
         self.dorm = dorm
+    }
+    
+    init(fromFirebaseUserData userData: [String:String]){
+        // Initialize different Profile depending on which details are available
+        self.firstName = userData["firstName"]!
+        self.lastName = userData["lastName"]!
+        self.gender = Gender(rawValue: userData["gender"]!)!
+        self.year = Year(rawValue: userData["year"]!)!
+        self.phone = userData["phone"]!
+        
+        if let dob = userData["dateOfBirth"] {
+            self.dateOfBirth = dob
+        } else {
+            self.dateOfBirth = nil
+        }
+        if let home = userData["dorm"]
+        {
+            self.dorm = home
+        } else {
+            self.dorm = nil
+        }
+        
     }
 }

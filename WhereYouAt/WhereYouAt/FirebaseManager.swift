@@ -24,8 +24,14 @@ class FirebaseManager {
         userRef = rootRef.childByAppendingPath("Users").childByAppendingPath(myUID)
     }
     
+    //Adds a new user to the database
     func addNewUser(uid: String) {
         rootRef.childByAppendingPath("Users").childByAppendingPath(uid).childByAppendingPath("Profile").setValue("New User")
+    }
+    
+    //Adds a new location to the database
+    func addNewLocation(loc: Location) {
+        rootRef.childByAppendingPath("Locations").childByAutoId().setValue(loc.fbDescription)
     }
     
     //Checks if a user is has a profile
@@ -65,21 +71,7 @@ class FirebaseManager {
     // Creates dictionary out of Profile's properties and sets appropriate node
     func updateProfile(profile: Profile, callback: (Profile) -> ()) {
         
-        var userData : [String : String] = [:]
-        //userData["userId"] = profile.userId
-        userData["firstName"] = profile.firstName
-        userData["lastName"] = profile.lastName
-        userData["gender"] = String(profile.gender)
-        userData["year"] = String(profile.year)
-        userData["phone"] = profile.phone
-        if let dob = profile.dateOfBirth {
-            userData["dateOfBirth"] = dob
-        }
-        if let home = profile.dorm {
-            userData["dorm"] = home
-        }
-        
-        userRef.childByAppendingPath("Profile").setValue(userData, withCompletionBlock: {
+        userRef.childByAppendingPath("Profile").setValue(profile.fbDescription, withCompletionBlock: {
             (snap) in
             callback(profile)
         })
@@ -96,17 +88,8 @@ class FirebaseManager {
                 let value = child.value as String
                 userData[key] = value
             }
+            callback(Profile(fromFirebaseUserData: userData))
             
-            // Initialize different Profile depending on which details are available
-            if let dob = userData["dateOfBirth"], home = userData["dorm"] {
-                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob, dorm: home))
-            } else if let dob = userData["dateOfBirth"] {
-                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob))
-            } else if let home = userData["dorm"] {
-                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dorm: home))
-            } else {
-                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!))
-            }
         })
     }
     
