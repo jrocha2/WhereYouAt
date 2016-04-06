@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Profile {
+class Profile: CustomStringConvertible {
     //var userId: String
     var firstName: String
     var lastName: String
@@ -20,6 +20,10 @@ class Profile {
     //var picture: UIImage?
     var name: String {
         return firstName+" "+lastName
+    }
+    
+    var description: String {
+        return name
     }
     
     enum Gender: String {

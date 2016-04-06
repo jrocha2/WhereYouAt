@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Status {
+class Status: CustomStringConvertible {
     var statusId: String
     var userId: String
     var userName: String
@@ -17,6 +17,10 @@ class Status {
     
     var time: NSDate {
         return NSDate(timeIntervalSince1970: timestamp)
+    }
+    
+    var description: String {
+        return "\(userName): \(body)"
     }
     
     init(statusId: String, userId: String, userName: String, body: String, time: Double) {

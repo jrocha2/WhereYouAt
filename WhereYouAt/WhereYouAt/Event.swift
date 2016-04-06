@@ -8,13 +8,17 @@
 
 import Foundation
 
-class Event {
+class Event: CustomStringConvertible {
     var eventId: String
     var statuses: [Status]
     var location: Location
     
     var numberOfPeople: Int {
         return statuses.count
+    }
+    
+    var description: String {
+        return "\(eventId) = \(location) = \(statuses)"
     }
     
     init(eventId: String, statuses: [Status], location: Location){

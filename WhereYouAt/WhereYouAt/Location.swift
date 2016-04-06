@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class Location {
+class Location: CustomStringConvertible {
     var locationId: String
     var name: String
     var type: LocationType
@@ -17,6 +17,10 @@ class Location {
     var longitude: CLLocationDegrees
     var location: CLLocation {
         return CLLocation(latitude: self.latitude, longitude: self.longitude);
+    }
+    
+    var description: String {
+        return "\(name) - \(type)"
     }
     
     init(locationId: String, locationName: String, locationType: LocationType, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {

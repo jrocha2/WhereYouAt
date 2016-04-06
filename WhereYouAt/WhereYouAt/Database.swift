@@ -24,29 +24,44 @@ class Database {
         
         firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
         //firebase.insertDummyData()
+        self.getFriends()
+        self.getLocations()
+        if( hasProfile ) {
+            self.getProfile()
+        }
+    }
+
+    //Gets a users profile
+    func getProfile() {
+        self.firebase.getProfile(self.userId) {
+            (profile) in
+            self.profile = profile
+            //self.firebase.myName = profile.name
+        }
+    }
+    
+    //Gets a user's friends
+    func getFriends() {
         self.firebase.getAllFriends() {
             (friends) in
             self.friendsList = friends
         }
+    }
+    
+    //Gets the locations and update events
+    func getLocations() {
         self.firebase.getLocations() {
             (locations) in
             self.locations = locations
             self.firebase.getEventData(self.locations) {
                 (events) in
                 self.eventData = events
-                print("Events: \(self.eventData.count)")
-                print("People Attending: \(self.eventData[self.eventData.count - 1].numberOfPeople)")
-            }
-        }
-        if( hasProfile ) {
-            self.firebase.getProfile(myUID) {
-                (profile) in
-                self.profile = profile
-                //self.firebase.myName = profile.name
+                print("Events: \(self.eventData)")
+                //print("People Attending: \(self.eventData[self.eventData.count - 1].numberOfPeople)")
             }
         }
     }
-
+    
     //Updates the profile
     func updateProfile(profile: Profile, call: () -> ()) {
         self.firebase.updateProfile(profile, callback: {
@@ -54,6 +69,11 @@ class Database {
             self.profile = newProfile
             call()
         })
+    }
+    
+    //Creates a new location
+    func createNewLocation(location: Location) {
+        
     }
     
     //This gets your feed for your friend's statuses
