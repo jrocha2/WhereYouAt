@@ -19,7 +19,7 @@ class Database {
     var firebase: FirebaseManager
     
     //The init method calls the methods in the Firebase class
-    init(myUID: String) {
+    init(myUID: String, hasProfile: Bool) {
         self.userId = myUID
         
         firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
@@ -38,13 +38,24 @@ class Database {
                 print("People Attending: \(self.eventData[self.eventData.count - 1].numberOfPeople)")
             }
         }
-        self.firebase.getProfile(myUID) {
-            (profile) in
-            self.profile = profile
-            self.firebase.myName = "\(profile.firstName) \(profile.lastName)"
+        if( hasProfile ) {
+            self.firebase.getProfile(myUID) {
+                (profile) in
+                self.profile = profile
+                //self.firebase.myName = profile.name
+            }
         }
     }
 
+    //Updates the profile
+    func updateProfile(profile: Profile, call: () -> ()) {
+        self.firebase.updateProfile(profile, callback: {
+            (newProfile) in
+            self.profile = newProfile
+            call()
+        })
+    }
+    
     //This gets your feed for your friend's statuses
     func getStatusFeed() -> [Status] {
         var friendsStatuses: [Status] = []

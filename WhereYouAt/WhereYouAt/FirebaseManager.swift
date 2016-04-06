@@ -28,10 +28,24 @@ class FirebaseManager {
         rootRef.childByAppendingPath("Users").childByAppendingPath(uid).childByAppendingPath("Profile").setValue("New User")
     }
     
+    //Checks if a user is has a profile
+    func checkForUserId(uid: String, callback: (Bool) -> ()) {
+        let ref = rootRef.childByAppendingPath("Users").childByAppendingPath(uid)
+        ref.observeSingleEventOfType(.Value, withBlock: {
+            (snapshot) in
+            //Check if they are in the DB
+            if snapshot.exists() {
+                callback(true)
+            } else {
+                callback(false)
+            }
+        })
+    }
+    /*
     func addFriend(uid: String, userId: String) {
         userRef.childByAppendingPath("Friends").childByAppendingPath(uid).setValue(userId)
         rootRef.childByAppendingPath("Users/\(uid)/Friends/Requests/\(myUID)").setValue(myName)
-    }
+    }*/
     
     func getAllFriends(callback: [String:String] -> ()) {
         var friends : [String : String] = [:]
@@ -49,7 +63,7 @@ class FirebaseManager {
     }
     
     // Creates dictionary out of Profile's properties and sets appropriate node
-    func updateProfile(profile: Profile) {
+    func updateProfile(profile: Profile, callback: (Profile) -> ()) {
         
         var userData : [String : String] = [:]
         //userData["userId"] = profile.userId
@@ -65,7 +79,10 @@ class FirebaseManager {
             userData["dorm"] = home
         }
         
-        userRef.childByAppendingPath("Profile").setValue(userData)
+        userRef.childByAppendingPath("Profile").setValue(userData, withCompletionBlock: {
+            (snap) in
+            callback(profile)
+        })
         
     }
     
