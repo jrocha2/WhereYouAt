@@ -22,18 +22,22 @@ class Database {
         self.userId = myUID
         
         firebase = FirebaseManager(myUID: userId, myName: "Cory Jbara")
+        //firebase.insertDummyData()
         self.firebase.getAllFriends() {
             (friends) in
             self.friendsList = friends
         }
-        /*self.firebase.getEventData() {
-            (events) in
-            self.eventData = events
-        }
         self.firebase.getLocations() {
             (locations) in
             self.locations = locations
-        }*/
+            self.firebase.getEventData(self.locations) {
+                (events) in
+                self.eventData = events
+                print("Events: \(self.eventData.count)")
+                print("People Attending: \(self.eventData[self.eventData.count - 1].numberOfPeople)")
+            }
+        }
+        
         self.firebase.getProfile("107819875842607976572") {
             (profile) in
             self.profile = profile
@@ -45,13 +49,13 @@ class Database {
         var friendsStatuses: [Status] = []
         for event in eventData {
             for status in event.statuses {
-                if let _ = friendsList[status.personId] {
+                if let _ = friendsList[status.userId] {
                     friendsStatuses.append(status)
                 }
             }
         }
         friendsStatuses.sortInPlace( {
-            return $0.timestamp.compare($1.timestamp) == .OrderedAscending
+            return $0.timestamp > $1.timestamp
         })
         return friendsStatuses
     }
@@ -61,7 +65,7 @@ class Database {
         var friendsEvents: [Event] = []
         for event in eventData {
             for status in event.statuses {
-                if let _ = friendsList[status.personId] {
+                if let _ = friendsList[status.userId] {
                     friendsEvents.append(event)
                 }
             }

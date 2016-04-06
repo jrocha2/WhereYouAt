@@ -1,0 +1,6 @@
+framework module Pods_WhereYouAtUITests {
+  umbrella header "Pods-WhereYouAtUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
