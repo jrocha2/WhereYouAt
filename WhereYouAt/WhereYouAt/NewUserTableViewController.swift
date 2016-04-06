@@ -24,7 +24,7 @@ class NewUserTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Initialize the Database for this instance of the app
-        db = Database(myUID: myUID)
+        db = Database(myUID: myUID, hasProfile: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,8 +67,12 @@ class NewUserTableViewController: UITableViewController {
                 newProfile.dorm = dorm.text
             }
             
-            db.firebase.updateProfile(newProfile)
-            print("Added Profile to Database!")
+            db.updateProfile(newProfile, call: {
+                () in
+                print("Added Profile to Database!")
+                self.performSegueWithIdentifier("loginFromUserInfo", sender: self)
+            })
+            
         }
     }
     
@@ -117,14 +121,17 @@ class NewUserTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let dest = segue.destinationViewController as? HomeViewController {
+            dest.myUID = self.myUID
+        }
     }
-    */
+ 
 
 }

@@ -65,15 +65,21 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 let userName = authData.providerData["displayName"] as! String
                 print(userEmail, " ", self.userId, " ", userName)
                 
-                
-//                let manager = FirebaseManager(myUID: userId, myName: userName)
+                let manager = FirebaseManager(myUID: self.userId, myName: userName)
+                manager.checkForUserId(self.userId, callback: {
+                    (flag) in
+                    if ( flag ) {
+                        self.performSegueWithIdentifier("login", sender: self)
+                    } else {
+                        self.performSegueWithIdentifier("addUser", sender: self)
+                    }
+                })
 //                manager.addNewUser(userId)
 //                let myProfile = Profile(firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
 //                manager.updateProfile(myProfile)
 //                manager.addFriend("5246535135", userId: "meeeeeeeeee")
-//                let db = Database(myUID: userId)
+//                let db = Database(myUID: self.userId)
                 
-                self.performSegueWithIdentifier("addUser", sender: self)
 
             })
             
@@ -92,6 +98,9 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let dest = segue.destinationViewController as? NewUserTableViewController {
+            dest.myUID = self.userId
+        }
+        if let dest = segue.destinationViewController as? HomeViewController {
             dest.myUID = self.userId
         }
     }
