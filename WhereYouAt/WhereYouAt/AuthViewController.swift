@@ -15,6 +15,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
 
     var ref: Firebase!
     var userId : String = ""
+    var appJustOpened : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +24,22 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
         // Setup delegates
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().uiDelegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
-        // Attempt to sign in silently, this will succeed if
-        // the user has recently been authenticated
-        GIDSignIn.sharedInstance().signInSilently()
+        if appJustOpened {
+            // Attempt to sign in silently, this will succeed if
+            // the user has recently been authenticated
+            GIDSignIn.sharedInstance().signInSilently()
+            appJustOpened = false
+        } else {
+            // The user got here from unwinding so they must have chosen to sign out
+            print("LOGGED OUT!")
+            signOut()
+        }
+    
     }
     
     func authenticateWithGoogle(sender: UIButton) {
