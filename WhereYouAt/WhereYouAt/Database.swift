@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 class Database {
+    
     var userId: String = ""
     var friendsList: [String: String] = [:]
     var eventData : [Event] = []
@@ -21,7 +22,7 @@ class Database {
     init(myUID: String) {
         self.userId = myUID
         
-        firebase = FirebaseManager(myUID: userId, myName: "Cory Jbara")
+        firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
         //firebase.insertDummyData()
         self.firebase.getAllFriends() {
             (friends) in
@@ -37,10 +38,10 @@ class Database {
                 print("People Attending: \(self.eventData[self.eventData.count - 1].numberOfPeople)")
             }
         }
-        
-        self.firebase.getProfile("107819875842607976572") {
+        self.firebase.getProfile(myUID) {
             (profile) in
             self.profile = profile
+            self.firebase.myName = "\(profile.firstName) \(profile.lastName)"
         }
     }
 

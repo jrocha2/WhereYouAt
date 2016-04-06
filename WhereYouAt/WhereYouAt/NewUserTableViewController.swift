@@ -17,15 +17,14 @@ class NewUserTableViewController: UITableViewController {
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var dateOfBirth: UITextField!
     @IBOutlet weak var dorm: UITextField!
+    var db : Database!
+    var myUID : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        // Initialize the Database for this instance of the app
+        db = Database(myUID: myUID)
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +67,7 @@ class NewUserTableViewController: UITableViewController {
                 newProfile.dorm = dorm.text
             }
             
-            // insert call to firebase manager here
+            db.firebase.updateProfile(newProfile)
             print("Added Profile to Database!")
         }
     }
