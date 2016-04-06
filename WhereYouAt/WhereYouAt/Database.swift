@@ -10,9 +10,7 @@ import Foundation
 import Firebase
 
 class Database {
-    var userId: String? {
-        return profile?.userId
-    }
+    var userId: String = ""
     var friendsList: [String: String] = [:]
     var eventData : [Event] = []
     var locations: [Location] = []
@@ -20,8 +18,10 @@ class Database {
     var firebase: FirebaseManager
     
     //The init method calls the methods in the Firebase class
-    init() {
-        firebase = FirebaseManager(myUID: "107819875842607976572", myName: "Cory Jbara")
+    init(myUID: String) {
+        self.userId = myUID
+        
+        firebase = FirebaseManager(myUID: userId, myName: "Cory Jbara")
         self.firebase.getAllFriends() {
             (friends) in
             self.friendsList = friends

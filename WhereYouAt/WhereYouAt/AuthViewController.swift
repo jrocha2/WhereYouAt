@@ -52,10 +52,12 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 
                 let manager = FirebaseManager(myUID: userId, myName: userName)
                 manager.addNewUser(userId)
-                let myProfile = Profile(userId: userId, firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
+                let myProfile = Profile(firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
                 manager.updateProfile(myProfile)
                 manager.addFriend("5246535135", userId: "meeeeeeeeee")
-                let db = Database()
+                let db = Database(myUID: userId)
+                
+                self.performSegueWithIdentifier("addUser", sender: self)
 
             })
             

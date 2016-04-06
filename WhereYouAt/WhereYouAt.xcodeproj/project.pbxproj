@@ -24,6 +24,7 @@
 		E72C77B71CB3899F002E3A3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */; };
 		E72C77B81CB3899F002E3A3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */; };
 		E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C77BA1CB39C7D002E3A3E /* FirebaseManager.swift */; };
+		E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E72C77BA1CB39C7D002E3A3E /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserTableViewController.swift; sourceTree = "<group>"; };
 		EBC1AB1E04ABF45F99FFDAFF /* Pods_WhereYouAt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereYouAt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
+				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
 			);
 			name = "View Controllers";
 			path = WhereYouAt;
@@ -387,6 +390,7 @@
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,
+				E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */,
 				91F726631CB1EE1D008A3618 /* Event.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

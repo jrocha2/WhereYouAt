@@ -52,7 +52,7 @@ class FirebaseManager {
     func updateProfile(profile: Profile) {
         
         var userData : [String : String] = [:]
-        userData["userId"] = profile.userId
+        //userData["userId"] = profile.userId
         userData["firstName"] = profile.firstName
         userData["lastName"] = profile.lastName
         userData["gender"] = String(profile.gender)
@@ -82,13 +82,13 @@ class FirebaseManager {
             
             // Initialize different Profile depending on which details are available
             if let dob = userData["dateOfBirth"], home = userData["dorm"] {
-                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob, dorm: home))
+                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob, dorm: home))
             } else if let dob = userData["dateOfBirth"] {
-                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob))
+                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dateOfBirth: dob))
             } else if let home = userData["dorm"] {
-                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dorm: home))
+                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!, dorm: home))
             } else {
-                callback(Profile(userId: userData["userId"]!, firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!))
+                callback(Profile(firstName: userData["firstName"]!, lastName: userData["lastName"]!, gender: Profile.Gender(rawValue: userData["gender"]!)!, year: Profile.Year(rawValue: userData["year"]!)!, phoneNumber: userData["phone"]!))
             }
         })
     }

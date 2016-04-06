@@ -9,7 +9,7 @@
 import Foundation
 
 class Profile {
-    var userId: String
+    //var userId: String
     var firstName: String
     var lastName: String
     var gender: Gender
@@ -31,8 +31,8 @@ class Profile {
         case Freshman = "Freshman"
     }
     
-    init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String) {
-        self.userId = userId
+    init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String) {
+        //self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
@@ -42,18 +42,18 @@ class Profile {
         self.dorm = nil
     }
     
-    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String) {
-        self.init(userId: userId, firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
+    convenience init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String) {
+        self.init(firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dateOfBirth = dateOfBirth
     }
     
-    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dorm: String) {
-        self.init(userId: userId, firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
+    convenience init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dorm: String) {
+        self.init(firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dorm = dorm
     }
     
-    convenience init(userId: String, firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String, dorm: String) {
-        self.init(userId: userId, firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
+    convenience init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String, dateOfBirth: String, dorm: String) {
+        self.init(firstName: firstName, lastName: lastName, gender: gender, year: year, phoneNumber: phoneNumber)
         self.dateOfBirth = dateOfBirth
         self.dorm = dorm
     }
