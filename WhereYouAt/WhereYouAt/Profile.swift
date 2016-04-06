@@ -18,6 +18,9 @@ class Profile {
     var dateOfBirth: String?
     var dorm: String?
     //var picture: UIImage?
+    var name: String {
+        return firstName+" "+lastName
+    }
     
     enum Gender: String {
         case Male = "Male"
