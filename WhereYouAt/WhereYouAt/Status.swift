@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Status: CustomStringConvertible {
     var statusId: String
@@ -21,6 +22,10 @@ class Status: CustomStringConvertible {
     
     var description: String {
         return "\(userName): \(body)"
+    }
+    
+    var fbDescription: [String: AnyObject] {
+        return ["userId": userId, "userName": userName, "body": body, "timestamp": FirebaseServerValue.timestamp()]
     }
     
     init(statusId: String, userId: String, userName: String, body: String, time: Double) {
