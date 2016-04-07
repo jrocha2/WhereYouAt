@@ -39,9 +39,9 @@ class Database {
         self.createNewLocation(oRos)
     }
     func insertDummyData() {
-        self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEiWP4dujG9jBU9-GO2")
-        self.createNewStatus(Status(userId: "116019746140165652297", userName: "Brad Sherman", body: "Going to sing Karaoke!"), locationId: "-KEiWP4dujG9jBU9-GO3")
-        self.createNewStatus(Status(userId: "103452395065219160297", userName: "John Rocha", body: "Brother's is great"), locationId: "-KEiWP4dujG9jBU9-GO2")
+        self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEiWP4dujG9jBU9-GO2", callback: nil)
+        self.createNewStatus(Status(userId: "116019746140165652297", userName: "Brad Sherman", body: "Going to sing Karaoke!"), locationId: "-KEiWP4dujG9jBU9-GO3", callback: nil)
+        self.createNewStatus(Status(userId: "103452395065219160297", userName: "John Rocha", body: "Brother's is great"), locationId: "-KEiWP4dujG9jBU9-GO2", callback: nil)
     }
     
     //Creates a new location
@@ -50,8 +50,8 @@ class Database {
     }
     
     //Creates a new status for a location, inserts it into the existing location
-    func createNewStatus(status: Status, locationId: String) {
-        self.firebase.addNewStatus(status, locationId: locationId)
+    func createNewStatus(status: Status, locationId: String, callback: (() -> ())?) {
+        self.firebase.addNewStatus(status, locationId: locationId, callback: callback)
     }
 
     //Gets a users profile
@@ -74,11 +74,12 @@ class Database {
     
     //Gets the locations and update events
     func getLocationsAndStatuses() {
-        self.firebase.getLocations() {
-            (location) in
-            self.locations.append(location)
-            print(self.locations)
-        }
+        self.locations = []
+        self.firebase.getLocations({
+            (locations) in
+            self.locations = locations
+            print("\n\(self.locations)")
+        })
     }
     
     //Updates the profile

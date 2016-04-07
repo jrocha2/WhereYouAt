@@ -43,7 +43,7 @@ class FirebaseManager {
 //    }
     
     //Adds a new status to a particular location
-    func addNewStatus(status: Status, locationId: String) {
+    func addNewStatus(status: Status, locationId: String, callback: (() -> ())?) {
         let newRef = rootRef.childByAppendingPath("Locations/"+locationId)
         newRef.observeSingleEventOfType(.Value, withBlock: {
             (snapshot) in
@@ -51,6 +51,7 @@ class FirebaseManager {
                 newRef.childByAppendingPath("Statuses").childByAutoId().setValue(status.fbDescription, withCompletionBlock: {
                     (error, snapshot) in
                     status.setStatusId(snapshot.key as String)
+                    callback?()
                 })
             } else {
                 print("error: This location does not exist")
@@ -121,7 +122,7 @@ class FirebaseManager {
     }
  
     //Gets every location in the database and the statuses for the location
-    func getLocations(callback: (Location) -> () ) {
+    func getLocations(callback: ([Location]) -> ()) {
         let locationRef = rootRef.childByAppendingPath("Locations")
         var locationData: [Location] = []
         var statusData: [Status] = []
@@ -129,30 +130,31 @@ class FirebaseManager {
             (snapshot) in
             for child in snapshot.children {
                 let id = child.key as String
-                let info = child.value.objectForKey("Info")!
-                locationRef.childByAppendingPath("/\(id)/Statuses/").observeEventType(.Value, withBlock: {
-                    (snap) in
-                    for status in snap.children {
-                        
-                        let id = status.key as String
-                        let body = status.value["body"] as! String
-                        let timestamp = status.value["timestamp"] as! Double
-                        let userId = status.value["userId"] as! String
-                        let userName = status.value["userName"] as! String
-                        
-                        statusData.append(Status(statusId: id, userId: userId, userName: userName, body: body, time: timestamp))
-                    }
-                    let lat = info["latitude"] as! Double
-                    let lon = info["longitude"] as! Double
-                    let name = info["name"] as! String
-                    //let type = LocationType(rawValue: String(info["type"]))!
-                    let loc = Location(locationId: id, locationName: name, locationType: .Bar, latitude: lat, longitude: lon)
-                    loc.addStatuses(statusData)
-                    locationData.append(loc)
-                    callback(loc)
-                    statusData = []
-                })
+                let info = child.childSnapshotForPath("Info")
+                let statuses = child.childSnapshotForPath("Statuses")
+                for status in statuses.children {
+                    
+                    //For each status, add this to a status array
+                    let id = status.key as String
+                    let body = status.childSnapshotForPath("body").value as! String
+                    let timestamp = status.childSnapshotForPath("timestamp").value as! Double
+                    let userId = status.childSnapshotForPath("userId").value as! String
+                    let userName = status.childSnapshotForPath("userName").value as! String
+                    let newStatus = Status(statusId: id, userId: userId, userName: userName, body: body, time: timestamp)
+                    statusData.append(newStatus)
+                }
+                let lat = info.childSnapshotForPath("latitude").value as! Double
+                let lon = info.childSnapshotForPath("longitude").value as! Double
+                let name = info.childSnapshotForPath("name").value as! String
+                let type = LocationType(rawValue: String(info.childSnapshotForPath("type").value))!
+                let loc = Location(locationId: id, locationName: name, locationType: type, latitude: lat, longitude: lon)
+                locationData.append(loc)
+                loc.addStatuses(statusData)
+                
+                //Reset status data
+                statusData = []
             }
+            callback(locationData)
             locationData = []
         })
         
