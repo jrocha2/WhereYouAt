@@ -33,15 +33,15 @@ class Database {
     
     //Inserts dummy data into the DB
     func insertDummyLocations() {
-        let brothers = Location(locationName: "Brother's Bar", locationType: .Bar, latitude: 40, longitude: 45)
-        let oRos = Location(locationName: "O'Rourke's Bar", locationType: .Bar, latitude: 45, longitude: 40)
+        let brothers = Location(locationName: "Brother's Bar and Grill", locationType: .Bar, latitude: 41.6919844, longitude: -86.2344451)
+        let oRos = Location(locationName: "O'Rourke's", locationType: .Bar, latitude: 41.6925968, longitude: -86.2360118)
         self.createNewLocation(brothers)
         self.createNewLocation(oRos)
     }
     func insertDummyData() {
-        self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEhzjsQkaYTgGU0UVbp")
-        self.createNewStatus(Status(userId: "116019746140165652297", userName: "Brad Sherman", body: "Going to sing Karaoke!"), locationId: "-KEhzjsZrjRZi-QxulO7")
-        self.createNewStatus(Status(userId: "103452395065219160297", userName: "John Rocha", body: "Brother's is great"), locationId: "-KEhzjsQkaYTgGU0UVbp")
+        self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEiWP4dujG9jBU9-GO2")
+        self.createNewStatus(Status(userId: "116019746140165652297", userName: "Brad Sherman", body: "Going to sing Karaoke!"), locationId: "-KEiWP4dujG9jBU9-GO3")
+        self.createNewStatus(Status(userId: "103452395065219160297", userName: "John Rocha", body: "Brother's is great"), locationId: "-KEiWP4dujG9jBU9-GO2")
     }
     
     //Creates a new location
