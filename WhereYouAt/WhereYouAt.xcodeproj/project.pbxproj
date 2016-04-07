@@ -72,9 +72,9 @@
 		91F726641CB1EE5A008A3618 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		91F726661CB1EF3B008A3618 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		A77225F0F12DEC52E23AA5D7 /* Pods_WhereYouAt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereYouAt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E72C77AC1CB30424002E3A3E /* WhereYouAt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhereYouAt-Bridging-Header.h"; sourceTree = "<group>"; };
+		E72C77AC1CB30424002E3A3E /* WhereYouAt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhereYouAt-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E72C77BA1CB39C7D002E3A3E /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserTableViewController.swift; sourceTree = "<group>"; };
 		F17E8B8AE30747328ACB2755 /* Pods-WhereYouAtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereYouAtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereYouAtTests/Pods-WhereYouAtTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,13 +131,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9142CA6B1CB1EB0D009B78E1 = {
+		9130A5951CB5EB9F001A3276 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9142CA7B1CB1EB0D009B78E1 /* Main.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		9130A5961CB5EBBE001A3276 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
 				E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */,
 				E72C77AC1CB30424002E3A3E /* WhereYouAt-Bridging-Header.h */,
-				91F7265D1CB1EBDA008A3618 /* Models */,
-				E72C77B91CB39BE2002E3A3E /* View Controllers */,
+				9142CA771CB1EB0D009B78E1 /* AppDelegate.swift */,
+				9142CA801CB1EB0D009B78E1 /* LaunchScreen.storyboard */,
+				9142CA7E1CB1EB0D009B78E1 /* Assets.xcassets */,
+				9142CA831CB1EB0D009B78E1 /* Info.plist */,
+			);
+			name = Misc;
+			sourceTree = "<group>";
+		};
+		9142CA6B1CB1EB0D009B78E1 = {
+			isa = PBXGroup;
+			children = (
 				9142CA761CB1EB0D009B78E1 /* WhereYouAt */,
 				9142CA8B1CB1EB0D009B78E1 /* WhereYouAtTests */,
 				9142CA961CB1EB0D009B78E1 /* WhereYouAtUITests */,
@@ -160,11 +177,10 @@
 		9142CA761CB1EB0D009B78E1 /* WhereYouAt */ = {
 			isa = PBXGroup;
 			children = (
-				9142CA771CB1EB0D009B78E1 /* AppDelegate.swift */,
-				9142CA7B1CB1EB0D009B78E1 /* Main.storyboard */,
-				9142CA801CB1EB0D009B78E1 /* LaunchScreen.storyboard */,
-				9142CA7E1CB1EB0D009B78E1 /* Assets.xcassets */,
-				9142CA831CB1EB0D009B78E1 /* Info.plist */,
+				E72C77B91CB39BE2002E3A3E /* View Controllers */,
+				9130A5951CB5EB9F001A3276 /* Views */,
+				91F7265D1CB1EBDA008A3618 /* Models */,
+				9130A5961CB5EBBE001A3276 /* Misc */,
 			);
 			path = WhereYouAt;
 			sourceTree = "<group>";
@@ -197,7 +213,6 @@
 				91F726641CB1EE5A008A3618 /* Location.swift */,
 			);
 			name = Models;
-			path = WhereYouAt;
 			sourceTree = "<group>";
 		};
 		E72C77B91CB39BE2002E3A3E /* View Controllers */ = {
@@ -208,7 +223,6 @@
 				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
 			);
 			name = "View Controllers";
-			path = WhereYouAt;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
