@@ -10,6 +10,8 @@ import UIKit
 
 class LocationsTableViewController: UITableViewController {
 
+    var db: Database!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,23 +31,23 @@ class LocationsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return db.locations.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! LocationTableViewCell
 
+        cell.locationName.text = db.locations[indexPath.row].name
+        cell.locationType.text = db.locations[indexPath.row].type.rawValue
         // Configure the cell...
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -82,14 +84,18 @@ class LocationsTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if let dest = segue.destinationViewController as? NewStatusViewController,
+            cell = sender as? LocationTableViewCell,
+            indexPath = self.tableView.indexPathForCell(cell) {
+            dest.db = self.db
+            dest.location = self.db.locations[indexPath.row]
+        }
     }
-    */
 
 }
