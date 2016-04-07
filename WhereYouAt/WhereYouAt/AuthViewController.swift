@@ -74,13 +74,6 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                         self.performSegueWithIdentifier("addUser", sender: self)
                     }
                 })
-//                manager.addNewUser(userId)
-//                let myProfile = Profile(firstName: "John", lastName: "Rocha", gender: .Male, year: .Junior, phoneNumber: "713-501-1554")
-//                manager.updateProfile(myProfile)
-//                manager.addFriend("5246535135", userId: "meeeeeeeeee")
-//                let db = Database(myUID: self.userId)
-                
-
             })
             
         } else {

@@ -15,8 +15,13 @@ class Location: CustomStringConvertible {
     var type: LocationType
     var latitude: CLLocationDegrees //CLLocationDegrees is a type alias for Double
     var longitude: CLLocationDegrees
+    var statuses: [Status] = []
     var location: CLLocation {
         return CLLocation(latitude: self.latitude, longitude: self.longitude);
+    }
+    
+    var numberOfPeople: Int {
+        return statuses.count
     }
     
     var fbDescription: [String:AnyObject] {
@@ -24,11 +29,15 @@ class Location: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(name) - \(type)"
+        return "\(locationId!): \(name) - \(statuses)"
     }
     
     func setLocationId(id: String) {
         self.locationId = id
+    }
+    
+    func addStatuses(statuses: [Status]) {
+        self.statuses = statuses
     }
     
     init(locationName: String, locationType: LocationType, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {

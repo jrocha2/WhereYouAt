@@ -9,7 +9,7 @@
 import Foundation
 
 class Profile: CustomStringConvertible {
-    //var userId: String
+    var userId: String?
     var firstName: String
     var lastName: String
     var gender: Gender
@@ -24,7 +24,6 @@ class Profile: CustomStringConvertible {
     
     var fbDescription: [String: AnyObject] {
         var userData : [String : String] = [:]
-        //userData["userId"] = profile.userId
         userData["firstName"] = self.firstName
         userData["lastName"] = self.lastName
         userData["gender"] = String(self.gender)
@@ -40,7 +39,7 @@ class Profile: CustomStringConvertible {
     }
     
     var description: String {
-        return name
+        return "\(name) \(year) \(phone)"
     }
     
     enum Gender: String {
@@ -56,7 +55,6 @@ class Profile: CustomStringConvertible {
     }
     
     init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String) {
-        //self.userId = userId
         self.firstName = firstName
         self.lastName = lastName
         self.gender = gender
