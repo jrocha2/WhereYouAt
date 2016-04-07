@@ -29,7 +29,7 @@ class Location: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(locationId!): \(name) - \(statuses)"
+        return "\(locationId!): \(name)"
     }
     
     func setLocationId(id: String) {
