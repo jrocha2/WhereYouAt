@@ -18,13 +18,14 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var status: UITextField!
     @IBOutlet var charCount: UILabel!
     @IBOutlet var map: MKMapView!
+    @IBOutlet var peopleHere: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         name.text = location.name
-        charCount.text = "0/100"
+        charCount.text = "0/50"
         
         status.addTarget(self, action: #selector(NewStatusViewController.updateCharCount), forControlEvents: UIControlEvents.EditingChanged)
 
@@ -35,12 +36,21 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
         let region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
         map.addAnnotation(dropPin)
         map.region = region
+        peopleHere.text = "\(location.numberOfPeople) People Here"
     }
     
     func updateCharCount() {
-        charCount.text = "\(status.text!.characters.count)/100"
+        charCount.text = "\(status.text!.characters.count)/50"
     }
 
+    @IBAction func submitStatus(sender: UIBarButtonItem) {
+        let s = Status(userId: db.profile!.userId!, userName: db.profile!.name, body: status.text!)
+        db.createNewStatus(s, locationId: location.locationId!, callback: {
+            () in
+            self.dismissViewControllerAnimated(true, completion: nil)
+        })
+    }
+    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         return nil
     }
