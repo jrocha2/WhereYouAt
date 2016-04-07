@@ -16,8 +16,8 @@ class Location: CustomStringConvertible {
     var latitude: CLLocationDegrees //CLLocationDegrees is a type alias for Double
     var longitude: CLLocationDegrees
     var statuses: [Status] = []
-    var location: CLLocation {
-        return CLLocation(latitude: self.latitude, longitude: self.longitude);
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude);
     }
     
     var numberOfPeople: Int {
