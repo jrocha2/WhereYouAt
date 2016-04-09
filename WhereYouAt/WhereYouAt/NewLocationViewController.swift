@@ -37,7 +37,10 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
     }
     @IBAction func saveLocation(sender: UIButton) {
         if checkedAddress == true {
-            print("Saving location \(location)")
+            print("Saving location \(location?.fbDescription)")
+            db.createNewLocation(location!, callback: { 
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
         } else {
             addressError.text = "You must check the address before you save the location"
         }
