@@ -97,6 +97,9 @@ class LocationsTableViewController: UITableViewController {
             dest.db = self.db
             dest.location = self.db.locations[indexPath.row]
         }
+        if let dest = segue.destinationViewController as? NewLocationViewController {
+            dest.db = self.db
+        }
     }
 
 }

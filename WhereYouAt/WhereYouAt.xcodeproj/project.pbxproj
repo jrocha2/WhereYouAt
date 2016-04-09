@@ -12,12 +12,14 @@
 		9130A59A1CB5EF4B001A3276 /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */; };
 		9130A59C1CB5F064001A3276 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */; };
 		9130A5A01CB5F83D001A3276 /* NewStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */; };
+		9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130A5A11CB9ACC0001A3276 /* LocationFinder.swift */; };
 		9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA771CB1EB0D009B78E1 /* AppDelegate.swift */; };
 		9142CA7D1CB1EB0D009B78E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142CA7B1CB1EB0D009B78E1 /* Main.storyboard */; };
 		9142CA7F1CB1EB0D009B78E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9142CA7E1CB1EB0D009B78E1 /* Assets.xcassets */; };
 		9142CA821CB1EB0D009B78E1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9142CA801CB1EB0D009B78E1 /* LaunchScreen.storyboard */; };
 		9142CA8D1CB1EB0D009B78E1 /* WhereYouAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA8C1CB1EB0D009B78E1 /* WhereYouAtTests.swift */; };
 		9142CA981CB1EB0D009B78E1 /* WhereYouAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */; };
+		91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */; };
 		91C30D5A1CB4D78C00E8B552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C30D591CB4D78C00E8B552 /* HomeViewController.swift */; };
 		91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7265E1CB1EBF3008A3618 /* Database.swift */; };
 		91F726611CB1EC6D008A3618 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726601CB1EC6D008A3618 /* Profile.swift */; };
@@ -60,6 +62,7 @@
 		9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewStatusViewController.swift; sourceTree = "<group>"; };
+		9130A5A11CB9ACC0001A3276 /* LocationFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFinder.swift; sourceTree = "<group>"; };
 		9142CA741CB1EB0D009B78E1 /* WhereYouAt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereYouAt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142CA771CB1EB0D009B78E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9142CA7C1CB1EB0D009B78E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		9142CA931CB1EB0D009B78E1 /* WhereYouAtUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereYouAtUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereYouAtUITests.swift; sourceTree = "<group>"; };
 		9142CA991CB1EB0D009B78E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 		91C30D591CB4D78C00E8B552 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		91F7265E1CB1EBF3008A3618 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		91F726601CB1EC6D008A3618 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -217,6 +221,7 @@
 				91F726601CB1EC6D008A3618 /* Profile.swift */,
 				91F726661CB1EF3B008A3618 /* Status.swift */,
 				91F726641CB1EE5A008A3618 /* Location.swift */,
+				9130A5A11CB9ACC0001A3276 /* LocationFinder.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
 				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
 				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,
+				91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -504,8 +510,10 @@
 			files = (
 				9130A59A1CB5EF4B001A3276 /* LocationsTableViewController.swift in Sources */,
 				9130A5A01CB5F83D001A3276 /* NewStatusViewController.swift in Sources */,
+				91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */,
 				91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */,
 				91F726611CB1EC6D008A3618 /* Profile.swift in Sources */,
+				9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */,
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,

@@ -12,40 +12,43 @@ import SwiftyJSON
 
 class LocationFinder {
     var address: String
-    var latitude: Double
-    var longitude: Double
+    var latitude: Double = 0
+    var longitude: Double = 0
+    var error = false
     var APIKey = "AIzaSyCe-Jqa1Gwlm9_XHoWqoMH5J754vtHbJXU"
-    var point: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
     }
 
-    
-    init(address: String) {
-        let url = NSURL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&key=\(APIKey)")
+    init(address: String, callback: (finder: LocationFinder) -> ()) {
+        self.address = address
+        let urlAddress = address.stringByReplacingOccurrencesOfString(" ", withString: "+")
+        let url = NSURL(string: "https://maps.googleapis.com/maps/api/geocode/json?address=\(urlAddress)&key=\(APIKey)")
+        print(url)
         let request = NSMutableURLRequest(URL: url!)
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request){
             (data, responseText, error) -> Void in
-            if error != nil {
-                print(error)
-            } else {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), {
-                    self.parseJSONResponse(data!)
-                })
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                if error != nil {
+                    print(error)
+                    self.error = true
+                } else {
+                    let json = JSON(data: data!)
+                    if json["status"] == "ZERO_RESULTS" {
+                        print("Error")
+                        self.error = true
+                    } else {
+                        let location = json["results"][0]["geometry"]["location"].dictionaryValue
+                        self.latitude = Double(location["lat"]!.stringValue)!
+                        self.longitude = Double(location["lng"]!.stringValue)!
+                        print("\(self.latitude) \(self.longitude)")
+                    }
+                    callback(finder: self)
+                }
+            })
         }
         task.resume()
-    }
-    
-    func parseJSONResponse(data: NSData) -> Void {
-        let json = JSON(data: data)
-        let location = json["results"][0]["geometry"]["location"].dictionaryValue
-        self.latitude = Double(location["lat"]!.stringValue)!
-        self.longitude = Double(location["lng"]!.stringValue)!
-        let point = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        
-        map.setRegion(MKCoordinateRegion(center: point, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: true)
-        
     }
 }
