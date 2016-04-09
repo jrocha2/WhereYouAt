@@ -25,10 +25,12 @@ PODS:
   - GoogleSymbolUtilities (1.1.0)
   - GoogleUtilities (1.2.0):
     - GoogleSymbolUtilities (~> 1.0)
+  - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
   - Firebase (>= 2.5.1)
   - Google/SignIn
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   Firebase: 3565ea88b830f28f2c77ecc524622bc71a20d085
@@ -40,7 +42,8 @@ SPEC CHECKSUMS:
   GoogleSignIn: 3d571172b8603be39dcb1705d8217146bb76fe62
   GoogleSymbolUtilities: eb3965ea12710569c7b80db198a39e39b18613f7
   GoogleUtilities: 85f8ad6b251544286a97163133d042ec95f889c5
+  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
-PODFILE CHECKSUM: bdbc975f2d802375bd2bc7a864024d0a1b1a4501
+PODFILE CHECKSUM: ab4c3be7c21ba12b83fca2dd3a82d903790f8e4c
 
 COCOAPODS: 1.0.0.beta.4
