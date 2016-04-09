@@ -35,8 +35,8 @@ class Database {
     func insertDummyLocations() {
         let brothers = Location(locationName: "Brother's Bar and Grill", locationType: .Bar, latitude: 41.6919844, longitude: -86.2344451)
         let oRos = Location(locationName: "O'Rourke's", locationType: .Bar, latitude: 41.6925968, longitude: -86.2360118)
-        self.createNewLocation(brothers)
-        self.createNewLocation(oRos)
+        self.createNewLocation(brothers, callback: nil)
+        self.createNewLocation(oRos, callback: nil)
     }
     func insertDummyData() {
         self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEiWP4dujG9jBU9-GO2", callback: nil)
@@ -45,8 +45,8 @@ class Database {
     }
     
     //Creates a new location
-    func createNewLocation(location: Location) {
-        self.firebase.addNewLocation(location)
+    func createNewLocation(location: Location, callback: (() -> ())?) {
+        self.firebase.addNewLocation(location, callback: callback)
     }
     
     //Creates a new status for a location, inserts it into the existing location
