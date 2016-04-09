@@ -30,10 +30,11 @@ class FirebaseManager {
     }
     
     //Adds a new location to the database
-    func addNewLocation(loc: Location) {
+    func addNewLocation(loc: Location, callback: (() -> ())?) {
         rootRef.childByAppendingPath("Locations").childByAutoId().setValue(loc.fbDescription) {
             (error, snapshot) in
             loc.setLocationId(snapshot.key as String)
+            callback!()
         }
     }
     
