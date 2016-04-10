@@ -6,6 +6,7 @@ use_frameworks!
 target 'WhereYouAt' do
 pod 'Firebase', '>=2.5.1'
 pod 'Google/SignIn'
+pod 'SwiftyJSON'
 end
 
 target 'WhereYouAtTests' do
