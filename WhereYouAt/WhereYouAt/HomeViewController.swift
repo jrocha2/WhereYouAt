@@ -22,6 +22,8 @@ class HomeViewController: UIViewController {
         db.firebase.getProfile(myUID, callback: {
             (profile) in
             self.name.text = profile.name
+            self.db.firebase.myName = profile.name
+            self.db.firebase.respondToFriendRequest("106842413723936243580", userName: "Test Friend", acceptRequest: true)
         })
     }
 
