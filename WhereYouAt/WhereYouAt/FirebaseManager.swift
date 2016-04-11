@@ -107,6 +107,25 @@ class FirebaseManager {
         })
     }
     
+    // Returns uids with usernames for use in respondToFriendRequest()
+    func getFriendRequests(callback: [String:String] -> ()) {
+        var requests : [String:String] = [:]
+        let requestRef = userRef.childByAppendingPath("Friends/Requests")
+        
+        requestRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if snapshot.exists() {
+                for child in snapshot.children {
+                    let uid = child.key as String
+                    let username = child.value as String
+                    requests[uid] = username
+                }
+                
+                callback(requests)
+            }
+        })
+        
+    }
+    
     // Creates dictionary out of Profile's properties and sets appropriate node
     func updateProfile(profile: Profile, callback: (Profile) -> ()) {
         
