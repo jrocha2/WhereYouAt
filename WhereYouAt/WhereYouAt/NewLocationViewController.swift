@@ -35,10 +35,11 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    @IBAction func saveLocation(sender: UIButton) {
+    
+    @IBAction func saveLocation(sender: UIBarButtonItem) {
         if checkedAddress == true {
             print("Saving location \(location?.fbDescription)")
-            db.createNewLocation(location!, callback: { 
+            db.createNewLocation(location!, callback: {
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         } else {

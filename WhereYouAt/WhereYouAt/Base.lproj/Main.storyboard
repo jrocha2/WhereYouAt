@@ -191,7 +191,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="t3e-FM-Jw5">
                             <connections>
-                                <segue destination="LwA-q6-9eJ" kind="presentation" id="PdE-GE-W9M"/>
+                                <segue destination="LwA-q6-9eJ" kind="show" id="PdE-GE-W9M"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -483,7 +483,7 @@
             </objects>
             <point key="canvasLocation" x="420" y="280"/>
         </scene>
-        <!--New Location View Controller-->
+        <!--Add Location-->
         <scene sceneID="V0s-cm-lp8">
             <objects>
                 <viewController id="LwA-q6-9eJ" customClass="NewLocationViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -520,19 +520,6 @@
                                     <action selector="checkAddress:" destination="LwA-q6-9eJ" eventType="touchUpInside" id="bhY-Le-yjF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66X-AJ-098">
-                                <rect key="frame" x="484" y="30" width="96" height="30"/>
-                                <state key="normal" title="Save Location"/>
-                                <connections>
-                                    <action selector="saveLocation:" destination="LwA-q6-9eJ" eventType="touchUpInside" id="DIs-jy-oQA"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCz-df-9iA">
-                                <rect key="frame" x="226.5" y="34.5" width="147.5" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqB-3i-pAr">
                                 <rect key="frame" x="20" y="210" width="78" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -543,23 +530,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="3Qc-z3-1tt"/>
-                            <constraint firstItem="nCz-df-9iA" firstAttribute="centerY" secondItem="66X-AJ-098" secondAttribute="centerY" id="6DM-RN-Xu8"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="top" secondItem="UqB-3i-pAr" secondAttribute="bottom" constant="10" id="9Bq-Bc-PkB"/>
-                            <constraint firstItem="nCz-df-9iA" firstAttribute="centerX" secondItem="spU-l2-qPH" secondAttribute="centerX" id="9da-wS-Oab"/>
                             <constraint firstItem="SrA-3X-rKK" firstAttribute="top" secondItem="kGt-lV-c1b" secondAttribute="bottom" constant="20" id="AID-W7-PJI"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="trailing" secondItem="h4G-2O-vf7" secondAttribute="trailing" id="AU4-YW-pZ3"/>
                             <constraint firstItem="zIg-8H-Kim" firstAttribute="top" secondItem="vU0-kt-AoW" secondAttribute="bottom" constant="20" id="Fdu-mk-m3I"/>
                             <constraint firstItem="h4G-2O-vf7" firstAttribute="trailing" secondItem="SrA-3X-rKK" secondAttribute="trailing" id="GAc-Hn-I9K"/>
-                            <constraint firstItem="66X-AJ-098" firstAttribute="trailing" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="HsK-he-yLI"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="trailing" secondItem="pEK-26-bxf" secondAttribute="trailing" id="UcA-eE-EtZ"/>
                             <constraint firstItem="UqB-3i-pAr" firstAttribute="top" secondItem="h4G-2O-vf7" secondAttribute="bottom" constant="10" id="VXQ-lf-RTs"/>
                             <constraint firstItem="pEK-26-bxf" firstAttribute="centerY" secondItem="h4G-2O-vf7" secondAttribute="centerY" id="VaH-vR-3Gq"/>
-                            <constraint firstItem="kGt-lV-c1b" firstAttribute="top" secondItem="66X-AJ-098" secondAttribute="bottom" constant="10" id="Vcu-7w-v0e"/>
                             <constraint firstItem="pEK-26-bxf" firstAttribute="trailing" secondItem="SrA-3X-rKK" secondAttribute="trailing" id="WZN-4c-yxV"/>
                             <constraint firstItem="SrA-3X-rKK" firstAttribute="leading" secondItem="kGt-lV-c1b" secondAttribute="leading" id="XsL-GR-waz"/>
                             <constraint firstItem="SrA-3X-rKK" firstAttribute="trailing" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="fe8-p2-tAw"/>
                             <constraint firstAttribute="leadingMargin" secondItem="kGt-lV-c1b" secondAttribute="leading" id="fqe-4E-5wb"/>
-                            <constraint firstItem="kGt-lV-c1b" firstAttribute="top" secondItem="D7D-hM-cln" secondAttribute="bottom" constant="50" id="g3X-69-IXX"/>
+                            <constraint firstItem="kGt-lV-c1b" firstAttribute="top" secondItem="D7D-hM-cln" secondAttribute="bottom" constant="6" id="g3X-69-IXX"/>
                             <constraint firstItem="pEK-26-bxf" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="trailing" constant="10" id="gRD-lv-5eu"/>
                             <constraint firstItem="UqB-3i-pAr" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="leading" id="tew-yh-Yu1"/>
                             <constraint firstItem="h4G-2O-vf7" firstAttribute="leading" secondItem="SrA-3X-rKK" secondAttribute="leading" id="uU9-Vg-hsE"/>
@@ -573,6 +556,13 @@
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Add Location" id="fLD-yx-3gN">
+                        <barButtonItem key="rightBarButtonItem" title="Save Location" id="7Ke-NG-C7P">
+                            <connections>
+                                <action selector="saveLocation:" destination="LwA-q6-9eJ" id="nY1-ca-2o5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="address" destination="h4G-2O-vf7" id="CFW-Og-nGm"/>
                         <outlet property="addressError" destination="UqB-3i-pAr" id="Ovc-mI-vJc"/>
