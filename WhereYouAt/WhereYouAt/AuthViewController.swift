@@ -101,4 +101,8 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
             }
         }
     }
+    
+    @IBAction func unwindToAuth(segue: UIStoryboardSegue) {
+        // Serves as an unwind point for signing out later on
+    }
 }

@@ -78,7 +78,8 @@ class Database {
         self.firebase.getLocations({
             (locations) in
             self.locations = locations
-            print("\n\(self.locations)")
+//            print("\n\(self.locations)")
+//            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
     }
     
@@ -105,6 +106,20 @@ class Database {
         })
         
         return statuses
+    }
+    
+    func getFriendStatuses() -> [Status] {
+        var friendStatuses : [Status] = []
+        let allStatuses = getEventData()
+        for status in allStatuses {
+            for friend in friendsList {
+                if status.userId == friend.0 {
+                    friendStatuses.append(status)
+                }
+            }
+        }
+        
+        return friendStatuses
     }
     
     //This gets your feed for your friend's statuses

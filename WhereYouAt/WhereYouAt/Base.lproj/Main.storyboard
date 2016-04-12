@@ -600,6 +600,11 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8e3-om-JVC" customClass="MainMenuTabBarController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yfx-Sk-yV3">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="1I2-v9-z1J">
+                            <connections>
+                                <segue destination="sgd-yp-cfI" kind="unwind" unwindAction="unwindToAuth:" id="dT7-za-XOl"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="compose" id="aHo-mN-1j6">
                             <connections>
                                 <action selector="addNewStatusButton:" destination="set-Yz-fFE" id="arE-U7-i7d"/>
@@ -618,11 +623,12 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2J-ju-2nF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="sgd-yp-cfI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1635" y="1847"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hrl-il-SLq"/>
+        <segue reference="GIX-bb-Cre"/>
     </inferredMetricsTieBreakers>
 </document>
