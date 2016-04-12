@@ -16,14 +16,6 @@ class MainMenuTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        db = Database(myUID: self.myUID, hasProfile: true)
-        
-        // Do any additional setup after loading the view.
-        db.firebase.getProfile(myUID, callback: {
-            (profile) in
-            self.db.firebase.myName = profile.name
-        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,14 +24,21 @@ class MainMenuTabBarController: UITabBarController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "createStatus" {
+            if let navController = segue.destinationViewController as? UINavigationController {
+                if let dest = navController.topViewController as? LocationsTableViewController {
+                    dest.db = self.db
+                }
+            }
+        }
     }
-    */
+ 
 
 }

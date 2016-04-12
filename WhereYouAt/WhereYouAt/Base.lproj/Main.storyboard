@@ -55,7 +55,7 @@
             </objects>
             <point key="canvasLocation" x="1232" y="280"/>
         </scene>
-        <!--Item-->
+        <!--My Feed-->
         <scene sceneID="R3E-QI-5pA">
             <objects>
                 <viewController id="set-Yz-fFE" customClass="HomeViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,14 +68,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="3tt-jz-vyK"/>
+                    <tabBarItem key="tabBarItem" title="My Feed" id="3tt-jz-vyK"/>
                     <navigationItem key="navigationItem" id="ts6-dE-axB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jI2-RX-dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="924" y="2673"/>
         </scene>
-        <!--Item-->
+        <!--Trends-->
         <scene sceneID="16B-Xe-2F7">
             <objects>
                 <tableViewController id="c6T-1n-5Bc" sceneMemberID="viewController">
@@ -98,11 +98,30 @@
                             <outlet property="delegate" destination="c6T-1n-5Bc" id="v29-xV-Qwv"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="i2d-rb-Uc9"/>
+                    <tabBarItem key="tabBarItem" title="Trends" id="i2d-rb-Uc9"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TNW-y7-ptZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1635" y="2673"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="LNu-vf-jxo">
+            <objects>
+                <viewController id="x6l-UQ-YnI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JrC-Pp-gi0"/>
+                        <viewControllerLayoutGuide type="bottom" id="EHc-wn-tzp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OZf-Kl-yiq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" id="3co-A4-gAz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TxO-8M-iB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2422" y="2673"/>
         </scene>
         <!--Select a Location-->
         <scene sceneID="y5C-9L-eEv">
@@ -605,6 +624,7 @@
                     <connections>
                         <segue destination="set-Yz-fFE" kind="relationship" relationship="viewControllers" id="GIH-vc-tE5"/>
                         <segue destination="c6T-1n-5Bc" kind="relationship" relationship="viewControllers" id="fcf-dI-pnQ"/>
+                        <segue destination="x6l-UQ-YnI" kind="relationship" relationship="viewControllers" id="9ue-rR-1NT"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2J-ju-2nF" userLabel="First Responder" sceneMemberID="firstResponder"/>

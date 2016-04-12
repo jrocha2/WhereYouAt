@@ -95,7 +95,9 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
         }
         if let dest = segue.destinationViewController as? UINavigationController {
             if let tab = dest.topViewController as? MainMenuTabBarController {
-                tab.myUID = self.userId
+                if let first = tab.viewControllers![0] as? HomeViewController {
+                    first.myUID = self.userId
+                }
             }
         }
     }
