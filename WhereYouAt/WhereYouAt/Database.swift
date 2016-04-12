@@ -82,13 +82,29 @@ class Database {
         })
     }
     
-    //Updates the profile
+    // Updates the profile
     func updateProfile(profile: Profile, call: () -> ()) {
         self.firebase.updateProfile(profile, callback: {
             (newProfile) in
             self.profile = newProfile
             call()
         })
+    }
+    
+    // Return all statuses with sorted so that the latest are first
+    func getEventData() -> [Status] {
+        var statuses : [Status] = []
+        for loc in locations {
+            for status in loc.statuses {
+                statuses.append(status)
+            }
+        }
+        
+        statuses.sortInPlace( {
+          return $0.timestamp > $1.timestamp
+        })
+        
+        return statuses
     }
     
     //This gets your feed for your friend's statuses
