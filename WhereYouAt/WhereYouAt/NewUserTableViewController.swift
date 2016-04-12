@@ -130,7 +130,9 @@ class NewUserTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if let dest = segue.destinationViewController as? UINavigationController {
             if let tab = dest.topViewController as? MainMenuTabBarController {
-                tab.myUID = myUID
+                if let first = tab.viewControllers![0] as? HomeViewController {
+                    first.myUID = self.myUID
+                }
             }
         }
     }
