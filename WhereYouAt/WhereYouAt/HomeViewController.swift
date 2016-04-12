@@ -16,14 +16,14 @@ class HomeViewController: UIViewController {
     @IBOutlet var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Database(myUID: self.myUID, hasProfile: true)
-        
-        // Do any additional setup after loading the view.
-        db.firebase.getProfile(myUID, callback: {
-            (profile) in
-            self.name.text = profile.name
-            self.db.firebase.myName = profile.name
-        })
+//        db = Database(myUID: self.myUID, hasProfile: true)
+//        
+//        // Do any additional setup after loading the view.
+//        db.firebase.getProfile(myUID, callback: {
+//            (profile) in
+//            self.name.text = profile.name
+//            self.db.firebase.myName = profile.name
+//        })
     }
 
     override func didReceiveMemoryWarning() {
