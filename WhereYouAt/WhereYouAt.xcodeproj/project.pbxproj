@@ -233,8 +233,8 @@
 			children = (
 				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
 				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
-				91C30D591CB4D78C00E8B552 /* HomeViewController.swift */,
 				E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */,
+				91C30D591CB4D78C00E8B552 /* HomeViewController.swift */,
 				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
 				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
 				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,

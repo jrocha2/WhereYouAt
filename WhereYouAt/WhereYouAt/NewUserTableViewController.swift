@@ -128,8 +128,10 @@ class NewUserTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let dest = segue.destinationViewController as? MainMenuTabBarController {
-            dest.myUID = self.myUID
+        if let dest = segue.destinationViewController as? UINavigationController {
+            if let firstView = dest.viewControllers[0] as? HomeViewController {
+                firstView.myUID = myUID
+            }
         }
     }
  
