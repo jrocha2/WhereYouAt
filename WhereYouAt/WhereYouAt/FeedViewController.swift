@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  FeedViewController.swift
 //  WhereYouAt
 //
 //  Created by Cory Jbara on 4/6/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class FeedViewController: UIViewController {
 
     var myUID: String = ""
     var db: Database!

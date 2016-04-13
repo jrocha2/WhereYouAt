@@ -20,7 +20,7 @@
 		9142CA8D1CB1EB0D009B78E1 /* WhereYouAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA8C1CB1EB0D009B78E1 /* WhereYouAtTests.swift */; };
 		9142CA981CB1EB0D009B78E1 /* WhereYouAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */; };
 		91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */; };
-		91C30D5A1CB4D78C00E8B552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C30D591CB4D78C00E8B552 /* HomeViewController.swift */; };
+		91C30D5A1CB4D78C00E8B552 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C30D591CB4D78C00E8B552 /* FeedViewController.swift */; };
 		91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7265E1CB1EBF3008A3618 /* Database.swift */; };
 		91F726611CB1EC6D008A3618 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726601CB1EC6D008A3618 /* Profile.swift */; };
 		91F726651CB1EE5A008A3618 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726641CB1EE5A008A3618 /* Location.swift */; };
@@ -77,7 +77,7 @@
 		9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereYouAtUITests.swift; sourceTree = "<group>"; };
 		9142CA991CB1EB0D009B78E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
-		91C30D591CB4D78C00E8B552 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		91C30D591CB4D78C00E8B552 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		91F7265E1CB1EBF3008A3618 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		91F726601CB1EC6D008A3618 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		91F726641CB1EE5A008A3618 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -234,7 +234,7 @@
 				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
 				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
 				E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */,
-				91C30D591CB4D78C00E8B552 /* HomeViewController.swift */,
+				91C30D591CB4D78C00E8B552 /* FeedViewController.swift */,
 				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
 				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
 				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,
@@ -521,7 +521,7 @@
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
-				91C30D5A1CB4D78C00E8B552 /* HomeViewController.swift in Sources */,
+				91C30D5A1CB4D78C00E8B552 /* FeedViewController.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				9130A59C1CB5F064001A3276 /* LocationTableViewCell.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,

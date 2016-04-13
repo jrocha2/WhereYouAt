@@ -58,7 +58,7 @@
         <!--My Feed-->
         <scene sceneID="R3E-QI-5pA">
             <objects>
-                <viewController id="set-Yz-fFE" customClass="HomeViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="set-Yz-fFE" customClass="FeedViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dAm-5I-9sp"/>
                         <viewControllerLayoutGuide type="bottom" id="463-9o-LRb"/>
