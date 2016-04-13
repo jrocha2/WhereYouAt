@@ -68,7 +68,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Feed" id="3tt-jz-vyK"/>
+                    <tabBarItem key="tabBarItem" title="My Feed" image="feed" id="3tt-jz-vyK"/>
                     <navigationItem key="navigationItem" id="ts6-dE-axB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jI2-RX-dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -76,52 +76,42 @@
             <point key="canvasLocation" x="924" y="2673"/>
         </scene>
         <!--Trends-->
-        <scene sceneID="16B-Xe-2F7">
+        <scene sceneID="mM9-jE-1dd">
             <objects>
-                <tableViewController id="c6T-1n-5Bc" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="MWv-tO-NYy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Txb-x4-fnF">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Txb-x4-fnF" id="XmZ-SV-19C">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="c6T-1n-5Bc" id="EXC-Bd-N15"/>
-                            <outlet property="delegate" destination="c6T-1n-5Bc" id="v29-xV-Qwv"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Trends" id="i2d-rb-Uc9"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TNW-y7-ptZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1635" y="2673"/>
-        </scene>
-        <!--Map-->
-        <scene sceneID="LNu-vf-jxo">
-            <objects>
-                <viewController id="x6l-UQ-YnI" sceneMemberID="viewController">
+                <viewController id="eaV-x5-a9w" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JrC-Pp-gi0"/>
-                        <viewControllerLayoutGuide type="bottom" id="EHc-wn-tzp"/>
+                        <viewControllerLayoutGuide type="top" id="Jhg-II-OVe"/>
+                        <viewControllerLayoutGuide type="bottom" id="BYL-6I-LKZ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OZf-Kl-yiq">
+                    <view key="view" contentMode="scaleToFill" id="JMa-S0-e6w">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" id="3co-A4-gAz"/>
+                    <tabBarItem key="tabBarItem" title="Trends" image="trends" id="nVf-Ii-gD5"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TxO-8M-iB4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="va0-rV-QLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2422" y="2673"/>
+            <point key="canvasLocation" x="1635" y="2673"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="LRa-5K-APu">
+            <objects>
+                <viewController id="Oco-6p-JAV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Muc-2L-GXX"/>
+                        <viewControllerLayoutGuide type="bottom" id="n7c-E6-CeZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="67O-mp-1kM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="77F-D2-GD9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xNs-Aa-FWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2382" y="2673"/>
         </scene>
         <!--Select a Location-->
         <scene sceneID="y5C-9L-eEv">
@@ -618,8 +608,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="set-Yz-fFE" kind="relationship" relationship="viewControllers" id="GIH-vc-tE5"/>
-                        <segue destination="c6T-1n-5Bc" kind="relationship" relationship="viewControllers" id="fcf-dI-pnQ"/>
-                        <segue destination="x6l-UQ-YnI" kind="relationship" relationship="viewControllers" id="9ue-rR-1NT"/>
+                        <segue destination="eaV-x5-a9w" kind="relationship" relationship="viewControllers" id="rQ5-4g-vda"/>
+                        <segue destination="Oco-6p-JAV" kind="relationship" relationship="viewControllers" id="Bwl-9K-yS0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2J-ju-2nF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -628,6 +618,11 @@
             <point key="canvasLocation" x="1635" y="1847"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="feed" width="25" height="25"/>
+        <image name="map" width="25" height="25"/>
+        <image name="trends" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="GIX-bb-Cre"/>
     </inferredMetricsTieBreakers>
