@@ -21,7 +21,11 @@ class Location: CustomStringConvertible {
     }
     
     var numberOfPeople: Int {
-        return statuses.count
+        var uniquePeople = Set<String>()
+        for status in statuses {
+            uniquePeople.insert(status.userId)
+        }
+        return uniquePeople.count
     }
     
     var fbDescription: [String:AnyObject] {
