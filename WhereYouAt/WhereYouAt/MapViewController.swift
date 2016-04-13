@@ -12,6 +12,8 @@ import MapKit
 class MapViewController: UIViewController, MKMapViewDelegate {
 
     let locationManager = CLLocationManager()
+    var db : Database!
+    var locations : [Location] = []
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -22,8 +24,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         // Check for access to user location and center map on ND
         checkLocationAuthorizationStatus()
-        centerMapOnLocation(CLLocation(latitude: 41.701584, longitude: -86.236536), width: 3500, height: 3500)
+        centerMapOnLocation(CLLocation(latitude: 41.701584, longitude: -86.236536), width: 5000, height: 5000)
         mapView.showsUserLocation = true
+        
+        let tabBar = self.tabBarController as! MainMenuTabBarController
+        self.db = tabBar.db
+        locations = db.getCampusTrends()
+        for loc in locations {
+            let ann = MKPointAnnotation()
+            ann.coordinate = loc.coordinate
+            mapView.addAnnotation(ann)
+        }
     }
     
     // Checks that user has authorized location tracking
@@ -43,14 +54,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }
