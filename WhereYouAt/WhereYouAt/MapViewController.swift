@@ -59,4 +59,17 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             mapView.addAnnotation(ann)
         }
     }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? MKPointAnnotation {
+            let identifier = "locationMarker"
+            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.pinTintColor = MKPinAnnotationView.redPinColor()
+            return view
+        }
+        
+        return nil
+    }
 }
