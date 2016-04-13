@@ -93,8 +93,16 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
         if let dest = segue.destinationViewController as? NewUserTableViewController {
             dest.myUID = self.userId
         }
-        if let dest = segue.destinationViewController as? HomeViewController {
-            dest.myUID = self.userId
+        if let dest = segue.destinationViewController as? UINavigationController {
+            if let tab = dest.topViewController as? MainMenuTabBarController {
+                if let first = tab.viewControllers![0] as? FeedViewController {
+                    first.myUID = self.userId
+                }
+            }
         }
+    }
+    
+    @IBAction func unwindToAuth(segue: UIStoryboardSegue) {
+        // Serves as an unwind point for signing out later on
     }
 }

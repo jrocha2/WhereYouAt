@@ -1,36 +1,27 @@
 //
-//  HomeViewController.swift
+//  MainMenuTabBarController.swift
 //  WhereYouAt
 //
-//  Created by Cory Jbara on 4/6/16.
+//  Created by John Rocha on 4/12/16.
 //  Copyright © 2016 Where You At. All rights reserved.
 //
+//  Subclass of UITabBarController to maintain a common database accessible by all the tabs
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class MainMenuTabBarController: UITabBarController {
 
-    var myUID: String = ""
-    var db: Database!
+    var db : Database!
+    var myUID : String = ""
     
-    @IBOutlet var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        db = Database(myUID: self.myUID, hasProfile: true)
-        
-        // Do any additional setup after loading the view.
-        db.firebase.getProfile(myUID, callback: {
-            (profile) in
-            self.name.text = profile.name
-        })
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
     
     // MARK: - Navigation
 
@@ -39,11 +30,12 @@ class HomeViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "createStatus" {
-            let navController = segue.destinationViewController as! UINavigationController
-            let dest = navController.topViewController as! LocationsTableViewController
-            dest.db = self.db
+            if let navController = segue.destinationViewController as? UINavigationController {
+                if let dest = navController.topViewController as? LocationsTableViewController {
+                    dest.db = self.db
+                }
+            }
         }
-        
     }
  
 

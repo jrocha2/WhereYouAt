@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 
+// Global Notification IDs
+let newLocationDataNotification = "com.newLocationDataNotification.whereyouat"
+
 class Database {
     
     var userId: String = ""
@@ -78,11 +81,14 @@ class Database {
         self.firebase.getLocations({
             (locations) in
             self.locations = locations
-            print("\n\(self.locations)")
+            // Posts a notification whenever new data is received
+            NSNotificationCenter.defaultCenter().postNotificationName(newLocationDataNotification, object: self)
+//            print("\n\(self.locations)")
+//            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
     }
     
-    //Updates the profile
+    // Updates the profile
     func updateProfile(profile: Profile, call: () -> ()) {
         self.firebase.updateProfile(profile, callback: {
             (newProfile) in
@@ -91,44 +97,44 @@ class Database {
         })
     }
     
-    //This gets your feed for your friend's statuses
-    /*func getStatusFeed() -> [Status] {
-        var friendsStatuses: [Status] = []
-        for event in eventData {
-            for status in event.statuses {
-                if let _ = friendsList[status.userId] {
-                    friendsStatuses.append(status)
-                }
+    // Return all statuses with sorted so that the latest are first
+    func getEventData() -> [Status] {
+        var statuses : [Status] = []
+        for loc in locations {
+            for status in loc.statuses {
+                statuses.append(status)
             }
         }
-        friendsStatuses.sortInPlace( {
-            return $0.timestamp > $1.timestamp
+        
+        statuses.sortInPlace( {
+          return $0.timestamp > $1.timestamp
         })
-        return friendsStatuses
+        
+        return statuses
     }
     
-    //This gets an array of events which your friends are going to sorted by friends going
-    func getEventsForFriends() -> [Event] {
-        var friendsEvents: [Event] = []
-        for event in eventData {
-            for status in event.statuses {
-                if let _ = friendsList[status.userId] {
-                    friendsEvents.append(event)
+    // Return all statuses of friends sorted so that the latest are first
+    func getFriendStatuses() -> [Status] {
+        var friendStatuses : [Status] = []
+        let allStatuses = getEventData()
+        for status in allStatuses {
+            for friend in friendsList {
+                if status.userId == friend.0 {
+                    friendStatuses.append(status)
                 }
             }
         }
-        friendsEvents.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
-        return friendsEvents
+        return friendStatuses
     }
     
-    //Returns an array of events for the whole campus
-    func getCampusTrends() -> [Event] {
-        var campusEvents = eventData
-        campusEvents.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
-        return campusEvents
+    // Return locations sorted by most number of people in attendence
+    func getCampusTrends() -> [Location] {
+        var locs = locations
+        locs.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
+        return locs
     }
     
-    //Returns an array of events with a particular category
+    /*//Returns an array of events with a particular category
     func getTrendWithCategory(category: LocationType) -> [Event] {
         var events: [Event] = []
         for event in eventData {

@@ -74,15 +74,25 @@ class FirebaseManager {
         })
     }
     
-    /*
-    func addFriend(uid: String, userId: String) {
-        userRef.childByAppendingPath("Friends").childByAppendingPath(uid).setValue(userId)
+    // Sent friend requests appear under Friends/Pending node, and received requests under Friends/Requests
+    func addNewFriend(uid: String, userName: String) {
+        userRef.childByAppendingPath("Friends/Pending").childByAppendingPath(uid).setValue(userName)
         rootRef.childByAppendingPath("Users/\(uid)/Friends/Requests/\(myUID)").setValue(myName)
-    }*/
+    }
+    
+    // If accepted, removes users from pending/requests and places them under Friends/Accepted node
+    func respondToFriendRequest(uid: String, userName: String, acceptRequest: Bool) {
+        if acceptRequest {
+            userRef.childByAppendingPath("Friends/Accepted").childByAppendingPath(uid).setValue(userName)
+            rootRef.childByAppendingPath("Users/\(uid)/Friends/Accepted/\(myUID)").setValue(myName)
+        }
+        userRef.childByAppendingPath("Friends/Requests").childByAppendingPath(uid).removeValue()
+        rootRef.childByAppendingPath("Users/\(uid)/Friends/Pending/\(myUID)").removeValue()
+    }
     
     func getAllFriends(callback: [String:String] -> ()) {
         var friends : [String : String] = [:]
-        let friendsRef = userRef.childByAppendingPath("Friends")
+        let friendsRef = userRef.childByAppendingPath("Friends/Accepted")
         
         friendsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             if snapshot.exists() {
@@ -95,6 +105,25 @@ class FirebaseManager {
                 callback(friends)
             }
         })
+    }
+    
+    // Returns uids with usernames for use in respondToFriendRequest()
+    func getFriendRequests(callback: [String:String] -> ()) {
+        var requests : [String:String] = [:]
+        let requestRef = userRef.childByAppendingPath("Friends/Requests")
+        
+        requestRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if snapshot.exists() {
+                for child in snapshot.children {
+                    let uid = child.key as String
+                    let username = child.value as String
+                    requests[uid] = username
+                }
+                
+                callback(requests)
+            }
+        })
+        
     }
     
     // Creates dictionary out of Profile's properties and sets appropriate node
