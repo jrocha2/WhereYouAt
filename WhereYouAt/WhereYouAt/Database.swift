@@ -108,6 +108,7 @@ class Database {
         return statuses
     }
     
+    // Return all statuses of friends sorted so that the latest are first
     func getFriendStatuses() -> [Status] {
         var friendStatuses : [Status] = []
         let allStatuses = getEventData()
@@ -118,48 +119,17 @@ class Database {
                 }
             }
         }
-        
         return friendStatuses
     }
     
-    //This gets your feed for your friend's statuses
-    /*func getStatusFeed() -> [Status] {
-        var friendsStatuses: [Status] = []
-        for event in eventData {
-            for status in event.statuses {
-                if let _ = friendsList[status.userId] {
-                    friendsStatuses.append(status)
-                }
-            }
-        }
-        friendsStatuses.sortInPlace( {
-            return $0.timestamp > $1.timestamp
-        })
-        return friendsStatuses
+    // Return locations sorted by most number of people in attendence
+    func getCampusTrends() -> [Location] {
+        var locs = locations
+        locs.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
+        return locs
     }
     
-    //This gets an array of events which your friends are going to sorted by friends going
-    func getEventsForFriends() -> [Event] {
-        var friendsEvents: [Event] = []
-        for event in eventData {
-            for status in event.statuses {
-                if let _ = friendsList[status.userId] {
-                    friendsEvents.append(event)
-                }
-            }
-        }
-        friendsEvents.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
-        return friendsEvents
-    }
-    
-    //Returns an array of events for the whole campus
-    func getCampusTrends() -> [Event] {
-        var campusEvents = eventData
-        campusEvents.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
-        return campusEvents
-    }
-    
-    //Returns an array of events with a particular category
+    /*//Returns an array of events with a particular category
     func getTrendWithCategory(category: LocationType) -> [Event] {
         var events: [Event] = []
         for event in eventData {
