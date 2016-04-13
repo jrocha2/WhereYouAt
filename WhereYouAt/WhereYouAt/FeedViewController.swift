@@ -58,10 +58,13 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("friendCell")! as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FeedTableViewCell
         let row = indexPath.row
         let status = friendStatuses[row]
-        cell.textLabel?.text = status.userName + " " + status.body
+        // Need to edit data hierarchy somewhere so we have access to location name here too
+        cell.nameLabel.text = status.userName
+        cell.statusLabel.text = status.body
+        cell.timeLabel.text = NSDateFormatter.localizedStringFromDate(status.time, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         
         return cell
     }
