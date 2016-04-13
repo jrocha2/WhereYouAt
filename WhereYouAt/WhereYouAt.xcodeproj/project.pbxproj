@@ -20,7 +20,6 @@
 		9142CA8D1CB1EB0D009B78E1 /* WhereYouAtTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA8C1CB1EB0D009B78E1 /* WhereYouAtTests.swift */; };
 		9142CA981CB1EB0D009B78E1 /* WhereYouAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */; };
 		91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */; };
-		91C30D5A1CB4D78C00E8B552 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C30D591CB4D78C00E8B552 /* FeedViewController.swift */; };
 		91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7265E1CB1EBF3008A3618 /* Database.swift */; };
 		91F726611CB1EC6D008A3618 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726601CB1EC6D008A3618 /* Profile.swift */; };
 		91F726651CB1EE5A008A3618 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726641CB1EE5A008A3618 /* Location.swift */; };
@@ -31,6 +30,7 @@
 		E72C77B81CB3899F002E3A3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */; };
 		E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C77BA1CB39C7D002E3A3E /* FirebaseManager.swift */; };
 		E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */; };
+		E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343A41CBE100400EF461D /* FeedViewController.swift */; };
 		E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */; };
 		FC1C6B0F963EEA9DDF67E43A /* Pods_WhereYouAt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77225F0F12DEC52E23AA5D7 /* Pods_WhereYouAt.framework */; };
 /* End PBXBuildFile section */
@@ -77,7 +77,6 @@
 		9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereYouAtUITests.swift; sourceTree = "<group>"; };
 		9142CA991CB1EB0D009B78E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
-		91C30D591CB4D78C00E8B552 /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		91F7265E1CB1EBF3008A3618 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		91F726601CB1EC6D008A3618 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		91F726641CB1EE5A008A3618 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		E72C77B51CB3899F002E3A3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E72C77BA1CB39C7D002E3A3E /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserTableViewController.swift; sourceTree = "<group>"; };
+		E74343A41CBE100400EF461D /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTabBarController.swift; sourceTree = "<group>"; };
 		F17E8B8AE30747328ACB2755 /* Pods-WhereYouAtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereYouAtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereYouAtTests/Pods-WhereYouAtTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,8 +234,8 @@
 				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
 				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
 				E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */,
-				91C30D591CB4D78C00E8B552 /* FeedViewController.swift */,
 				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
+				E74343A41CBE100400EF461D /* FeedViewController.swift */,
 				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
 				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,
 				91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */,
@@ -518,10 +518,10 @@
 				E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */,
 				91F726611CB1EC6D008A3618 /* Profile.swift in Sources */,
 				9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */,
+				E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */,
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
-				91C30D5A1CB4D78C00E8B552 /* FeedViewController.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				9130A59C1CB5F064001A3276 /* LocationTableViewCell.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,

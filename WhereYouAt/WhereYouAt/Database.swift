@@ -9,6 +9,9 @@
 import Foundation
 import Firebase
 
+// Global Notification IDs
+let newLocationDataNotification = "com.newLocationDataNotification.whereyouat"
+
 class Database {
     
     var userId: String = ""
@@ -78,6 +81,8 @@ class Database {
         self.firebase.getLocations({
             (locations) in
             self.locations = locations
+            // Posts a notification whenever new data is received
+            NSNotificationCenter.defaultCenter().postNotificationName(newLocationDataNotification, object: self)
 //            print("\n\(self.locations)")
 //            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })

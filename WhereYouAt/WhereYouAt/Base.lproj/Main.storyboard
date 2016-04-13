@@ -66,10 +66,35 @@
                     <view key="view" contentMode="scaleToFill" id="GmG-MH-zyN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-M0-lgV">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="friendCell" id="AqK-Sx-qk3">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AqK-Sx-qk3" id="7PR-Yc-UUf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZHN-M0-lgV" secondAttribute="trailing" id="Fes-aM-DNc"/>
+                            <constraint firstItem="ZHN-M0-lgV" firstAttribute="top" secondItem="dAm-5I-9sp" secondAttribute="bottom" id="JoG-j0-Pm3"/>
+                            <constraint firstItem="ZHN-M0-lgV" firstAttribute="bottom" secondItem="463-9o-LRb" secondAttribute="top" id="MKP-zX-sjt"/>
+                            <constraint firstItem="ZHN-M0-lgV" firstAttribute="leading" secondItem="GmG-MH-zyN" secondAttribute="leading" id="Txi-fD-6Pw"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Feed" image="feed" id="3tt-jz-vyK"/>
                     <navigationItem key="navigationItem" id="ts6-dE-axB"/>
+                    <connections>
+                        <outlet property="tableView" destination="ZHN-M0-lgV" id="ncX-aX-PTK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jI2-RX-dvl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
