@@ -33,6 +33,7 @@
 		E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343A41CBE100400EF461D /* FeedViewController.swift */; };
 		E74343A71CBE2EFE00EF461D /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343A61CBE2EFE00EF461D /* FeedTableViewCell.swift */; };
 		E74343A91CBEB0AC00EF461D /* TrendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343A81CBEB0AC00EF461D /* TrendsViewController.swift */; };
+		E74343AB1CBEB3F500EF461D /* TrendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */; };
 		E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */; };
 		FC1C6B0F963EEA9DDF67E43A /* Pods_WhereYouAt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77225F0F12DEC52E23AA5D7 /* Pods_WhereYouAt.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		E74343A41CBE100400EF461D /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		E74343A61CBE2EFE00EF461D /* FeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 		E74343A81CBEB0AC00EF461D /* TrendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsViewController.swift; sourceTree = "<group>"; };
+		E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendTableViewCell.swift; sourceTree = "<group>"; };
 		E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTabBarController.swift; sourceTree = "<group>"; };
 		F17E8B8AE30747328ACB2755 /* Pods-WhereYouAtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereYouAtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereYouAtTests/Pods-WhereYouAtTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -245,6 +247,7 @@
 				E74343A41CBE100400EF461D /* FeedViewController.swift */,
 				E74343A61CBE2EFE00EF461D /* FeedTableViewCell.swift */,
 				E74343A81CBEB0AC00EF461D /* TrendsViewController.swift */,
+				E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */,
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E74343A71CBE2EFE00EF461D /* FeedTableViewCell.swift in Sources */,
+				E74343AB1CBEB3F500EF461D /* TrendTableViewCell.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,

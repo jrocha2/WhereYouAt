@@ -47,10 +47,11 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("trendCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("trendCell", forIndexPath: indexPath) as! TrendTableViewCell
         let row = indexPath.row
         let loc = locations[row]
-        cell.textLabel?.text = loc.description
+        cell.numberOfPeopleLabel.text = String(loc.numberOfPeople)
+        cell.locationNameLabel.text = "Going to " + loc.name
         
         return cell
     }
