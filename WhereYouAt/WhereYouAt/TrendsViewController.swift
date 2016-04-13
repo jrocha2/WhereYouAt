@@ -24,6 +24,9 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        // Whenever the new location data received, call a function to update table
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +58,12 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
+    
+    func updateTableView() {
+        locations = db.getCampusTrends()
+        tableView.reloadData()
+    }
+    
     /*
     // MARK: - Navigation
 
