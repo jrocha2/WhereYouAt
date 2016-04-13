@@ -222,7 +222,18 @@
                     <view key="view" contentMode="scaleToFill" id="67O-mp-1kM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BWj-ax-e7Q">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="leading" secondItem="67O-mp-1kM" secondAttribute="leading" id="7o9-CN-5Uh"/>
+                            <constraint firstAttribute="trailing" secondItem="BWj-ax-e7Q" secondAttribute="trailing" id="gpk-cu-yLw"/>
+                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="top" secondItem="Muc-2L-GXX" secondAttribute="bottom" id="jrJ-Va-8af"/>
+                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="bottom" secondItem="n7c-E6-CeZ" secondAttribute="top" id="l2F-Bt-q7N"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="77F-D2-GD9"/>
                 </viewController>
