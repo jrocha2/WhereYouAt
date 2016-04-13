@@ -214,7 +214,7 @@
         <!--Map-->
         <scene sceneID="LRa-5K-APu">
             <objects>
-                <viewController id="Oco-6p-JAV" sceneMemberID="viewController">
+                <viewController id="Oco-6p-JAV" customClass="MapViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Muc-2L-GXX"/>
                         <viewControllerLayoutGuide type="bottom" id="n7c-E6-CeZ"/>
@@ -236,6 +236,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="map" id="77F-D2-GD9"/>
+                    <connections>
+                        <outlet property="mapView" destination="BWj-ax-e7Q" id="jcs-b4-OgY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xNs-Aa-FWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
