@@ -56,6 +56,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         for loc in locations {
             let ann = MKPointAnnotation()
             ann.coordinate = loc.coordinate
+            ann.title = loc.name
+            ann.subtitle = "\(loc.numberOfPeople) people currently here"
             mapView.addAnnotation(ann)
         }
     }
