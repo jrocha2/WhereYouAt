@@ -67,7 +67,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-M0-lgV">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="98" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZHN-M0-lgV">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -142,7 +142,7 @@
         <!--Trends-->
         <scene sceneID="mM9-jE-1dd">
             <objects>
-                <viewController id="eaV-x5-a9w" sceneMemberID="viewController">
+                <viewController id="eaV-x5-a9w" customClass="TrendsViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Jhg-II-OVe"/>
                         <viewControllerLayoutGuide type="bottom" id="BYL-6I-LKZ"/>
@@ -150,9 +150,43 @@
                     <view key="view" contentMode="scaleToFill" id="JMa-S0-e6w">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GKj-7D-enP">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trendCell" textLabel="U2V-jH-l4j" style="IBUITableViewCellStyleDefault" id="1qD-Xn-eyl">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1qD-Xn-eyl" id="jVl-dT-qhF">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="U2V-jH-l4j">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="GKj-7D-enP" secondAttribute="trailing" id="bZG-bv-eub"/>
+                            <constraint firstItem="GKj-7D-enP" firstAttribute="leading" secondItem="JMa-S0-e6w" secondAttribute="leading" id="kHC-gm-MtR"/>
+                            <constraint firstItem="GKj-7D-enP" firstAttribute="top" secondItem="Jhg-II-OVe" secondAttribute="bottom" id="oaS-mV-z9x"/>
+                            <constraint firstItem="GKj-7D-enP" firstAttribute="bottom" secondItem="BYL-6I-LKZ" secondAttribute="top" id="uAa-rn-spD"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Trends" image="trends" id="nVf-Ii-gD5"/>
+                    <connections>
+                        <outlet property="tableView" destination="GKj-7D-enP" id="xs6-ue-dKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="va0-rV-QLf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
