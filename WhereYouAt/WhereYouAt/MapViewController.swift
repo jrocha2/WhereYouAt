@@ -76,7 +76,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             case .Dorm:
                 view.image = UIImage(named: "dormPin")
             case .House:
-                view.image = UIImage(named: "housePin")
+                view.image = UIImage(named: "homePin")
             case .OutOfTown:
                 view.image = UIImage(named: "outoftownPin")
             case .Rave:
