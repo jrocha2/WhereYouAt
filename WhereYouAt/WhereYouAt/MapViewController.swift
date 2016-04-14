@@ -54,21 +54,36 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func updateMapPins() {
         locations = db.getCampusTrends()
         for loc in locations {
-            let ann = MKPointAnnotation()
-            ann.coordinate = loc.coordinate
-            ann.title = loc.name
-            ann.subtitle = "\(loc.numberOfPeople) people currently here"
-            mapView.addAnnotation(ann)
+            mapView.addAnnotation(LocationAnnotation(loc: loc))
         }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let annotation = annotation as? MKPointAnnotation {
+        if let annotation = annotation as? LocationAnnotation {
             let identifier = "locationMarker"
-            let view = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             view.canShowCallout = true
-            view.pinTintColor = MKPinAnnotationView.redPinColor()
+            
+            // Images from https://icons8.com/
+            switch annotation.locationType {
+            case .Apartment:
+                view.image = UIImage(named: "housePin")
+            case .Bar:
+                view.image = UIImage(named: "barPin")
+            case .Club:
+                view.image = UIImage(named: "clubPin")
+            case .Dorm:
+                view.image = UIImage(named: "dormPin")
+            case .House:
+                view.image = UIImage(named: "housePin")
+            case .OutOfTown:
+                view.image = UIImage(named: "outoftownPin")
+            case .Rave:
+                view.image = UIImage(named: "ravePin")
+            case .Tailgate:
+                view.image = UIImage(named: "tailgatePin")
+            }
             return view
         }
         
