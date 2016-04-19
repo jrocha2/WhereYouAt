@@ -715,15 +715,46 @@
             </objects>
             <point key="canvasLocation" x="1635" y="1143"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="hNi-st-5ig">
+            <objects>
+                <viewController id="Ztl-wG-U8e" customClass="MenuViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ARC-6q-syY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4c-6m-QfG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NwN-JS-vW7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5E-kd-bNx">
+                                <rect key="frame" x="20" y="28" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="dismiss" destination="Ztl-wG-U8e" eventType="touchUpInside" id="6u6-Se-MfG"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b5E-kd-bNx" firstAttribute="leading" secondItem="NwN-JS-vW7" secondAttribute="leadingMargin" id="aBh-x4-c2G"/>
+                            <constraint firstItem="b5E-kd-bNx" firstAttribute="top" secondItem="ARC-6q-syY" secondAttribute="bottom" constant="8" id="wic-GX-crR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ABv-Ga-FJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="600" y="1853"/>
+        </scene>
         <!--Main Menu Tab Bar Controller-->
         <scene sceneID="udy-Xk-hb2">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8e3-om-JVC" customClass="MainMenuTabBarController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yfx-Sk-yV3">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="1I2-v9-z1J">
+                        <barButtonItem key="leftBarButtonItem" title="Menu" id="lvL-fX-yoD">
                             <connections>
-                                <segue destination="sgd-yp-cfI" kind="unwind" unwindAction="unwindToAuth:" id="dT7-za-XOl"/>
+                                <segue destination="Ztl-wG-U8e" kind="presentation" id="usq-Bl-a4K"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="compose" id="aHo-mN-1j6">
@@ -744,7 +775,6 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2J-ju-2nF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sgd-yp-cfI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1635" y="1847"/>
         </scene>
