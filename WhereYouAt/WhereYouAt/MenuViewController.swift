@@ -35,13 +35,9 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         self.modalPresentationStyle = .Custom
         self.transitioningDelegate = self
     }
-    
-    func leave() {
-        print("hello")
-    }
 
     @IBAction func dismiss() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.performSegueWithIdentifier("unwindToMenu", sender: self)
     }
 
     // ---- UIViewControllerTransitioningDelegate methods

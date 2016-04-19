@@ -13,21 +13,28 @@ class MainMenuTabBarController: UITabBarController {
 
     var db : Database!
     var myUID : String = ""
+    var swipe = UIScreenEdgePanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let swipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.showMenu))
+        addRevealMenuGesture()
+    }
+    
+    // Segue to the menu and remove the gesture
+    func showMenu() {
+        self.view.removeGestureRecognizer(swipe)
+        performSegueWithIdentifier("showMenu", sender: self)
+    }
+
+    // Set the gesture for showing the menu and add it to the view
+    func addRevealMenuGesture() {
+        swipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.showMenu))
         swipe.edges = .Left
         self.view.addGestureRecognizer(swipe)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    func showMenu() {
-        performSegueWithIdentifier("showMenu", sender: self)
+    @IBAction func unwindToMainMenu(segue: UIStoryboardSegue) {
+        addRevealMenuGesture()
     }
     
     // MARK: - Navigation
