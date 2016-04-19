@@ -224,12 +224,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BWj-ax-e7Q">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="6" y="64" width="594" height="487"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.90980392156862744" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="leading" secondItem="67O-mp-1kM" secondAttribute="leading" id="7o9-CN-5Uh"/>
+                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="leading" secondItem="67O-mp-1kM" secondAttribute="leading" constant="6" id="7o9-CN-5Uh"/>
                             <constraint firstAttribute="trailing" secondItem="BWj-ax-e7Q" secondAttribute="trailing" id="gpk-cu-yLw"/>
                             <constraint firstItem="BWj-ax-e7Q" firstAttribute="top" secondItem="Muc-2L-GXX" secondAttribute="bottom" id="jrJ-Va-8af"/>
                             <constraint firstItem="BWj-ax-e7Q" firstAttribute="bottom" secondItem="n7c-E6-CeZ" secondAttribute="top" id="l2F-Bt-q7N"/>
