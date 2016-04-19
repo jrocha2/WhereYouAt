@@ -11,6 +11,15 @@ import UIKit
 
 
 class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate {
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(self.dismiss))
+        swipe.direction = .Left
+        self.view.addGestureRecognizer(swipe)
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
@@ -25,6 +34,10 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     func commonInit() {
         self.modalPresentationStyle = .Custom
         self.transitioningDelegate = self
+    }
+    
+    func leave() {
+        print("hello")
     }
 
     @IBAction func dismiss() {

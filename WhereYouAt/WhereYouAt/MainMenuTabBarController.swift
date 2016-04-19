@@ -16,11 +16,18 @@ class MainMenuTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let swipe = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(self.showMenu))
+        swipe.edges = .Left
+        self.view.addGestureRecognizer(swipe)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func showMenu() {
+        performSegueWithIdentifier("showMenu", sender: self)
     }
     
     // MARK: - Navigation
