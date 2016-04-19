@@ -37,6 +37,9 @@
 		E74343AD1CBED98100EF461D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343AC1CBED98100EF461D /* MapViewController.swift */; };
 		E74343B11CBF1DD200EF461D /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */; };
 		E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */; };
+		E7CE67561CC5F8B90067F133 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67531CC5F8B90067F133 /* MenuViewController.swift */; };
+		E7CE67571CC5F8B90067F133 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */; };
+		E7CE67581CC5F8B90067F133 /* CustomPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */; };
 		FC1C6B0F963EEA9DDF67E43A /* Pods_WhereYouAt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A77225F0F12DEC52E23AA5D7 /* Pods_WhereYouAt.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +102,9 @@
 		E74343AC1CBED98100EF461D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTabBarController.swift; sourceTree = "<group>"; };
+		E7CE67531CC5F8B90067F133 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; };
 		F17E8B8AE30747328ACB2755 /* Pods-WhereYouAtTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereYouAtTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereYouAtTests/Pods-WhereYouAtTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,8 +260,19 @@
 				E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */,
 				E74343AC1CBED98100EF461D /* MapViewController.swift */,
 				E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */,
+				E7CE675B1CC5FFD80067F133 /* Menu */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E7CE675B1CC5FFD80067F133 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				E7CE67531CC5F8B90067F133 /* MenuViewController.swift */,
+				E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */,
+				E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,17 +545,20 @@
 			files = (
 				9130A59A1CB5EF4B001A3276 /* LocationsTableViewController.swift in Sources */,
 				9130A5A01CB5F83D001A3276 /* NewStatusViewController.swift in Sources */,
+				E7CE67571CC5F8B90067F133 /* CustomPresentationController.swift in Sources */,
 				91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */,
 				91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */,
 				E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */,
 				91F726611CB1EC6D008A3618 /* Profile.swift in Sources */,
 				9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */,
 				E74343AD1CBED98100EF461D /* MapViewController.swift in Sources */,
+				E7CE67581CC5F8B90067F133 /* CustomPresentationAnimationController.swift in Sources */,
 				E74343A91CBEB0AC00EF461D /* TrendsViewController.swift in Sources */,
 				E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */,
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
 				E74343A71CBE2EFE00EF461D /* FeedTableViewCell.swift in Sources */,
 				E74343AB1CBEB3F500EF461D /* TrendTableViewCell.swift in Sources */,
+				E7CE67561CC5F8B90067F133 /* MenuViewController.swift in Sources */,
 				E72C77B01CB3066F002E3A3E /* AuthViewController.swift in Sources */,
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,

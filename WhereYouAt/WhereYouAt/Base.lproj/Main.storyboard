@@ -224,12 +224,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="BWj-ax-e7Q">
-                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <rect key="frame" x="6" y="64" width="594" height="487"/>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.90980392156862744" blue="0.87058823529411766" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="leading" secondItem="67O-mp-1kM" secondAttribute="leading" id="7o9-CN-5Uh"/>
+                            <constraint firstItem="BWj-ax-e7Q" firstAttribute="leading" secondItem="67O-mp-1kM" secondAttribute="leading" constant="6" id="7o9-CN-5Uh"/>
                             <constraint firstAttribute="trailing" secondItem="BWj-ax-e7Q" secondAttribute="trailing" id="gpk-cu-yLw"/>
                             <constraint firstItem="BWj-ax-e7Q" firstAttribute="top" secondItem="Muc-2L-GXX" secondAttribute="bottom" id="jrJ-Va-8af"/>
                             <constraint firstItem="BWj-ax-e7Q" firstAttribute="bottom" secondItem="n7c-E6-CeZ" secondAttribute="top" id="l2F-Bt-q7N"/>
@@ -715,15 +715,59 @@
             </objects>
             <point key="canvasLocation" x="1635" y="1143"/>
         </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="hNi-st-5ig">
+            <objects>
+                <viewController id="Ztl-wG-U8e" customClass="MenuViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ARC-6q-syY"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z4c-6m-QfG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NwN-JS-vW7">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5E-kd-bNx">
+                                <rect key="frame" x="20" y="28" width="34" height="30"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="dismiss" destination="Ztl-wG-U8e" eventType="touchUpInside" id="6u6-Se-MfG"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRj-Af-sAG">
+                                <rect key="frame" x="20" y="550" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <segue destination="Ml0-o5-ObF" kind="unwind" unwindAction="unwindToAuth:" id="7Er-fk-d8k"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DRj-Af-sAG" firstAttribute="leading" secondItem="b5E-kd-bNx" secondAttribute="leading" id="30P-3m-NUG"/>
+                            <constraint firstAttribute="bottom" secondItem="DRj-Af-sAG" secondAttribute="bottom" constant="20" symbolic="YES" id="URW-LY-xYJ"/>
+                            <constraint firstItem="b5E-kd-bNx" firstAttribute="leading" secondItem="NwN-JS-vW7" secondAttribute="leadingMargin" id="aBh-x4-c2G"/>
+                            <constraint firstItem="b5E-kd-bNx" firstAttribute="top" secondItem="ARC-6q-syY" secondAttribute="bottom" constant="8" id="wic-GX-crR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="Ml0-o5-ObF" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMainMenu:" id="9Dl-x6-Htw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ABv-Ga-FJt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Ml0-o5-ObF" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="1835"/>
+        </scene>
         <!--Main Menu Tab Bar Controller-->
         <scene sceneID="udy-Xk-hb2">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8e3-om-JVC" customClass="MainMenuTabBarController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="yfx-Sk-yV3">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="1I2-v9-z1J">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="lvL-fX-yoD">
                             <connections>
-                                <segue destination="sgd-yp-cfI" kind="unwind" unwindAction="unwindToAuth:" id="dT7-za-XOl"/>
+                                <segue destination="Ztl-wG-U8e" kind="presentation" identifier="showMenu" id="usq-Bl-a4K"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="compose" id="aHo-mN-1j6">
@@ -744,7 +788,6 @@
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T2J-ju-2nF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="sgd-yp-cfI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1635" y="1847"/>
         </scene>
@@ -752,6 +795,7 @@
     <resources>
         <image name="feed" width="25" height="25"/>
         <image name="map" width="25" height="25"/>
+        <image name="menu" width="25" height="25"/>
         <image name="trends" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
