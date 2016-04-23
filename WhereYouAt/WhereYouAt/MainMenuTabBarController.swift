@@ -15,6 +15,8 @@ class MainMenuTabBarController: UITabBarController {
     var myUID : String = ""
     var swipe = UIScreenEdgePanGestureRecognizer()
     
+    @IBOutlet weak var navBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addRevealMenuGesture()

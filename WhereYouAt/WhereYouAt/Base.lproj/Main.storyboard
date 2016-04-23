@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -705,6 +706,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mZh-5u-5Ks">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -727,27 +732,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b5E-kd-bNx">
-                                <rect key="frame" x="20" y="28" width="34" height="30"/>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <action selector="dismiss" destination="Ztl-wG-U8e" eventType="touchUpInside" id="6u6-Se-MfG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DRj-Af-sAG">
-                                <rect key="frame" x="20" y="550" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <segue destination="Ml0-o5-ObF" kind="unwind" unwindAction="unwindToAuth:" id="7Er-fk-d8k"/>
-                                </connections>
-                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultprofile" translatesAutoresizingMaskIntoConstraints="NO" id="LHN-sG-zQP">
+                                <rect key="frame" x="274" y="20" width="52" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="LHN-sG-zQP" secondAttribute="height" multiplier="1:1" id="aoY-Ae-R5G"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qyz-dr-UQX">
+                                <rect key="frame" x="249" y="80" width="103" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="103" id="Rfo-iA-nug"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="DRj-Af-sAG" firstAttribute="leading" secondItem="b5E-kd-bNx" secondAttribute="leading" id="30P-3m-NUG"/>
-                            <constraint firstAttribute="bottom" secondItem="DRj-Af-sAG" secondAttribute="bottom" constant="20" symbolic="YES" id="URW-LY-xYJ"/>
-                            <constraint firstItem="b5E-kd-bNx" firstAttribute="leading" secondItem="NwN-JS-vW7" secondAttribute="leadingMargin" id="aBh-x4-c2G"/>
-                            <constraint firstItem="b5E-kd-bNx" firstAttribute="top" secondItem="ARC-6q-syY" secondAttribute="bottom" constant="8" id="wic-GX-crR"/>
+                            <constraint firstItem="Z4c-6m-QfG" firstAttribute="top" secondItem="LHN-sG-zQP" secondAttribute="bottom" constant="528" id="3je-Mt-I9g"/>
+                            <constraint firstItem="Qyz-dr-UQX" firstAttribute="centerX" secondItem="LHN-sG-zQP" secondAttribute="centerX" id="9xZ-8Y-dbV"/>
+                            <constraint firstItem="Qyz-dr-UQX" firstAttribute="top" secondItem="LHN-sG-zQP" secondAttribute="bottom" constant="8" symbolic="YES" id="RvV-ek-Wbp"/>
+                            <constraint firstItem="Z4c-6m-QfG" firstAttribute="top" secondItem="Qyz-dr-UQX" secondAttribute="bottom" constant="499" id="UHA-0t-iju"/>
+                            <constraint firstItem="LHN-sG-zQP" firstAttribute="top" secondItem="ARC-6q-syY" secondAttribute="bottom" id="d7l-9s-6r0"/>
+                            <constraint firstItem="LHN-sG-zQP" firstAttribute="centerX" secondItem="NwN-JS-vW7" secondAttribute="centerX" id="esg-Xi-j14"/>
                         </constraints>
                     </view>
                     <connections>
@@ -759,12 +767,12 @@
             </objects>
             <point key="canvasLocation" x="742" y="1835"/>
         </scene>
-        <!--Main Menu Tab Bar Controller-->
+        <!--Where You At?-->
         <scene sceneID="udy-Xk-hb2">
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8e3-om-JVC" customClass="MainMenuTabBarController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="yfx-Sk-yV3">
+                    <navigationItem key="navigationItem" title="Where You At?" id="yfx-Sk-yV3">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="lvL-fX-yoD">
                             <connections>
                                 <segue destination="Ztl-wG-U8e" kind="presentation" identifier="showMenu" id="usq-Bl-a4K"/>
@@ -782,6 +790,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <outlet property="navBar" destination="yfx-Sk-yV3" id="2ED-wP-xyz"/>
                         <segue destination="set-Yz-fFE" kind="relationship" relationship="viewControllers" id="GIH-vc-tE5"/>
                         <segue destination="eaV-x5-a9w" kind="relationship" relationship="viewControllers" id="rQ5-4g-vda"/>
                         <segue destination="Oco-6p-JAV" kind="relationship" relationship="viewControllers" id="Bwl-9K-yS0"/>
@@ -793,6 +802,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="defaultprofile" width="424" height="404"/>
         <image name="feed" width="25" height="25"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
