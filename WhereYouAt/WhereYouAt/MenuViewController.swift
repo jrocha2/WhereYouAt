@@ -12,6 +12,8 @@ import UIKit
 
 class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    var db: Database!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -51,6 +51,10 @@ class MainMenuTabBarController: UITabBarController {
                     dest.db = self.db
                 }
             }
+        } else if segue.identifier == "showMenu" {
+            if let dest = segue.destinationViewController as? MenuViewController {
+               dest.db = self.db
+            }
         }
     }
  

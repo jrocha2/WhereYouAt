@@ -10,6 +10,8 @@ import UIKit
 
 class MenuTableViewController: UITableViewController {
 
+    var db: Database!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,15 @@ class MenuTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    // Grab the database reference from the parent menu view controller
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if let parent = self.parentViewController as? MenuViewController {
+            self.db = parent.db
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +54,7 @@ class MenuTableViewController: UITableViewController {
             return 1
         }
     }
-
+    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
