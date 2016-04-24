@@ -92,7 +92,7 @@ class UpdateProfileTableViewController: UITableViewController {
             db.updateProfile(newProfile, call: {
                 () in
                 print("Updated Profile in Database!")
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.performSegueWithIdentifier("unwindFromUpdateProfile", sender: self)
             })
             
         }

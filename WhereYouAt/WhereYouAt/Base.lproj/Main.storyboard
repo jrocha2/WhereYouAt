@@ -86,7 +86,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikp-cw-aML">
-                                                    <rect key="frame" x="36" y="37" width="556" height="43.5"/>
+                                                    <rect key="frame" x="36" y="37" width="556" height="44"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -262,7 +262,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGd-ZE-xI2">
-                                            <rect key="frame" x="392" y="12.5" width="200" height="18"/>
+                                            <rect key="frame" x="392" y="13" width="200" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="bLa-bM-Azl"/>
                                             </constraints>
@@ -271,7 +271,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89W-6E-KXM">
-                                            <rect key="frame" x="8" y="9.5" width="350" height="24"/>
+                                            <rect key="frame" x="8" y="10" width="350" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="350" id="25e-Rw-xZs"/>
                                             </constraints>
@@ -624,7 +624,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vU0-kt-AoW">
-                                <rect key="frame" x="20" y="234.5" width="560" height="345.5"/>
+                                <rect key="frame" x="20" y="235" width="560" height="345"/>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGt-lV-c1b">
                                 <rect key="frame" x="20" y="70" width="560" height="30"/>
@@ -1008,11 +1008,13 @@
                         <outlet property="gender" destination="0EG-kd-qGS" id="ktp-oE-5r3"/>
                         <outlet property="lastName" destination="9uL-iy-2Zw" id="dnv-Yf-tq0"/>
                         <outlet property="phoneNumber" destination="19h-ok-0eE" id="mJh-Wy-ctG"/>
+                        <segue destination="2gp-Md-EHO" kind="unwind" identifier="unwindFromUpdateProfile" unwindAction="unwindToMainMenu:" id="6a7-JD-g4c"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UdU-8M-TfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="2gp-Md-EHO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4658" y="57"/>
+            <point key="canvasLocation" x="4588" y="68"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="hNi-st-5ig">
