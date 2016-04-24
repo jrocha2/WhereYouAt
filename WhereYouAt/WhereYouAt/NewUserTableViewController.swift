@@ -35,11 +35,15 @@ class NewUserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 7
+        return 8
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if section == 0 {
+            return 0
+        } else {
+            return 1
+        }
     }
 
     // User taps this button when they are supposedly done filling out info

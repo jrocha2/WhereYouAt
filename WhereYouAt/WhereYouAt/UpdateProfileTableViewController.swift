@@ -1,37 +1,47 @@
 //
-//  MenuTableViewController.swift
+//  UpdateProfileTableViewController.swift
 //  WhereYouAt
 //
-//  Created by John Rocha on 4/22/16.
+//  Created by John Rocha on 4/24/16.
 //  Copyright © 2016 Where You At. All rights reserved.
 //
 
 import UIKit
 
-class MenuTableViewController: UITableViewController {
-
+class UpdateProfileTableViewController: UITableViewController {
+    
     var db: Database!
     
+    @IBOutlet weak var firstName: UITextField!
+    @IBOutlet weak var lastName: UITextField!
+    @IBOutlet weak var gender: UITextField!
+    @IBOutlet weak var classification: UITextField!
+    @IBOutlet weak var phoneNumber: UITextField!
+    @IBOutlet weak var dateOfBirth: UITextField!
+    @IBOutlet weak var dorm: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Hide any extra cells
-        tableView.tableFooterView = UIView()
-
+        // Place their current profile information into the text boxes
+        let profile = db.profile
+        firstName.text = profile?.firstName
+        lastName.text = profile?.lastName
+        gender.text = profile?.gender.rawValue
+        classification.text = profile?.year.rawValue
+        phoneNumber.text = profile?.phone
+        if profile?.dateOfBirth != nil {
+            dateOfBirth.text = profile?.dateOfBirth
+        }
+        if profile?.dorm != nil {
+            dorm.text = profile?.dorm
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    // Grab the database reference from the parent menu view controller
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        
-        if let parent = self.parentViewController as? MenuViewController {
-            self.db = parent.db
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,24 +53,50 @@ class MenuTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 3
+        return 8
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return 2
+            return 0
         } else {
             return 1
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            self.performSegueWithIdentifier("updateProfile", sender: self)
+    @IBAction func userDone(sender: AnyObject) {
+        
+        // Check the non-optional information
+        if firstName.text == "" || lastName.text == "" || gender.text == "" || classification.text == "" || phoneNumber.text == "" {
+            let alert = UIAlertController(title: "Incomplete Form!", message: "Make sure to fill out all the info that is not marked as optional", preferredStyle: .Alert)
+            
+            let confirmAction = UIAlertAction(title: "Ok",
+                                              style: .Default,
+                                              handler: { (action:UIAlertAction) -> Void in
+            })
+            
+            alert.addAction(confirmAction)
+            
+            presentViewController(alert, animated: true, completion: nil)
+            
+        } else {
+            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: Profile.Gender(rawValue: gender.text!)!, year: Profile.Year(rawValue: classification.text!)!, phoneNumber: phoneNumber.text!)
+            if dateOfBirth.text != "" {
+                newProfile.dateOfBirth = dateOfBirth.text
+            }
+            if dorm.text != "" {
+                newProfile.dorm = dorm.text
+            }
+            
+            db.updateProfile(newProfile, call: {
+                () in
+                print("Updated Profile in Database!")
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+            
         }
     }
-    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -115,11 +151,5 @@ class MenuTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let dest = segue.destinationViewController as? UpdateProfileTableViewController {
-            dest.db = self.db
-        }
-    }
 
 }
