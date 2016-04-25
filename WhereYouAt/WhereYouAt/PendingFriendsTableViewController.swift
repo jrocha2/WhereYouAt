@@ -70,6 +70,14 @@ class PendingFriendsTableViewController: UITableViewController {
             return 0
         }
     }
+    
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "Friend Requests"
+        } else {
+            return "Pending Requests"
+        }
+    }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
