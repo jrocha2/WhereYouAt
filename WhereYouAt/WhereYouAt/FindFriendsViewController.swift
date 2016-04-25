@@ -8,11 +8,13 @@
 
 import UIKit
 
-class FindFriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FindFriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchControllerDelegate {
 
     var db : Database!
     var users : [(String, String)] = []
+    var filteredUsers : [(String, String)] = []
     var friends : [(String, String)] = []
+    let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,6 +24,10 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.dataSource = self
         tableView.delegate = self
         
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,6 +102,13 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
 
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredUsers = users.filter { user in
+            return user.1.lowercaseString.containsString(searchText.lowercaseString)
+        }
+        
+        tableView.reloadData()
+    }
     /*
     // MARK: - Navigation
 
@@ -105,5 +118,10 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension FindFriendsViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
 }
