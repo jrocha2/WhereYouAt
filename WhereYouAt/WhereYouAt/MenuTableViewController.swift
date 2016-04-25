@@ -58,6 +58,8 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             self.performSegueWithIdentifier("updateProfile", sender: self)
+        } else if indexPath.section == 2 {
+            self.performSegueWithIdentifier("signOut", sender: self)
         }
     }
     
