@@ -51,7 +51,6 @@ class PendingFriendsTableViewController: UITableViewController {
         for user in db.friendsPending {
             pending.append(user.1)
         }
-        
     }
 
     // MARK: - Table view data source
@@ -94,10 +93,19 @@ class PendingFriendsTableViewController: UITableViewController {
             
             let confirmAction = UIAlertAction(title: "Add Friend", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: true)
+                self.requests.removeAtIndex(row)
+                self.correspondingUIDs.removeAtIndex(row)
+                self.tableView.reloadData()
+                self.db.getFriendRequests()
             })
             
             let denyAction = UIAlertAction(title: "Delete Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: false)
+                self.requests.removeAtIndex(row)
+                self.correspondingUIDs.removeAtIndex(row)
+                self.tableView.reloadData()
+                self.db.getFriendRequests()
+
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
