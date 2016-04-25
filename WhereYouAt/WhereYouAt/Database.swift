@@ -15,11 +15,13 @@ let newLocationDataNotification = "com.newLocationDataNotification.whereyouat"
 class Database {
     
     var userId: String = ""
-    var friendsList: [String: String] = [:]
     var locations: [Location] = []
     var profile: Profile?
     var firebase: FirebaseManager
     var allUsers : [String:String] = [:]
+    var friendsList: [String: String] = [:]
+    var friendRequests : [String : String] = [:]
+    var friendsPending : [String : String] = [:]
     
     //The init method calls the methods in the Firebase class
     init(myUID: String, hasProfile: Bool) {
@@ -29,6 +31,8 @@ class Database {
         //insertDummyLocations()
         //insertDummyData()
         self.getFriends()
+        self.getFriendRequests()
+        self.getPendingFriends()
         self.getLocationsAndStatuses()
         self.getAllUsers()
         if( hasProfile ) {
@@ -80,6 +84,22 @@ class Database {
     // Send a friend request
     func sendFriendRequest(uid: String, name: String) {
         self.firebase.addNewFriend(uid, userName: name)
+    }
+    
+    // Get your friend requests
+    func getFriendRequests() {
+        self.firebase.getFriendRequests() {
+            (requests) in
+            self.friendRequests = requests
+        }
+    }
+    
+    // Get your sent friend requests
+    func getPendingFriends() {
+        self.firebase.getPendingFriends() {
+            (pending) in
+            self.friendsPending = pending
+        }
     }
     
     //Gets the locations and update events

@@ -40,6 +40,7 @@
 		E79B09E51CCCC6CC00797583 /* UpdateProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */; };
 		E79B09E71CCDB4D600797583 /* CurrentFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */; };
 		E79B09EB1CCDD66900797583 /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */; };
+		E79B09ED1CCDE05100797583 /* PendingFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */; };
 		E7B231701CCB1139003B2C4A /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2316F1CCB1139003B2C4A /* MenuTableViewController.swift */; };
 		E7CE67561CC5F8B90067F133 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67531CC5F8B90067F133 /* MenuViewController.swift */; };
 		E7CE67571CC5F8B90067F133 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */; };
@@ -109,6 +110,7 @@
 		E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileTableViewController.swift; sourceTree = "<group>"; };
 		E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFriendsViewController.swift; sourceTree = "<group>"; };
 		E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
+		E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingFriendsTableViewController.swift; sourceTree = "<group>"; };
 		E7B2316F1CCB1139003B2C4A /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		E7CE67531CC5F8B90067F133 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */,
 				E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */,
 				E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */,
+				E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				E79B09E51CCCC6CC00797583 /* UpdateProfileTableViewController.swift in Sources */,
 				91F726611CB1EC6D008A3618 /* Profile.swift in Sources */,
 				9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */,
+				E79B09ED1CCDE05100797583 /* PendingFriendsTableViewController.swift in Sources */,
 				E74343AD1CBED98100EF461D /* MapViewController.swift in Sources */,
 				E7CE67581CC5F8B90067F133 /* CustomPresentationAnimationController.swift in Sources */,
 				E74343A91CBEB0AC00EF461D /* TrendsViewController.swift in Sources */,
