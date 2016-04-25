@@ -63,6 +63,9 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.active && searchController.searchBar.text != "" {
+            return filteredUsers.count
+        }
         return users.count
     }
     
@@ -70,7 +73,11 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
         let row = indexPath.row
         
-        cell.textLabel?.text = users[row].1
+        if searchController.active && searchController.searchBar.text != "" {
+            cell.textLabel?.text = filteredUsers[row].1
+        } else {
+            cell.textLabel?.text = users[row].1
+        }
         
         return cell
     }
@@ -80,7 +87,30 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let row = indexPath.row
         
-        if !friends.contains({ $0.0 == users[row].0 && $0.1 == users[row].1 }) && users[row].0 != db.userId {
+        if searchController.active && searchController.searchBar.text != "" {
+            
+            let alert = UIAlertController(title: "Send Friend Request?", message: "Are you sure you would like to send \(filteredUsers[indexPath.row].1) a friend request?", preferredStyle: .Alert)
+            
+            let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                self.db.sendFriendRequest(self.filteredUsers[row].0, name: self.filteredUsers[row].1)
+                self.removeUIDFromUsers(self.filteredUsers[row].0)
+                self.filteredUsers.removeAtIndex(row)
+                self.tableView.reloadData()
+                self.db.getPendingFriends()
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .Default,
+                                             handler: { (action:UIAlertAction) -> Void in
+            })
+            
+            alert.addAction(confirmAction)
+            alert.addAction(cancelAction)
+            
+            presentViewController(alert, animated: true, completion: nil)
+        
+        } else {
+    
             let alert = UIAlertController(title: "Send Friend Request?", message: "Are you sure you would like to send \(users[indexPath.row].1) a friend request?", preferredStyle: .Alert)
             
             let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
@@ -99,6 +129,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
             alert.addAction(cancelAction)
             
             presentViewController(alert, animated: true, completion: nil)
+            
         }
     }
 
@@ -109,6 +140,16 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         
         tableView.reloadData()
     }
+    
+    func removeUIDFromUsers(uid: String) {
+        for i in 0...users.count-1 {
+            if users[i].0 == uid {
+                users.removeAtIndex(i)
+                return
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

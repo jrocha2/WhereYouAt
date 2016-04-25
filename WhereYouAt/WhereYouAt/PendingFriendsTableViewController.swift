@@ -95,18 +95,17 @@ class PendingFriendsTableViewController: UITableViewController {
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: true)
                 self.requests.removeAtIndex(row)
                 self.correspondingUIDs.removeAtIndex(row)
-                self.tableView.reloadData()
                 self.db.getFriendRequests()
                 self.db.getFriends()
+                self.tableView.reloadData()
             })
             
             let denyAction = UIAlertAction(title: "Delete Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: false)
                 self.requests.removeAtIndex(row)
                 self.correspondingUIDs.removeAtIndex(row)
-                self.tableView.reloadData()
                 self.db.getFriendRequests()
-
+                self.tableView.reloadData()
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
