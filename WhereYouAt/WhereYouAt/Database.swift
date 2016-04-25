@@ -77,6 +77,11 @@ class Database {
         }
     }
     
+    // Send a friend request
+    func sendFriendRequest(uid: String, name: String) {
+        self.firebase.addNewFriend(uid, userName: name)
+    }
+    
     //Gets the locations and update events
     func getLocationsAndStatuses() {
         self.locations = []
