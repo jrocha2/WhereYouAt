@@ -126,6 +126,25 @@ class FirebaseManager {
         
     }
     
+    // Returns uids with usernames for all of the users in the database
+    func getAllUsers(callback: [String:String] -> ()) {
+        var users : [String:String] = [:]
+        let usersRef = rootRef.childByAppendingPath("Users")
+        
+        usersRef.observeSingleEventOfType(.Value, withBlock:  { snapshot in
+            if snapshot.exists() {
+                for user in snapshot.children {
+                    let uid = user.key as String
+                    let userFirstname = user.childSnapshotForPath("Profile/firstName").value as! String
+                    let userLastname = user.childSnapshotForPath("Profile/lastName").value as! String
+                    users[uid] = "\(userFirstname) \(userLastname)"
+                }
+                
+                callback(users)
+            }
+        })
+    }
+    
     // Creates dictionary out of Profile's properties and sets appropriate node
     func updateProfile(profile: Profile, callback: (Profile) -> ()) {
         

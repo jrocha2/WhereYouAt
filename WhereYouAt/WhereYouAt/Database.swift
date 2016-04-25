@@ -19,6 +19,7 @@ class Database {
     var locations: [Location] = []
     var profile: Profile?
     var firebase: FirebaseManager
+    var allUsers : [String:String] = [:]
     
     //The init method calls the methods in the Firebase class
     init(myUID: String, hasProfile: Bool) {
@@ -29,6 +30,7 @@ class Database {
         //insertDummyData()
         self.getFriends()
         self.getLocationsAndStatuses()
+        self.getAllUsers()
         if( hasProfile ) {
             self.getProfile()
         }
@@ -86,6 +88,14 @@ class Database {
 //            print("\n\(self.locations)")
 //            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
+    }
+    
+    // Gets all the users in the database
+    func getAllUsers() {
+        self.firebase.getAllUsers() {
+            (users) in
+            self.allUsers = users
+        }
     }
     
     // Updates the profile
