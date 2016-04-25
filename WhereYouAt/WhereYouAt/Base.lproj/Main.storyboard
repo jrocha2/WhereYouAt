@@ -86,7 +86,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikp-cw-aML">
-                                                    <rect key="frame" x="36" y="37" width="556" height="44"/>
+                                                    <rect key="frame" x="36" y="37" width="556" height="43.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -262,7 +262,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGd-ZE-xI2">
-                                            <rect key="frame" x="392" y="13" width="200" height="18"/>
+                                            <rect key="frame" x="392" y="12.5" width="200" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="bLa-bM-Azl"/>
                                             </constraints>
@@ -271,7 +271,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89W-6E-KXM">
-                                            <rect key="frame" x="8" y="10" width="350" height="24"/>
+                                            <rect key="frame" x="8" y="9.5" width="350" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="350" id="25e-Rw-xZs"/>
                                             </constraints>
@@ -624,7 +624,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vU0-kt-AoW">
-                                <rect key="frame" x="20" y="235" width="560" height="345"/>
+                                <rect key="frame" x="20" y="234.5" width="560" height="345.5"/>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGt-lV-c1b">
                                 <rect key="frame" x="20" y="70" width="560" height="30"/>
@@ -837,12 +837,73 @@
                     <connections>
                         <segue destination="sij-bv-fhj" kind="presentation" identifier="updateProfile" modalTransitionStyle="flipHorizontal" id="kHr-nm-N0S"/>
                         <segue destination="a6w-Mb-TJa" kind="unwind" identifier="signOut" unwindAction="unwindToAuth:" id="4Wx-Nh-UiH"/>
+                        <segue destination="vCA-jW-MEL" kind="presentation" identifier="currentFriends" modalTransitionStyle="flipHorizontal" id="mPf-eW-Nei"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTc-ha-nYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a6w-Mb-TJa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3743" y="317.5"/>
+        </scene>
+        <!--Current Friends View Controller-->
+        <scene sceneID="lWL-Un-H46">
+            <objects>
+                <viewController id="vCA-jW-MEL" customClass="CurrentFriendsViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Yb-eb-8A6"/>
+                        <viewControllerLayoutGuide type="bottom" id="eDU-lb-jIA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DGv-dQ-etY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkS-vS-jVw">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="My Friends" id="rrW-Ih-ZrZ">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="EUG-Wg-obd">
+                                            <connections>
+                                                <action selector="dismiss:" destination="vCA-jW-MEL" id="XA0-Lb-lAD"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-fn-1J7">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ROn-fn-6lj">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ROn-fn-6lj" id="1xp-Fi-9xf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="vDz-fn-1J7" firstAttribute="trailing" secondItem="VkS-vS-jVw" secondAttribute="trailing" id="EGZ-sz-AHn"/>
+                            <constraint firstItem="vDz-fn-1J7" firstAttribute="leading" secondItem="VkS-vS-jVw" secondAttribute="leading" id="J0l-HD-fpb"/>
+                            <constraint firstAttribute="trailing" secondItem="VkS-vS-jVw" secondAttribute="trailing" id="KFc-as-MWk"/>
+                            <constraint firstItem="VkS-vS-jVw" firstAttribute="top" secondItem="6Yb-eb-8A6" secondAttribute="bottom" id="NHE-Bn-iqW"/>
+                            <constraint firstItem="vDz-fn-1J7" firstAttribute="top" secondItem="VkS-vS-jVw" secondAttribute="bottom" id="QQq-Bl-2d5"/>
+                            <constraint firstItem="VkS-vS-jVw" firstAttribute="leading" secondItem="DGv-dQ-etY" secondAttribute="leading" id="Svi-RE-EfG"/>
+                            <constraint firstItem="vDz-fn-1J7" firstAttribute="bottom" secondItem="eDU-lb-jIA" secondAttribute="top" id="oRQ-mE-qEq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="vDz-fn-1J7" id="U2G-Dv-oiM"/>
+                        <segue destination="Acl-99-CrN" kind="unwind" identifier="unwindFromCurrentFriends" unwindAction="unwindToMainMenu:" id="cRO-GN-Szj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z7V-i9-4Yk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Acl-99-CrN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4902" y="63"/>
         </scene>
         <!--Update Profile Table View Controller-->
         <scene sceneID="RdC-hJ-yUK">
@@ -1052,7 +1113,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UdU-8M-TfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2gp-Md-EHO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4588" y="68"/>
+            <point key="canvasLocation" x="4902" y="826"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="hNi-st-5ig">

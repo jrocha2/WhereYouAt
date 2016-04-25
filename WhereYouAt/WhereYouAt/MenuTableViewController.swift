@@ -56,7 +56,9 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            self.performSegueWithIdentifier("currentFriends", sender: self)
+        }else if indexPath.section == 1 {
             self.performSegueWithIdentifier("updateProfile", sender: self)
         } else if indexPath.section == 2 {
             self.performSegueWithIdentifier("signOut", sender: self)
@@ -120,6 +122,8 @@ class MenuTableViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let dest = segue.destinationViewController as? UpdateProfileTableViewController {
+            dest.db = self.db
+        } else if let dest = segue.destinationViewController as? CurrentFriendsViewController {
             dest.db = self.db
         }
     }
