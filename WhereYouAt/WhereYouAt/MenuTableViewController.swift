@@ -58,7 +58,9 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             self.performSegueWithIdentifier("currentFriends", sender: self)
-        }else if indexPath.section == 1 {
+        } else if indexPath.section == 0 && indexPath.row == 1 {
+            self.performSegueWithIdentifier("addFriend", sender: self)
+        } else if indexPath.section == 1 {
             self.performSegueWithIdentifier("updateProfile", sender: self)
         } else if indexPath.section == 2 {
             self.performSegueWithIdentifier("signOut", sender: self)

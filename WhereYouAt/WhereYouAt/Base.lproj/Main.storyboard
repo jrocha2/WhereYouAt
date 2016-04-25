@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Auth View Controller-->
@@ -838,6 +839,7 @@
                         <segue destination="sij-bv-fhj" kind="presentation" identifier="updateProfile" modalTransitionStyle="flipHorizontal" id="kHr-nm-N0S"/>
                         <segue destination="a6w-Mb-TJa" kind="unwind" identifier="signOut" unwindAction="unwindToAuth:" id="4Wx-Nh-UiH"/>
                         <segue destination="vCA-jW-MEL" kind="presentation" identifier="currentFriends" modalTransitionStyle="flipHorizontal" id="mPf-eW-Nei"/>
+                        <segue destination="aWY-xb-GcM" kind="presentation" identifier="addFriend" id="jrq-Nr-Cj9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTc-ha-nYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -904,6 +906,74 @@
                 <exit id="Acl-99-CrN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4902" y="-535"/>
+        </scene>
+        <!--Find Friends-->
+        <scene sceneID="xV5-LN-3db">
+            <objects>
+                <viewController id="IMp-13-7ol" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XGL-mG-3hH"/>
+                        <viewControllerLayoutGuide type="bottom" id="4fr-QN-VzV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tvt-lc-xCH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Find Friends" image="search" id="Otr-Uu-DNW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IK3-BF-FVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6468" y="-184"/>
+        </scene>
+        <!--Pending Friends-->
+        <scene sceneID="7qx-FW-jHL">
+            <objects>
+                <tableViewController id="QHp-fb-uzO" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="d67-li-EaP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="QOA-rU-nJp">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="IQr-Vh-Wl5">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IQr-Vh-Wl5" id="FXa-gQ-kc3">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="b0R-A9-AXJ">
+                                        <rect key="frame" x="0.0" y="88" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b0R-A9-AXJ" id="HWU-gC-fiQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="U4E-dG-jlc">
+                                        <rect key="frame" x="0.0" y="132" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U4E-dG-jlc" id="VTl-dW-0IX">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="QHp-fb-uzO" id="MIh-tL-wlg"/>
+                            <outlet property="delegate" destination="QHp-fb-uzO" id="fwv-df-nhw"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Pending Friends" image="pending" id="Q8d-kL-owM"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mp3-DG-5OF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6466" y="582"/>
         </scene>
         <!--Update Profile Table View Controller-->
         <scene sceneID="RdC-hJ-yUK">
@@ -1206,12 +1276,66 @@
             </objects>
             <point key="canvasLocation" x="1635" y="1847"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4l5-Zf-dnJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aWY-xb-GcM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CsT-7C-ntK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jmw-wX-Rtb" kind="relationship" relationship="rootViewController" id="5Tw-2d-5tP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chp-KK-LXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4902" y="134"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="2oN-aZ-bA2">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="jmw-wX-Rtb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="SJD-Kg-0Bl">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Done" id="MCb-SH-7Ff">
+                                <connections>
+                                    <segue destination="VHQ-3w-Vv9" kind="unwind" unwindAction="unwindToMainMenu:" id="SJm-Ob-Dob"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="done" id="txy-UD-Co5">
+                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CLg-yd-490">
+                                    <rect key="frame" x="398" y="5" width="133" height="34"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </button>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Mk1-YL-tGI">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="IMp-13-7ol" kind="relationship" relationship="viewControllers" id="Ba6-3Z-Z2Y"/>
+                        <segue destination="QHp-fb-uzO" kind="relationship" relationship="viewControllers" id="gGb-lc-3eJ"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yzl-3x-L5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="VHQ-3w-Vv9" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="5638" y="134"/>
+        </scene>
     </scenes>
     <resources>
         <image name="defaultprofile" width="424" height="404"/>
         <image name="feed" width="25" height="25"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="25" height="25"/>
+        <image name="pending" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
         <image name="trends" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
