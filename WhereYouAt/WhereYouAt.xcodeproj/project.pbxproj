@@ -37,6 +37,11 @@
 		E74343AD1CBED98100EF461D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343AC1CBED98100EF461D /* MapViewController.swift */; };
 		E74343B11CBF1DD200EF461D /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */; };
 		E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */; };
+		E79B09E51CCCC6CC00797583 /* UpdateProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */; };
+		E79B09E71CCDB4D600797583 /* CurrentFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */; };
+		E79B09EB1CCDD66900797583 /* FindFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */; };
+		E79B09ED1CCDE05100797583 /* PendingFriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */; };
+		E7B231701CCB1139003B2C4A /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B2316F1CCB1139003B2C4A /* MenuTableViewController.swift */; };
 		E7CE67561CC5F8B90067F133 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67531CC5F8B90067F133 /* MenuViewController.swift */; };
 		E7CE67571CC5F8B90067F133 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */; };
 		E7CE67581CC5F8B90067F133 /* CustomPresentationAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */; };
@@ -102,6 +107,11 @@
 		E74343AC1CBED98100EF461D /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuTabBarController.swift; sourceTree = "<group>"; };
+		E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProfileTableViewController.swift; sourceTree = "<group>"; };
+		E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentFriendsViewController.swift; sourceTree = "<group>"; };
+		E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindFriendsViewController.swift; sourceTree = "<group>"; };
+		E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingFriendsTableViewController.swift; sourceTree = "<group>"; };
+		E7B2316F1CCB1139003B2C4A /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		E7CE67531CC5F8B90067F133 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; };
@@ -269,8 +279,13 @@
 			isa = PBXGroup;
 			children = (
 				E7CE67531CC5F8B90067F133 /* MenuViewController.swift */,
+				E7B2316F1CCB1139003B2C4A /* MenuTableViewController.swift */,
 				E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */,
 				E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */,
+				E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */,
+				E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */,
+				E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */,
+				E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -549,13 +564,17 @@
 				91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */,
 				91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */,
 				E750312A1CBD18E700E714BD /* MainMenuTabBarController.swift in Sources */,
+				E79B09E51CCCC6CC00797583 /* UpdateProfileTableViewController.swift in Sources */,
 				91F726611CB1EC6D008A3618 /* Profile.swift in Sources */,
 				9130A5A21CB9ACC0001A3276 /* LocationFinder.swift in Sources */,
+				E79B09ED1CCDE05100797583 /* PendingFriendsTableViewController.swift in Sources */,
 				E74343AD1CBED98100EF461D /* MapViewController.swift in Sources */,
 				E7CE67581CC5F8B90067F133 /* CustomPresentationAnimationController.swift in Sources */,
 				E74343A91CBEB0AC00EF461D /* TrendsViewController.swift in Sources */,
 				E74343A51CBE100400EF461D /* FeedViewController.swift in Sources */,
 				91F726671CB1EF3B008A3618 /* Status.swift in Sources */,
+				E79B09EB1CCDD66900797583 /* FindFriendsViewController.swift in Sources */,
+				E79B09E71CCDB4D600797583 /* CurrentFriendsViewController.swift in Sources */,
 				E74343A71CBE2EFE00EF461D /* FeedTableViewCell.swift in Sources */,
 				E74343AB1CBEB3F500EF461D /* TrendTableViewCell.swift in Sources */,
 				E7CE67561CC5F8B90067F133 /* MenuViewController.swift in Sources */,
@@ -563,6 +582,7 @@
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				9130A59C1CB5F064001A3276 /* LocationTableViewCell.swift in Sources */,
+				E7B231701CCB1139003B2C4A /* MenuTableViewController.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,
 				E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */,
 				E74343B11CBF1DD200EF461D /* LocationAnnotation.swift in Sources */,

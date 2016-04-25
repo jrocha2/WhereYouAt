@@ -1,30 +1,37 @@
 //
-//  NewUserTableViewController.swift
+//  MenuTableViewController.swift
 //  WhereYouAt
 //
-//  Created by John Rocha on 4/5/16.
+//  Created by John Rocha on 4/22/16.
 //  Copyright © 2016 Where You At. All rights reserved.
 //
 
 import UIKit
 
-class NewUserTableViewController: UITableViewController {
+class MenuTableViewController: UITableViewController {
 
-    @IBOutlet weak var firstName: UITextField!
-    @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var gender: UITextField!
-    @IBOutlet weak var classification: UITextField!
-    @IBOutlet weak var phoneNumber: UITextField!
-    @IBOutlet weak var dateOfBirth: UITextField!
-    @IBOutlet weak var dorm: UITextField!
-    var db : Database!
-    var myUID : String = ""
+    var db: Database!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize the Database for this instance of the app
-        db = Database(myUID: myUID, hasProfile: false)
+        // Hide any extra cells
+        tableView.tableFooterView = UIView()
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    // Grab the database reference from the parent menu view controller
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        
+        if let parent = self.parentViewController as? MenuViewController {
+            self.db = parent.db
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,48 +42,28 @@ class NewUserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 8
+        // #warning Incomplete implementation, return the number of sections
+        return 3
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
-            return 0
+            return 2
         } else {
             return 1
         }
     }
-
-    // User taps this button when they are supposedly done filling out info
-    @IBAction func userDone(sender: AnyObject) {
-        
-        // Check the non-optional information
-        if firstName.text == "" || lastName.text == "" || gender.text == "" || classification.text == "" || phoneNumber.text == "" {
-            let alert = UIAlertController(title: "Incomplete Form!", message: "Make sure to fill out all the info that is not marked as optional", preferredStyle: .Alert)
-            
-            let confirmAction = UIAlertAction(title: "Ok",
-                                              style: .Default,
-                                              handler: { (action:UIAlertAction) -> Void in
-            })
-            
-            alert.addAction(confirmAction)
-            
-            presentViewController(alert, animated: true, completion: nil)
-            
-        } else {
-            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: Profile.Gender(rawValue: gender.text!)!, year: Profile.Year(rawValue: classification.text!)!, phoneNumber: phoneNumber.text!)
-            if dateOfBirth.text != "" {
-                newProfile.dateOfBirth = dateOfBirth.text
-            }
-            if dorm.text != "" {
-                newProfile.dorm = dorm.text
-            }
-            
-            db.updateProfile(newProfile, call: {
-                () in
-                print("Added Profile to Database!")
-                self.performSegueWithIdentifier("loginFromUserInfo", sender: self)
-            })
-            
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            self.performSegueWithIdentifier("currentFriends", sender: self)
+        } else if indexPath.section == 0 && indexPath.row == 1 {
+            self.performSegueWithIdentifier("addFriend", sender: self)
+        } else if indexPath.section == 1 {
+            self.performSegueWithIdentifier("updateProfile", sender: self)
+        } else if indexPath.section == 2 {
+            self.performSegueWithIdentifier("signOut", sender: self)
         }
     }
     
@@ -125,21 +112,31 @@ class NewUserTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let dest = segue.destinationViewController as? UINavigationController {
-            if let tab = dest.topViewController as? MainMenuTabBarController {
-                if let first = tab.viewControllers![0] as? FeedViewController {
-                    first.myUID = self.myUID
+    }
+    */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let dest = segue.destinationViewController as? UpdateProfileTableViewController {
+            dest.db = self.db
+        } else if let dest = segue.destinationViewController as? CurrentFriendsViewController {
+            dest.db = self.db
+        } else if let dest = segue.destinationViewController as? UINavigationController {
+            if let tab = dest.topViewController as? UITabBarController {
+                if let first = tab.viewControllers![0] as? FindFriendsViewController {
+                    first.db = self.db
+                }
+                if let second = tab.viewControllers![1] as? PendingFriendsTableViewController {
+                    second.db = self.db
                 }
             }
         }
     }
- 
 
 }

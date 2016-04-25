@@ -38,11 +38,6 @@ class FirebaseManager {
         }
     }
     
-//    //Adds a new event to the database
-//    func addNewEvent(event: Event) {
-//        rootRef.childByAppendingPath("Events").childByAutoId().setValue(event.fbDescription)
-//    }
-    
     //Adds a new status to a particular location
     func addNewStatus(status: Status, locationId: String, callback: (() -> ())?) {
         let newRef = rootRef.childByAppendingPath("Locations/"+locationId)
@@ -124,6 +119,43 @@ class FirebaseManager {
             }
         })
         
+    }
+    
+    func getPendingFriends(callback: [String:String] -> ()) {
+        var pending : [String:String] = [:]
+        let pendingRef = userRef.childByAppendingPath("Friends/Pending")
+        
+        pendingRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            if snapshot.exists() {
+                for child in snapshot.children {
+                    let uid = child.key as String
+                    let username = child.value as String
+                    pending[uid] = username
+                }
+                
+                callback(pending)
+            }
+        })
+        
+    }
+    
+    // Returns uids with usernames for all of the users in the database
+    func getAllUsers(callback: [String:String] -> ()) {
+        var users : [String:String] = [:]
+        let usersRef = rootRef.childByAppendingPath("Users")
+        
+        usersRef.observeSingleEventOfType(.Value, withBlock:  { snapshot in
+            if snapshot.exists() {
+                for user in snapshot.children {
+                    let uid = user.key as String
+                    let userFirstname = user.childSnapshotForPath("Profile/firstName").value as! String
+                    let userLastname = user.childSnapshotForPath("Profile/lastName").value as! String
+                    users[uid] = "\(userFirstname) \(userLastname)"
+                }
+                
+                callback(users)
+            }
+        })
     }
     
     // Creates dictionary out of Profile's properties and sets appropriate node

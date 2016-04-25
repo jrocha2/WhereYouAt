@@ -15,6 +15,8 @@ class MainMenuTabBarController: UITabBarController {
     var myUID : String = ""
     var swipe = UIScreenEdgePanGestureRecognizer()
     
+    @IBOutlet weak var navBar: UINavigationItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addRevealMenuGesture()
@@ -48,6 +50,10 @@ class MainMenuTabBarController: UITabBarController {
                 if let dest = navController.topViewController as? LocationsTableViewController {
                     dest.db = self.db
                 }
+            }
+        } else if segue.identifier == "showMenu" {
+            if let dest = segue.destinationViewController as? MenuViewController {
+               dest.db = self.db
             }
         }
     }

@@ -1,15 +1,17 @@
 //
-//  NewUserTableViewController.swift
+//  UpdateProfileTableViewController.swift
 //  WhereYouAt
 //
-//  Created by John Rocha on 4/5/16.
+//  Created by John Rocha on 4/24/16.
 //  Copyright © 2016 Where You At. All rights reserved.
 //
 
 import UIKit
 
-class NewUserTableViewController: UITableViewController {
-
+class UpdateProfileTableViewController: UITableViewController {
+    
+    var db: Database!
+    
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var gender: UITextField!
@@ -17,14 +19,29 @@ class NewUserTableViewController: UITableViewController {
     @IBOutlet weak var phoneNumber: UITextField!
     @IBOutlet weak var dateOfBirth: UITextField!
     @IBOutlet weak var dorm: UITextField!
-    var db : Database!
-    var myUID : String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize the Database for this instance of the app
-        db = Database(myUID: myUID, hasProfile: false)
+        // Place their current profile information into the text boxes
+        let profile = db.profile
+        firstName.text = profile?.firstName
+        lastName.text = profile?.lastName
+        gender.text = profile?.gender.rawValue
+        classification.text = profile?.year.rawValue
+        phoneNumber.text = profile?.phone
+        if profile?.dateOfBirth != nil {
+            dateOfBirth.text = profile?.dateOfBirth
+        }
+        if profile?.dorm != nil {
+            dorm.text = profile?.dorm
+        }
+        
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,18 +52,19 @@ class NewUserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 8
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             return 0
         } else {
             return 1
         }
     }
-
-    // User taps this button when they are supposedly done filling out info
+    
     @IBAction func userDone(sender: AnyObject) {
         
         // Check the non-optional information
@@ -73,13 +91,12 @@ class NewUserTableViewController: UITableViewController {
             
             db.updateProfile(newProfile, call: {
                 () in
-                print("Added Profile to Database!")
-                self.performSegueWithIdentifier("loginFromUserInfo", sender: self)
+                print("Updated Profile in Database!")
+                self.performSegueWithIdentifier("unwindFromUpdateProfile", sender: self)
             })
             
         }
     }
-    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -125,21 +142,14 @@ class NewUserTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        if let dest = segue.destinationViewController as? UINavigationController {
-            if let tab = dest.topViewController as? MainMenuTabBarController {
-                if let first = tab.viewControllers![0] as? FeedViewController {
-                    first.myUID = self.myUID
-                }
-            }
-        }
     }
- 
+    */
 
 }

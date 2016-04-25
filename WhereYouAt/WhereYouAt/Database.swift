@@ -15,10 +15,13 @@ let newLocationDataNotification = "com.newLocationDataNotification.whereyouat"
 class Database {
     
     var userId: String = ""
-    var friendsList: [String: String] = [:]
     var locations: [Location] = []
     var profile: Profile?
     var firebase: FirebaseManager
+    var allUsers : [String:String] = [:]
+    var friendsList: [String: String] = [:]
+    var friendRequests : [String : String] = [:]
+    var friendsPending : [String : String] = [:]
     
     //The init method calls the methods in the Firebase class
     init(myUID: String, hasProfile: Bool) {
@@ -28,7 +31,10 @@ class Database {
         //insertDummyLocations()
         //insertDummyData()
         self.getFriends()
+        self.getFriendRequests()
+        self.getPendingFriends()
         self.getLocationsAndStatuses()
+        self.getAllUsers()
         if( hasProfile ) {
             self.getProfile()
         }
@@ -75,6 +81,32 @@ class Database {
         }
     }
     
+    // Send a friend request
+    func sendFriendRequest(uid: String, name: String) {
+        self.firebase.addNewFriend(uid, userName: name)
+    }
+    
+    // Respond to a friend request
+    func respondToFriendRequest(uid: String, name: String, accept: Bool) {
+        self.firebase.respondToFriendRequest(uid, userName: name, acceptRequest: accept)
+    }
+    
+    // Get your friend requests
+    func getFriendRequests() {
+        self.firebase.getFriendRequests() {
+            (requests) in
+            self.friendRequests = requests
+        }
+    }
+    
+    // Get your sent friend requests
+    func getPendingFriends() {
+        self.firebase.getPendingFriends() {
+            (pending) in
+            self.friendsPending = pending
+        }
+    }
+    
     //Gets the locations and update events
     func getLocationsAndStatuses() {
         self.locations = []
@@ -86,6 +118,14 @@ class Database {
 //            print("\n\(self.locations)")
 //            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
+    }
+    
+    // Gets all the users in the database
+    func getAllUsers() {
+        self.firebase.getAllUsers() {
+            (users) in
+            self.allUsers = users
+        }
     }
     
     // Updates the profile

@@ -12,12 +12,18 @@ import UIKit
 
 class MenuViewController: UIViewController, UIViewControllerTransitioningDelegate {
     
+    var db: Database!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(self.dismiss))
         swipe.direction = .Left
         self.view.addGestureRecognizer(swipe)
+        
+        nameLabel.text = "\(db.profile!.firstName) \(db.profile!.lastName)"
     }
     
     required init?(coder aDecoder: NSCoder) {
