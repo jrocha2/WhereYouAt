@@ -97,6 +97,7 @@ class PendingFriendsTableViewController: UITableViewController {
                 self.correspondingUIDs.removeAtIndex(row)
                 self.tableView.reloadData()
                 self.db.getFriendRequests()
+                self.db.getFriends()
             })
             
             let denyAction = UIAlertAction(title: "Delete Request", style: .Default, handler: { (action:UIAlertAction) -> Void in

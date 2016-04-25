@@ -46,6 +46,17 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         for friend in db.friendsList {
             friendUIDS.append(friend.0)
         }
+        
+        // Remove all friends from the list
+        var actualUsers = [String](), actualUIDs = [String]()
+        for i in 0...users.count-1 {
+            if !friendUIDS.contains(correspondingUIDs[i]) && correspondingUIDs[i] != db.userId{
+                actualUsers.append(users[i])
+                actualUIDs.append(correspondingUIDs[i])
+            }
+        }
+        users = actualUsers
+        correspondingUIDs = actualUIDs
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,11 +82,17 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if !friendUIDS.contains(correspondingUIDs[indexPath.row]) {
+        let row = indexPath.row
+        
+        if !friendUIDS.contains(correspondingUIDs[row]) && correspondingUIDs[row] != db.userId {
             let alert = UIAlertController(title: "Send Friend Request?", message: "Are you sure you would like to send \(users[indexPath.row]) a friend request?", preferredStyle: .Alert)
             
             let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.sendFriendRequest(self.correspondingUIDs[indexPath.row], name: self.users[indexPath.row])
+                self.users.removeAtIndex(indexPath.row)
+                self.correspondingUIDs.removeAtIndex(indexPath.row)
+                self.tableView.reloadData()
+                self.db.getPendingFriends()
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
