@@ -11,9 +11,8 @@ import UIKit
 class FindFriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var db : Database!
-    var users : [String] = []
-    var correspondingUIDs : [String] = []
-    var friendUIDS : [String] = []
+    var users : [(String, String)] = []
+    var friends : [(String, String)] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,6 +21,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
 
         tableView.dataSource = self
         tableView.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -35,28 +35,25 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         // Make sure the database is up to date
         db.getFriends()
         db.getAllUsers()
+        
         users.removeAll()
-        correspondingUIDs.removeAll()
         for user in db.allUsers {
-            correspondingUIDs.append(user.0)
-            users.append(user.1)
+            users.append( (user.0, user.1) )
         }
         
-        friendUIDS.removeAll()
+        friends.removeAll()
         for friend in db.friendsList {
-            friendUIDS.append(friend.0)
+            friends.append( (friend.0, friend.1) )
         }
         
         // Remove all friends from the list
-        var actualUsers = [String](), actualUIDs = [String]()
+        var actualUsers = [(String, String)]()
         for i in 0...users.count-1 {
-            if !friendUIDS.contains(correspondingUIDs[i]) && correspondingUIDs[i] != db.userId{
+            if !friends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) && users[i].0 != db.userId {
                 actualUsers.append(users[i])
-                actualUIDs.append(correspondingUIDs[i])
             }
         }
         users = actualUsers
-        correspondingUIDs = actualUIDs
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,14 +64,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
         let row = indexPath.row
         
-        // Place a check if they are already your friend
-        if friendUIDS.contains(correspondingUIDs[row]) || correspondingUIDs[row] == db.userId {
-            cell.accessoryType = .Checkmark
-        } else {
-            cell.accessoryType = .None
-        }
-        
-        cell.textLabel?.text = users[row]
+        cell.textLabel?.text = users[row].1
         
         return cell
     }
@@ -84,13 +74,12 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         
         let row = indexPath.row
         
-        if !friendUIDS.contains(correspondingUIDs[row]) && correspondingUIDs[row] != db.userId {
-            let alert = UIAlertController(title: "Send Friend Request?", message: "Are you sure you would like to send \(users[indexPath.row]) a friend request?", preferredStyle: .Alert)
+        if !friends.contains({ $0.0 == users[row].0 && $0.1 == users[row].1 }) && users[row].0 != db.userId {
+            let alert = UIAlertController(title: "Send Friend Request?", message: "Are you sure you would like to send \(users[indexPath.row].1) a friend request?", preferredStyle: .Alert)
             
             let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
-                self.db.sendFriendRequest(self.correspondingUIDs[indexPath.row], name: self.users[indexPath.row])
-                self.users.removeAtIndex(indexPath.row)
-                self.correspondingUIDs.removeAtIndex(indexPath.row)
+                self.db.sendFriendRequest(self.users[row].0, name: self.users[row].1)
+                self.users.removeAtIndex(row)
                 self.tableView.reloadData()
                 self.db.getPendingFriends()
             })
