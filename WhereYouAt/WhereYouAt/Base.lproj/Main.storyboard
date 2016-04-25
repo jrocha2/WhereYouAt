@@ -908,23 +908,48 @@
             <point key="canvasLocation" x="4902" y="-535"/>
         </scene>
         <!--Find Friends-->
-        <scene sceneID="xV5-LN-3db">
+        <scene sceneID="HVU-1D-1Az">
             <objects>
-                <viewController id="IMp-13-7ol" sceneMemberID="viewController">
+                <viewController id="STo-eS-qMP" customClass="FindFriendsViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XGL-mG-3hH"/>
-                        <viewControllerLayoutGuide type="bottom" id="4fr-QN-VzV"/>
+                        <viewControllerLayoutGuide type="top" id="vgJ-Se-Dxb"/>
+                        <viewControllerLayoutGuide type="bottom" id="YIi-Ak-DtT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tvt-lc-xCH">
+                    <view key="view" contentMode="scaleToFill" id="f3L-v0-0E2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="C65-pk-4KW">
+                                <rect key="frame" x="0.0" y="44" width="600" height="507"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="textCell" id="Veo-ij-QSL">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Veo-ij-QSL" id="Ui4-F4-lo7">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C65-pk-4KW" firstAttribute="top" secondItem="vgJ-Se-Dxb" secondAttribute="bottom" id="0WF-fP-qMq"/>
+                            <constraint firstAttribute="trailing" secondItem="C65-pk-4KW" secondAttribute="trailing" id="9PV-Vq-FQS"/>
+                            <constraint firstItem="C65-pk-4KW" firstAttribute="leading" secondItem="f3L-v0-0E2" secondAttribute="leading" id="BYm-Bm-fLm"/>
+                            <constraint firstItem="C65-pk-4KW" firstAttribute="bottom" secondItem="YIi-Ak-DtT" secondAttribute="top" id="gad-Eu-9Z0"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Find Friends" image="search" id="Otr-Uu-DNW"/>
+                    <tabBarItem key="tabBarItem" title="Find Friends" image="search" id="0MH-j7-VYe"/>
+                    <connections>
+                        <outlet property="tableView" destination="C65-pk-4KW" id="SSg-md-vZ0"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IK3-BF-FVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lGD-o6-LgN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6468" y="-184"/>
+            <point key="canvasLocation" x="6474" y="-176"/>
         </scene>
         <!--Pending Friends-->
         <scene sceneID="7qx-FW-jHL">
@@ -1319,8 +1344,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="IMp-13-7ol" kind="relationship" relationship="viewControllers" id="Ba6-3Z-Z2Y"/>
-                        <segue destination="QHp-fb-uzO" kind="relationship" relationship="viewControllers" id="gGb-lc-3eJ"/>
+                        <segue destination="STo-eS-qMP" kind="relationship" relationship="viewControllers" id="hI0-Rr-RaO"/>
+                        <segue destination="QHp-fb-uzO" kind="relationship" relationship="viewControllers" id="Uv5-SL-FvY"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yzl-3x-L5w" userLabel="First Responder" sceneMemberID="firstResponder"/>

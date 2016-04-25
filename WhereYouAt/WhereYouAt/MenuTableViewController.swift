@@ -127,6 +127,12 @@ class MenuTableViewController: UITableViewController {
             dest.db = self.db
         } else if let dest = segue.destinationViewController as? CurrentFriendsViewController {
             dest.db = self.db
+        } else if let dest = segue.destinationViewController as? UINavigationController {
+            if let tab = dest.topViewController as? UITabBarController {
+                if let first = tab.viewControllers![0] as? FindFriendsViewController {
+                    first.db = self.db
+                }
+            }
         }
     }
 
