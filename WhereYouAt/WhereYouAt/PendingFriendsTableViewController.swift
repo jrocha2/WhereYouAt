@@ -11,10 +11,15 @@ import UIKit
 class PendingFriendsTableViewController: UITableViewController {
 
     var db : Database!
+    var pending : [String] = []
+    var requests : [String] = []
+    var correspondingUIDs : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.translucent = false
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "textCell")
+
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -27,6 +32,27 @@ class PendingFriendsTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // Make sure pending and requests are up to date
+        db.getPendingFriends()
+        db.getFriendRequests()
+        
+        requests.removeAll()
+        correspondingUIDs.removeAll()
+        for user in db.friendRequests {
+            requests.append(user.1)
+            correspondingUIDs.append(user.0)
+        }
+        
+        pending.removeAll()
+        for user in db.friendsPending {
+            pending.append(user.1)
+        }
+        
+    }
 
     // MARK: - Table view data source
 
@@ -37,18 +63,55 @@ class PendingFriendsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        if section == 0 {
+            return requests.count
+        } else {
+            return pending.count
+        }
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
 
-        // Configure the cell...
+        let row = indexPath.row
+        if indexPath.section == 0 {
+            cell.textLabel?.text = requests[row]
+        } else {
+            cell.textLabel?.text = pending[row]
+        }
 
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let row = indexPath.row
+        
+        if indexPath.section == 0 {
+            let alert = UIAlertController(title: "Accept Friend Request?", message: "Would you like to add \(requests[indexPath.row]) to your friends list?", preferredStyle: .Alert)
+            
+            let confirmAction = UIAlertAction(title: "Add Friend", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: true)
+            })
+            
+            let denyAction = UIAlertAction(title: "Delete Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
+                self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: false)
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .Default,
+                                             handler: { (action:UIAlertAction) -> Void in
+            })
+            
+            alert.addAction(confirmAction)
+            alert.addAction(denyAction)
+            alert.addAction(cancelAction)
+            
+            presentViewController(alert, animated: true, completion: nil)
+        }
+    }
 
     /*
     // Override to support conditional editing of the table view.

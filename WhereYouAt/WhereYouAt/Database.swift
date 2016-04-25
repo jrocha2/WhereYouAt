@@ -86,6 +86,11 @@ class Database {
         self.firebase.addNewFriend(uid, userName: name)
     }
     
+    // Respond to a friend request
+    func respondToFriendRequest(uid: String, name: String, accept: Bool) {
+        self.firebase.respondToFriendRequest(uid, userName: name, acceptRequest: accept)
+    }
+    
     // Get your friend requests
     func getFriendRequests() {
         self.firebase.getFriendRequests() {
