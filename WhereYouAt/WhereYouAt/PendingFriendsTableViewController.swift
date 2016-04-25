@@ -64,15 +64,17 @@ class PendingFriendsTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         if section == 0 {
             return requests.count
-        } else {
+        } else if section == 1{
             return pending.count
+        } else {
+            return 0
         }
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
-
+        
         let row = indexPath.row
         if indexPath.section == 0 {
             cell.textLabel?.text = requests[row]

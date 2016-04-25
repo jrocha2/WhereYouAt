@@ -839,7 +839,7 @@
                         <segue destination="sij-bv-fhj" kind="presentation" identifier="updateProfile" modalTransitionStyle="flipHorizontal" id="kHr-nm-N0S"/>
                         <segue destination="a6w-Mb-TJa" kind="unwind" identifier="signOut" unwindAction="unwindToAuth:" id="4Wx-Nh-UiH"/>
                         <segue destination="vCA-jW-MEL" kind="presentation" identifier="currentFriends" modalTransitionStyle="flipHorizontal" id="mPf-eW-Nei"/>
-                        <segue destination="aWY-xb-GcM" kind="presentation" identifier="addFriend" id="jrq-Nr-Cj9"/>
+                        <segue destination="aWY-xb-GcM" kind="presentation" identifier="addFriend" modalTransitionStyle="flipHorizontal" id="jrq-Nr-Cj9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTc-ha-nYS" userLabel="First Responder" sceneMemberID="firstResponder"/>

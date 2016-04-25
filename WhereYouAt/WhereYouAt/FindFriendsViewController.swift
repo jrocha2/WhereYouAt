@@ -14,6 +14,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
     var users : [(String, String)] = []
     var filteredUsers : [(String, String)] = []
     var friends : [(String, String)] = []
+    var pendingFriends : [(String, String)] = []
     let searchController = UISearchController(searchResultsController: nil)
     
     @IBOutlet weak var tableView: UITableView!
@@ -40,6 +41,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Make sure the database is up to date
         db.getFriends()
+        db.getPendingFriends()
         db.getAllUsers()
         
         users.removeAll()
@@ -52,10 +54,15 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
             friends.append( (friend.0, friend.1) )
         }
         
+        pendingFriends.removeAll()
+        for user in db.friendsPending {
+            pendingFriends.append( (user.0, user.1) )
+        }
+        
         // Remove all friends from the list
         var actualUsers = [(String, String)]()
         for i in 0...users.count-1 {
-            if !friends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) && users[i].0 != db.userId {
+            if !friends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) && users[i].0 != db.userId && !pendingFriends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) {
                 actualUsers.append(users[i])
             }
         }
@@ -95,8 +102,8 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.db.sendFriendRequest(self.filteredUsers[row].0, name: self.filteredUsers[row].1)
                 self.removeUIDFromUsers(self.filteredUsers[row].0)
                 self.filteredUsers.removeAtIndex(row)
-                self.tableView.reloadData()
                 self.db.getPendingFriends()
+                self.tableView.reloadData()
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
@@ -116,8 +123,8 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
             let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.sendFriendRequest(self.users[row].0, name: self.users[row].1)
                 self.users.removeAtIndex(row)
-                self.tableView.reloadData()
                 self.db.getPendingFriends()
+                 self.tableView.reloadData()
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
