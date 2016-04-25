@@ -11,14 +11,25 @@ import UIKit
 class CurrentFriendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var db : Database!
+    var friends : [String] = []
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         tableView.dataSource = self
         tableView.delegate = self
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // Reload the friends in the database to ensure they are up to date
+        db.getFriends()
+        for friend in db.friendsList {
+            friends.append(friend.1)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,11 +38,15 @@ class CurrentFriendsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return friends.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("textCell", forIndexPath: indexPath)
+        let row = indexPath.row
+        
+        cell.textLabel?.text = friends[row]
+        return cell
     }
     
     @IBAction func dismiss(sender: UIBarButtonItem) {
