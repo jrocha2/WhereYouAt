@@ -13,6 +13,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

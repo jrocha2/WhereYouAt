@@ -87,7 +87,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikp-cw-aML">
-                                                    <rect key="frame" x="36" y="37" width="556" height="43.5"/>
+                                                    <rect key="frame" x="36" y="66.5" width="556" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -101,20 +101,36 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ytr-8g-C8F">
+                                                    <rect key="frame" x="36" y="34" width="556" height="32.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="PzF-vd-bHa" firstAttribute="trailing" secondItem="7PR-Yc-UUf" secondAttribute="trailingMargin" id="CCk-ZP-Mbt"/>
                                                 <constraint firstItem="F5b-vi-86Q" firstAttribute="top" secondItem="7PR-Yc-UUf" secondAttribute="topMargin" id="UqM-no-5fp"/>
                                                 <constraint firstItem="F5b-vi-86Q" firstAttribute="baseline" secondItem="PzF-vd-bHa" secondAttribute="baseline" id="XD7-iv-9I9"/>
+                                                <constraint firstItem="Ytr-8g-C8F" firstAttribute="top" secondItem="F5b-vi-86Q" secondAttribute="bottom" constant="5" id="XJT-Qd-GQg"/>
                                                 <constraint firstItem="PzF-vd-bHa" firstAttribute="trailing" secondItem="ikp-cw-aML" secondAttribute="trailing" id="XhZ-Lz-aDb"/>
                                                 <constraint firstItem="F5b-vi-86Q" firstAttribute="leading" secondItem="ikp-cw-aML" secondAttribute="leading" constant="-20" id="YA8-bH-ddj"/>
                                                 <constraint firstItem="ikp-cw-aML" firstAttribute="top" secondItem="F5b-vi-86Q" secondAttribute="bottom" constant="8" symbolic="YES" id="atD-P5-b9f"/>
+                                                <constraint firstItem="ikp-cw-aML" firstAttribute="top" secondItem="Ytr-8g-C8F" secondAttribute="bottom" id="cUe-Yz-yq8"/>
+                                                <constraint firstItem="Ytr-8g-C8F" firstAttribute="leading" secondItem="ikp-cw-aML" secondAttribute="leading" id="dR5-9k-UZT"/>
                                                 <constraint firstItem="F5b-vi-86Q" firstAttribute="leading" secondItem="7PR-Yc-UUf" secondAttribute="leadingMargin" constant="8" id="daZ-Ma-k2a"/>
                                                 <constraint firstItem="F5b-vi-86Q" firstAttribute="top" secondItem="PzF-vd-bHa" secondAttribute="top" id="jlx-8p-Ipx"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="ikp-cw-aML" secondAttribute="bottom" constant="9" id="nxi-JO-h0d"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ikp-cw-aML" secondAttribute="bottom" constant="5" id="nxi-JO-h0d"/>
+                                                <constraint firstItem="Ytr-8g-C8F" firstAttribute="trailing" secondItem="ikp-cw-aML" secondAttribute="trailing" id="xu9-2q-vos"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="atD-P5-b9f"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="locationLabel" destination="Ytr-8g-C8F" id="hRz-ml-Mqw"/>
                                             <outlet property="nameLabel" destination="F5b-vi-86Q" id="Y9E-AN-PIu"/>
                                             <outlet property="statusLabel" destination="ikp-cw-aML" id="OXd-ej-pHz"/>
                                             <outlet property="timeLabel" destination="PzF-vd-bHa" id="3Jn-Zm-Sub"/>

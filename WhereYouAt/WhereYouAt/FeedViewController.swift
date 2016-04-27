@@ -19,11 +19,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        db = Database(myUID: self.myUID, hasProfile: true, callback: { 
+        db = Database(myUID: self.myUID, hasProfile: true, callback: {
             // Store the reference to db in the tabbarcontroller so the other tabs
             // may share the instance without having to pass it around
-            let tabBar = self.tabBarController as! MainMenuTabBarController
-            tabBar.db = self.db
             
             // Do any additional setup after loading the view.
             self.db.firebase.getProfile(self.myUID, callback: {
@@ -37,6 +35,8 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
             self.updateTableView()
         })
+        let tabBar = self.tabBarController as! MainMenuTabBarController
+        tabBar.db = self.db
         
     }
     
@@ -66,6 +66,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.nameLabel.text = status.userName
         cell.statusLabel.text = status.body
         cell.timeLabel.text = NSDateFormatter.localizedStringFromDate(status.time, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        cell.locationLabel.text = status.location?.name
         
         return cell
     }
