@@ -190,23 +190,56 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sy4-Vq-XfR">
-                                                    <rect key="frame" x="70" y="11" width="522" height="21"/>
+                                                    <rect key="frame" x="70" y="11" width="115" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="450" id="DgK-9K-D50"/>
+                                                        <constraint firstAttribute="width" constant="300" id="b8U-hZ-kUy"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="DgK-9K-D50"/>
+                                                            <exclude reference="b8U-hZ-kUy"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tkx-lo-whu">
+                                                    <rect key="frame" x="564.5" y="8" width="27.5" height="27.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Tkx-lo-whu" secondAttribute="height" multiplier="202:27" id="OYw-jX-NiA"/>
+                                                        <constraint firstAttribute="width" constant="27.5" id="kRT-ys-BQ7"/>
+                                                    </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="OYw-jX-NiA"/>
+                                                        </mask>
+                                                    </variation>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Tkx-lo-whu" secondAttribute="bottom" id="CV3-oI-bFJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tkx-lo-whu" secondAttribute="trailing" id="F26-em-AqJ"/>
+                                                <constraint firstItem="qAJ-dq-3y6" firstAttribute="top" secondItem="jVl-dT-qhF" secondAttribute="topMargin" constant="3" id="J0C-Pj-gTb"/>
                                                 <constraint firstItem="qAJ-dq-3y6" firstAttribute="centerY" secondItem="jVl-dT-qhF" secondAttribute="centerY" id="K7j-E0-lsK"/>
                                                 <constraint firstItem="qAJ-dq-3y6" firstAttribute="baseline" secondItem="Sy4-Vq-XfR" secondAttribute="baseline" id="QOX-FR-OJl"/>
                                                 <constraint firstItem="Sy4-Vq-XfR" firstAttribute="trailing" secondItem="jVl-dT-qhF" secondAttribute="trailingMargin" id="dm2-fl-jNG"/>
                                                 <constraint firstItem="qAJ-dq-3y6" firstAttribute="leading" secondItem="jVl-dT-qhF" secondAttribute="leadingMargin" constant="10" id="iJy-vw-emI"/>
+                                                <constraint firstItem="Sy4-Vq-XfR" firstAttribute="top" secondItem="qAJ-dq-3y6" secondAttribute="top" id="mGg-In-UNP"/>
+                                                <constraint firstItem="Tkx-lo-whu" firstAttribute="top" secondItem="jVl-dT-qhF" secondAttribute="topMargin" id="wDj-L1-sbC"/>
                                                 <constraint firstItem="Sy4-Vq-XfR" firstAttribute="leading" secondItem="qAJ-dq-3y6" secondAttribute="trailing" constant="20" id="wSB-GK-Y8R"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="dm2-fl-jNG"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="locationNameLabel" destination="Sy4-Vq-XfR" id="IfS-bL-aF6"/>
                                             <outlet property="numberOfPeopleLabel" destination="qAJ-dq-3y6" id="6Qt-b6-8ev"/>
+                                            <outlet property="typeImage" destination="Tkx-lo-whu" id="QhU-Ea-XyP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

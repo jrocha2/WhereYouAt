@@ -10,6 +10,7 @@ import UIKit
 
 class TrendTableViewCell: UITableViewCell {
 
+    @IBOutlet var typeImage: UIImageView!
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
     @IBOutlet weak var locationNameLabel: UILabel!
     
