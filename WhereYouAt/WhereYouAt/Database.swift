@@ -27,14 +27,14 @@ class Database {
     init(myUID: String, hasProfile: Bool, callback: () -> Void) {
         self.userId = myUID
         
-        firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
+        firebase = FirebaseManager(myUID: userId)
         //insertDummyLocations()
         //insertDummyData()
         self.getFriends(callback)
-        self.getFriendRequests()
-        self.getPendingFriends()
+        self.getFriendRequests({})
+        self.getPendingFriends({})
         self.getLocationsAndStatuses()
-        self.getAllUsers()
+        self.getAllUsers({})
         if( hasProfile ) {
             self.getProfile()
         }
@@ -72,27 +72,30 @@ class Database {
     
     // Send a friend request
     func sendFriendRequest(uid: String, name: String) {
-        self.firebase.addNewFriend(uid, userName: name)
+        self.firebase.addNewFriend(uid, userName: name, myName: (self.profile?.name)!)
     }
     
     // Respond to a friend request
     func respondToFriendRequest(uid: String, name: String, accept: Bool) {
-        self.firebase.respondToFriendRequest(uid, userName: name, acceptRequest: accept)
+        self.firebase.respondToFriendRequest(uid, userName: name, acceptRequest: accept, myName: (self.profile?.name)!)
     }
     
     // Get your friend requests
-    func getFriendRequests() {
+    func getFriendRequests(callback: () -> Void) {
         self.firebase.getFriendRequests() {
             (requests) in
             self.friendRequests = requests
+            callback()
         }
     }
     
     // Get your sent friend requests
-    func getPendingFriends() {
+    func getPendingFriends(callback: () -> Void) {
         self.firebase.getPendingFriends() {
             (pending) in
             self.friendsPending = pending
+            print("Should run  callback")
+            callback()
         }
     }
     
@@ -108,10 +111,12 @@ class Database {
     }
     
     // Gets all the users in the database
-    func getAllUsers() {
+    func getAllUsers(callback: () -> Void) {
         self.firebase.getAllUsers() {
             (users) in
             self.allUsers = users
+            print("Saving USers")
+            callback()
         }
     }
     
