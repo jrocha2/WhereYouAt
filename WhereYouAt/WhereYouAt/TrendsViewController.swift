@@ -37,7 +37,7 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     // Receive updated locations everytime this view appears
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        locations = db.getCampusTrends()
+        updateTableView()
     }
     
     
@@ -79,6 +79,12 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func updateTableView() {
         locations = db.getCampusTrends()
+        
+        // Filter locations so that only those with people are shown
+        locations = locations.filter { loc in
+            return loc.numberOfPeople > 0
+        }
+        
         tableView.reloadData()
     }
     
