@@ -31,10 +31,10 @@ class Database {
         //insertDummyLocations()
         //insertDummyData()
         self.getFriends(callback)
-        self.getFriendRequests()
-        self.getPendingFriends()
+        self.getFriendRequests({})
+        self.getPendingFriends({})
         self.getLocationsAndStatuses()
-        self.getAllUsers()
+        self.getAllUsers({})
         if( hasProfile ) {
             self.getProfile()
         }
@@ -81,18 +81,21 @@ class Database {
     }
     
     // Get your friend requests
-    func getFriendRequests() {
+    func getFriendRequests(callback: () -> Void) {
         self.firebase.getFriendRequests() {
             (requests) in
             self.friendRequests = requests
+            callback()
         }
     }
     
     // Get your sent friend requests
-    func getPendingFriends() {
+    func getPendingFriends(callback: () -> Void) {
         self.firebase.getPendingFriends() {
             (pending) in
             self.friendsPending = pending
+            print("Should run  callback")
+            callback()
         }
     }
     
@@ -108,10 +111,12 @@ class Database {
     }
     
     // Gets all the users in the database
-    func getAllUsers() {
+    func getAllUsers(callback: () -> Void) {
         self.firebase.getAllUsers() {
             (users) in
             self.allUsers = users
+            print("Saving USers")
+            callback()
         }
     }
     

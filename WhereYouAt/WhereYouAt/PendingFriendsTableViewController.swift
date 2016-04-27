@@ -37,20 +37,21 @@ class PendingFriendsTableViewController: UITableViewController {
         super.viewWillAppear(true)
         
         // Make sure pending and requests are up to date
-        db.getPendingFriends()
-        db.getFriendRequests()
-        
-        requests.removeAll()
-        correspondingUIDs.removeAll()
-        for user in db.friendRequests {
-            requests.append(user.1)
-            correspondingUIDs.append(user.0)
-        }
-        
-        pending.removeAll()
-        for user in db.friendsPending {
-            pending.append(user.1)
-        }
+        db.getPendingFriends({
+            self.db.getFriendRequests({
+                self.requests.removeAll()
+                self.correspondingUIDs.removeAll()
+                for user in self.db.friendRequests {
+                    self.requests.append(user.1)
+                    self.correspondingUIDs.append(user.0)
+                }
+                
+                self.pending.removeAll()
+                for user in self.db.friendsPending {
+                    self.pending.append(user.1)
+                }
+            })
+        })
     }
 
     // MARK: - Table view data source
@@ -105,17 +106,20 @@ class PendingFriendsTableViewController: UITableViewController {
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: true)
                 self.requests.removeAtIndex(row)
                 self.correspondingUIDs.removeAtIndex(row)
-                self.db.getFriendRequests()
-                self.db.getFriends({})
-                self.tableView.reloadData()
+                self.db.getFriendRequests({
+                    self.db.getFriends({
+                        self.tableView.reloadData()
+                    })
+                })
             })
             
             let denyAction = UIAlertAction(title: "Delete Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.respondToFriendRequest(self.correspondingUIDs[row], name: self.requests[row], accept: false)
                 self.requests.removeAtIndex(row)
                 self.correspondingUIDs.removeAtIndex(row)
-                self.db.getFriendRequests()
-                self.tableView.reloadData()
+                self.db.getFriendRequests({
+                    self.tableView.reloadData()
+                })
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",

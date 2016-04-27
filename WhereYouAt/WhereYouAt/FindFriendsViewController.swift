@@ -40,33 +40,37 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillAppear(true)
         
         // Make sure the database is up to date
-        db.getFriends({})
-        db.getPendingFriends()
-        db.getAllUsers()
+        db.getFriends({
+            self.db.getPendingFriends({
+                self.db.getAllUsers({
+                    self.users.removeAll()
+                    for user in self.db.allUsers {
+                        self.users.append( (user.0, user.1) )
+                    }
+                    
+                    self.friends.removeAll()
+                    for friend in self.db.friendsList {
+                        self.friends.append( (friend.0, friend.1) )
+                    }
+                    
+                    self.pendingFriends.removeAll()
+                    for user in self.db.friendsPending {
+                        self.pendingFriends.append( (user.0, user.1) )
+                    }
+                    
+                    // Remove all friends from the list
+                    var actualUsers = [(String, String)]()
+                    for i in 0...self.users.count-1 {
+                        if !self.friends.contains( { $0.0 == self.users[i].0 && $0.1 == self.users[i].1 } ) && self.users[i].0 != self.db.userId && !self.pendingFriends.contains( { $0.0 == self.users[i].0 && $0.1 == self.users[i].1 } ) {
+                            actualUsers.append(self.users[i])
+                        }
+                    }
+                    self.users = actualUsers
+                    self.tableView.reloadData()
+                })
+            })
+        })
         
-        users.removeAll()
-        for user in db.allUsers {
-            users.append( (user.0, user.1) )
-        }
-        
-        friends.removeAll()
-        for friend in db.friendsList {
-            friends.append( (friend.0, friend.1) )
-        }
-        
-        pendingFriends.removeAll()
-        for user in db.friendsPending {
-            pendingFriends.append( (user.0, user.1) )
-        }
-        
-        // Remove all friends from the list
-        var actualUsers = [(String, String)]()
-        for i in 0...users.count-1 {
-            if !friends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) && users[i].0 != db.userId && !pendingFriends.contains( { $0.0 == users[i].0 && $0.1 == users[i].1 } ) {
-                actualUsers.append(users[i])
-            }
-        }
-        users = actualUsers
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,8 +106,9 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
                 self.db.sendFriendRequest(self.filteredUsers[row].0, name: self.filteredUsers[row].1)
                 self.removeUIDFromUsers(self.filteredUsers[row].0)
                 self.filteredUsers.removeAtIndex(row)
-                self.db.getPendingFriends()
-                self.tableView.reloadData()
+                self.db.getPendingFriends({
+                    self.tableView.reloadData()
+                })
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",
@@ -123,8 +128,9 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
             let confirmAction = UIAlertAction(title: "Send Request", style: .Default, handler: { (action:UIAlertAction) -> Void in
                 self.db.sendFriendRequest(self.users[row].0, name: self.users[row].1)
                 self.users.removeAtIndex(row)
-                self.db.getPendingFriends()
-                 self.tableView.reloadData()
+                self.db.getPendingFriends({
+                    self.tableView.reloadData()
+                })
             })
             
             let cancelAction = UIAlertAction(title: "Cancel",

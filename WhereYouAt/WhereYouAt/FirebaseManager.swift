@@ -95,8 +95,9 @@ class FirebaseManager {
                     friends[uid] = username
                 }
             
-                callback(friends)
             }
+            callback(friends)
+
         })
     }
     
@@ -113,8 +114,9 @@ class FirebaseManager {
                     requests[uid] = username
                 }
                 
-                callback(requests)
             }
+            callback(requests)
+
         })
         
     }
@@ -131,8 +133,9 @@ class FirebaseManager {
                     pending[uid] = username
                 }
                 
-                callback(pending)
             }
+            callback(pending)
+
         })
         
     }
