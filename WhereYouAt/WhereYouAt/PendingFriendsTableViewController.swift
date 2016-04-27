@@ -50,6 +50,7 @@ class PendingFriendsTableViewController: UITableViewController {
                 for user in self.db.friendsPending {
                     self.pending.append(user.1)
                 }
+                self.tableView.reloadData()
             })
         })
     }
