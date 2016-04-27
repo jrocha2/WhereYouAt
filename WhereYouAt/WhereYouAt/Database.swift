@@ -64,7 +64,6 @@ class Database {
     func getFriends(callback: () -> Void) {
         self.firebase.getAllFriends() {
             (friends) in
-            print("Got friends \(friends)")
             self.friendsList = friends
             callback()
         }
@@ -94,7 +93,6 @@ class Database {
         self.firebase.getPendingFriends() {
             (pending) in
             self.friendsPending = pending
-            print("Should run  callback")
             callback()
         }
     }
@@ -115,7 +113,6 @@ class Database {
         self.firebase.getAllUsers() {
             (users) in
             self.allUsers = users
-            print("Saving USers")
             callback()
         }
     }
@@ -147,7 +144,6 @@ class Database {
     
     // Return all statuses of friends sorted so that the latest are first
     func getFriendStatuses(callback: ([Status])-> Void) {
-        print("Getting friend's statuses")
         var friendStatuses : [Status] = []
         let allStatuses = getEventData()
         for status in allStatuses {
