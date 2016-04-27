@@ -14,7 +14,6 @@ class FirebaseManager {
     var rootURL : String = "https://whereareu.firebaseio.com/"
     var rootRef : Firebase!
     var myUID : String = ""
-    var myName : String = ""
     var userRef : Firebase!
     
     init(myUID: String) {
@@ -69,13 +68,13 @@ class FirebaseManager {
     }
     
     // Sent friend requests appear under Friends/Pending node, and received requests under Friends/Requests
-    func addNewFriend(uid: String, userName: String) {
+    func addNewFriend(uid: String, userName: String, myName: String) {
         userRef.childByAppendingPath("Friends/Pending").childByAppendingPath(uid).setValue(userName)
         rootRef.childByAppendingPath("Users/\(uid)/Friends/Requests/\(myUID)").setValue(myName)
     }
     
     // If accepted, removes users from pending/requests and places them under Friends/Accepted node
-    func respondToFriendRequest(uid: String, userName: String, acceptRequest: Bool) {
+    func respondToFriendRequest(uid: String, userName: String, acceptRequest: Bool, myName: String) {
         if acceptRequest {
             userRef.childByAppendingPath("Friends/Accepted").childByAppendingPath(uid).setValue(userName)
             rootRef.childByAppendingPath("Users/\(uid)/Friends/Accepted/\(myUID)").setValue(myName)
