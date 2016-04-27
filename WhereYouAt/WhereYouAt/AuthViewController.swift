@@ -65,7 +65,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 let userName = authData.providerData["displayName"] as! String
                 print(userEmail, " ", self.userId, " ", userName)
                 
-                let manager = FirebaseManager(myUID: self.userId, myName: userName)
+                let manager = FirebaseManager(myUID: self.userId)
                 manager.checkForUserId(self.userId, callback: {
                     (flag) in
                     if ( flag ) {

@@ -27,7 +27,7 @@ class Database {
     init(myUID: String, hasProfile: Bool, callback: () -> Void) {
         self.userId = myUID
         
-        firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
+        firebase = FirebaseManager(myUID: userId)
         //insertDummyLocations()
         //insertDummyData()
         self.getFriends(callback)

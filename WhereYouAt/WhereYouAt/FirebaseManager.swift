@@ -17,10 +17,9 @@ class FirebaseManager {
     var myName : String = ""
     var userRef : Firebase!
     
-    init(myUID: String, myName: String) {
+    init(myUID: String) {
         rootRef = Firebase(url: rootURL)
         self.myUID = myUID
-        self.myName = myName
         userRef = rootRef.childByAppendingPath("Users").childByAppendingPath(myUID)
     }
     
