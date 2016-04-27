@@ -19,29 +19,30 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        db = Database(myUID: self.myUID, hasProfile: true)
-        
-        // Store the reference to db in the tabbarcontroller so the other tabs
-        // may share the instance without having to pass it around
-        let tabBar = self.tabBarController as! MainMenuTabBarController
-        tabBar.db = self.db
-        
-        // Do any additional setup after loading the view.
-        db.firebase.getProfile(myUID, callback: {
-            (profile) in
-            self.db.firebase.myName = profile.name
+        db = Database(myUID: self.myUID, hasProfile: true, callback: { 
+            // Store the reference to db in the tabbarcontroller so the other tabs
+            // may share the instance without having to pass it around
+            let tabBar = self.tabBarController as! MainMenuTabBarController
+            tabBar.db = self.db
+            
+            // Do any additional setup after loading the view.
+            self.db.firebase.getProfile(self.myUID, callback: {
+                (profile) in
+                self.db.firebase.myName = profile.name
+            })
+            
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
+            // Whenever the new location data received, call a function to update table
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
+            self.updateTableView()
         })
         
-        tableView.dataSource = self
-        tableView.delegate = self
-        
-        // Whenever the new location data received, call a function to update table
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
     }
     
     // Update friend statuses everytime the view appears
     override func viewWillAppear(animated: Bool) {
-        friendStatuses = db.getFriendStatuses()
+        updateTableView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +71,9 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func updateTableView() {
-        friendStatuses = db.getFriendStatuses()
-        tableView.reloadData()
+        db.getFriendStatuses { (friends) in
+            self.friendStatuses = friends
+            self.tableView.reloadData()
+        }
     }
 }

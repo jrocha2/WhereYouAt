@@ -26,7 +26,7 @@ class CurrentFriendsViewController: UIViewController, UITableViewDataSource, UIT
         super.viewWillAppear(true)
         
         // Reload the friends in the database to ensure they are up to date
-        db.getFriends()
+        db.getFriends({})
         for friend in db.friendsList {
             friends.append(friend.1)
         }

@@ -24,13 +24,13 @@ class Database {
     var friendsPending : [String : String] = [:]
     
     //The init method calls the methods in the Firebase class
-    init(myUID: String, hasProfile: Bool) {
+    init(myUID: String, hasProfile: Bool, callback: () -> Void) {
         self.userId = myUID
         
         firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
         //insertDummyLocations()
         //insertDummyData()
-        self.getFriends()
+        self.getFriends(callback)
         self.getFriendRequests()
         self.getPendingFriends()
         self.getLocationsAndStatuses()
@@ -74,10 +74,12 @@ class Database {
     }
     
     //Gets a user's friends
-    func getFriends() {
+    func getFriends(callback: () -> Void) {
         self.firebase.getAllFriends() {
             (friends) in
+            print("Got friends \(friends)")
             self.friendsList = friends
+            callback()
         }
     }
     
@@ -115,8 +117,6 @@ class Database {
             self.locations = locations
             // Posts a notification whenever new data is received
             NSNotificationCenter.defaultCenter().postNotificationName(newLocationDataNotification, object: self)
-//            print("\n\(self.locations)")
-//            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
     }
     
@@ -154,7 +154,8 @@ class Database {
     }
     
     // Return all statuses of friends sorted so that the latest are first
-    func getFriendStatuses() -> [Status] {
+    func getFriendStatuses(callback: ([Status])-> Void) {
+        print("Getting friend's statuses")
         var friendStatuses : [Status] = []
         let allStatuses = getEventData()
         for status in allStatuses {
@@ -164,7 +165,7 @@ class Database {
                 }
             }
         }
-        return friendStatuses
+        callback(friendStatuses)
     }
     
     // Return locations sorted by most number of people in attendence
