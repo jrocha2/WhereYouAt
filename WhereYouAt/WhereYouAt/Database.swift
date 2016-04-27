@@ -24,13 +24,13 @@ class Database {
     var friendsPending : [String : String] = [:]
     
     //The init method calls the methods in the Firebase class
-    init(myUID: String, hasProfile: Bool) {
+    init(myUID: String, hasProfile: Bool, callback: () -> Void) {
         self.userId = myUID
         
         firebase = FirebaseManager(myUID: userId, myName: "Loading Name")
         //insertDummyLocations()
         //insertDummyData()
-        self.getFriends()
+        self.getFriends(callback)
         self.getFriendRequests()
         self.getPendingFriends()
         self.getLocationsAndStatuses()
@@ -38,19 +38,6 @@ class Database {
         if( hasProfile ) {
             self.getProfile()
         }
-    }
-    
-    //Inserts dummy data into the DB
-    func insertDummyLocations() {
-        let brothers = Location(locationName: "Brother's Bar and Grill", locationType: .Bar, latitude: 41.6919844, longitude: -86.2344451)
-        let oRos = Location(locationName: "O'Rourke's", locationType: .Bar, latitude: 41.6925968, longitude: -86.2360118)
-        self.createNewLocation(brothers, callback: nil)
-        self.createNewLocation(oRos, callback: nil)
-    }
-    func insertDummyData() {
-        self.createNewStatus(Status(userId: "102590562384346485497", userName: "Cory Jbara", body: "I love Brother's Bar!"), locationId: "-KEiWP4dujG9jBU9-GO2", callback: nil)
-        self.createNewStatus(Status(userId: "116019746140165652297", userName: "Brad Sherman", body: "Going to sing Karaoke!"), locationId: "-KEiWP4dujG9jBU9-GO3", callback: nil)
-        self.createNewStatus(Status(userId: "103452395065219160297", userName: "John Rocha", body: "Brother's is great"), locationId: "-KEiWP4dujG9jBU9-GO2", callback: nil)
     }
     
     //Creates a new location
@@ -74,10 +61,12 @@ class Database {
     }
     
     //Gets a user's friends
-    func getFriends() {
+    func getFriends(callback: () -> Void) {
         self.firebase.getAllFriends() {
             (friends) in
+            print("Got friends \(friends)")
             self.friendsList = friends
+            callback()
         }
     }
     
@@ -115,8 +104,6 @@ class Database {
             self.locations = locations
             // Posts a notification whenever new data is received
             NSNotificationCenter.defaultCenter().postNotificationName(newLocationDataNotification, object: self)
-//            print("\n\(self.locations)")
-//            print("These are statuses my friend's statuses", self.getFriendStatuses())
         })
     }
     
@@ -154,7 +141,8 @@ class Database {
     }
     
     // Return all statuses of friends sorted so that the latest are first
-    func getFriendStatuses() -> [Status] {
+    func getFriendStatuses(callback: ([Status])-> Void) {
+        print("Getting friend's statuses")
         var friendStatuses : [Status] = []
         let allStatuses = getEventData()
         for status in allStatuses {
@@ -164,7 +152,7 @@ class Database {
                 }
             }
         }
-        return friendStatuses
+        callback(friendStatuses)
     }
     
     // Return locations sorted by most number of people in attendence

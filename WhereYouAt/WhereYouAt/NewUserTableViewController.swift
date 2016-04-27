@@ -24,7 +24,7 @@ class NewUserTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Initialize the Database for this instance of the app
-        db = Database(myUID: myUID, hasProfile: false)
+        db = Database(myUID: myUID, hasProfile: false, callback: {} )
     }
 
     override func didReceiveMemoryWarning() {

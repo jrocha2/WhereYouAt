@@ -15,6 +15,7 @@ class Status: CustomStringConvertible {
     var userName: String
     var body: String
     var timestamp: Double?
+    var location: Location?
     
     var time: NSDate {
         return NSDate(timeIntervalSince1970: timestamp!)
@@ -25,7 +26,7 @@ class Status: CustomStringConvertible {
     }
     
     var fbDescription: [String: AnyObject] {
-        return ["userId": userId, "userName": userName, "body": body, "timestamp": FirebaseServerValue.timestamp()]
+        return ["userId": userId, "userName": userName, "body": body, "timestamp": NSDate().timeIntervalSince1970]
     }
     
     func setStatusId(id: String) {
@@ -38,13 +39,15 @@ class Status: CustomStringConvertible {
         self.body = body
         self.timestamp = nil
         self.statusId = nil
+        self.location = nil
     }
     
-    init(statusId: String, userId: String, userName: String, body: String, time: Double) {
+    init(statusId: String, userId: String, userName: String, body: String, time: Double, loc: Location) {
         self.statusId = statusId
         self.userId = userId
         self.userName = userName
         self.body = body
         self.timestamp = time
+        self.location = loc
     }
 }

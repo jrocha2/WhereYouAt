@@ -40,7 +40,7 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewWillAppear(true)
         
         // Make sure the database is up to date
-        db.getFriends()
+        db.getFriends({})
         db.getPendingFriends()
         db.getAllUsers()
         

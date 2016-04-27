@@ -106,7 +106,7 @@ class PendingFriendsTableViewController: UITableViewController {
                 self.requests.removeAtIndex(row)
                 self.correspondingUIDs.removeAtIndex(row)
                 self.db.getFriendRequests()
-                self.db.getFriends()
+                self.db.getFriends({})
                 self.tableView.reloadData()
             })
             

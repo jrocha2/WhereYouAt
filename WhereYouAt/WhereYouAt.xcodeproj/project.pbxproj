@@ -169,6 +169,64 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9125DD791CD08DE000DDFBFB /* New Status/Location */ = {
+			isa = PBXGroup;
+			children = (
+				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
+				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
+				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,
+				91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */,
+			);
+			name = "New Status/Location";
+			sourceTree = "<group>";
+		};
+		9125DD7A1CD112DC00DDFBFB /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
+				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+		9125DD7B1CD112ED00DDFBFB /* Tab View */ = {
+			isa = PBXGroup;
+			children = (
+				E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */,
+				9125DD7C1CD112FF00DDFBFB /* Feed */,
+				9125DD7D1CD1130500DDFBFB /* Trends */,
+				9125DD7E1CD1131400DDFBFB /* Map */,
+			);
+			name = "Tab View";
+			sourceTree = "<group>";
+		};
+		9125DD7C1CD112FF00DDFBFB /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				E74343A41CBE100400EF461D /* FeedViewController.swift */,
+				E74343A61CBE2EFE00EF461D /* FeedTableViewCell.swift */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		9125DD7D1CD1130500DDFBFB /* Trends */ = {
+			isa = PBXGroup;
+			children = (
+				E74343A81CBEB0AC00EF461D /* TrendsViewController.swift */,
+				E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */,
+			);
+			name = Trends;
+			sourceTree = "<group>";
+		};
+		9125DD7E1CD1131400DDFBFB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E74343AC1CBED98100EF461D /* MapViewController.swift */,
+				E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
 		9130A5951CB5EB9F001A3276 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,19 +315,9 @@
 		E72C77B91CB39BE2002E3A3E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E72C77AF1CB3066F002E3A3E /* AuthViewController.swift */,
-				E72C77BE1CB48164002E3A3E /* NewUserTableViewController.swift */,
-				E75031291CBD18E700E714BD /* MainMenuTabBarController.swift */,
-				9130A5991CB5EF4B001A3276 /* LocationsTableViewController.swift */,
-				9130A59B1CB5F064001A3276 /* LocationTableViewCell.swift */,
-				9130A59F1CB5F83D001A3276 /* NewStatusViewController.swift */,
-				91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */,
-				E74343A41CBE100400EF461D /* FeedViewController.swift */,
-				E74343A61CBE2EFE00EF461D /* FeedTableViewCell.swift */,
-				E74343A81CBEB0AC00EF461D /* TrendsViewController.swift */,
-				E74343AA1CBEB3F500EF461D /* TrendTableViewCell.swift */,
-				E74343AC1CBED98100EF461D /* MapViewController.swift */,
-				E74343B01CBF1DD200EF461D /* LocationAnnotation.swift */,
+				9125DD7A1CD112DC00DDFBFB /* Authentication */,
+				9125DD7B1CD112ED00DDFBFB /* Tab View */,
+				9125DD791CD08DE000DDFBFB /* New Status/Location */,
 				E7CE675B1CC5FFD80067F133 /* Menu */,
 			);
 			name = "View Controllers";
