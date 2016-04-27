@@ -191,25 +191,39 @@ class FirebaseManager {
         locationRef.observeEventType(.Value, withBlock: {
             (snapshot) in
             for child in snapshot.children {
-                let id = child.key as String
+                let locId = child.key as String
                 let info = child.childSnapshotForPath("Info")
                 let statuses = child.childSnapshotForPath("Statuses")
-                for status in statuses.children {
-                    
-                    //For each status, add this to a status array
-                    let id = status.key as String
-                    let body = status.childSnapshotForPath("body").value as! String
-                    let timestamp = status.childSnapshotForPath("timestamp").value as! Double
-                    let userId = status.childSnapshotForPath("userId").value as! String
-                    let userName = status.childSnapshotForPath("userName").value as! String
-                    let newStatus = Status(statusId: id, userId: userId, userName: userName, body: body, time: timestamp)
-                    statusData.append(newStatus)
-                }
+                
+                //Create the location
                 let lat = info.childSnapshotForPath("latitude").value as! Double
                 let lon = info.childSnapshotForPath("longitude").value as! Double
                 let name = info.childSnapshotForPath("name").value as! String
                 let type = LocationType(rawValue: String(info.childSnapshotForPath("type").value))!
-                let loc = Location(locationId: id, locationName: name, locationType: type, latitude: lat, longitude: lon)
+                let loc = Location(locationId: locId, locationName: name, locationType: type, latitude: lat, longitude: lon)
+                
+                for status in statuses.children {
+                    
+                    //For each status, add this to a status array
+                    let statusId = status.key as String
+                    let body = status.childSnapshotForPath("body").value as! String
+                    let timestamp = status.childSnapshotForPath("timestamp").value as! Double
+                    
+                    //Check if this status is older than a day, if it is, don't add to array, and delete from Firebase
+                    let duration = NSDate(timeIntervalSince1970: timestamp).timeIntervalSinceDate(NSDate())
+                    print("Duration of status: \(duration)")
+                    let maxDuration: Double = -86400 //currently a day in seconds
+                    if duration < maxDuration {
+                        //The status is too old, remove it
+                        self.removeStatus(statusId, locationId: locId)
+                    } else {
+                        //Status is fine, add to array
+                        let userId = status.childSnapshotForPath("userId").value as! String
+                        let userName = status.childSnapshotForPath("userName").value as! String
+                        let newStatus = Status(statusId: statusId, userId: userId, userName: userName, body: body, time: timestamp, loc: loc)
+                        statusData.append(newStatus)
+                    }
+                }
                 locationData.append(loc)
                 loc.addStatuses(statusData)
                 
@@ -220,5 +234,11 @@ class FirebaseManager {
             locationData = []
         })
         
+    }
+    
+    func removeStatus(statusId: String, locationId: String){
+        print("Removing status \(statusId) for location \(locationId)")
+        let ref = rootRef.childByAppendingPath("Locations/\(locationId)/Statuses/\(statusId)")
+        ref.removeValue()
     }
 }
