@@ -53,6 +53,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func updateMapPins() {
         locations = db.getCampusTrends()
+        
+        // Filter so that only locations with people at them show up on map
+        locations = locations.filter { loc in
+            return loc.numberOfPeople > 0
+        }
+        
         for loc in locations {
             mapView.addAnnotation(LocationAnnotation(loc: loc))
         }
