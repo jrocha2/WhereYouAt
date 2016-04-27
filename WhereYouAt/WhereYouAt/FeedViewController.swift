@@ -24,10 +24,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             // may share the instance without having to pass it around
             
             // Do any additional setup after loading the view.
-            self.db.firebase.getProfile(self.myUID, callback: {
-                (profile) in
-                self.db.firebase.myName = profile.name
-            })
+            self.db.firebase.getProfile(self.myUID, callback: {_ in })
             
             self.tableView.dataSource = self
             self.tableView.delegate = self
