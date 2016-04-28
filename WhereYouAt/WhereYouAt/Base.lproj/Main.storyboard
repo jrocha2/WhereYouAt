@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="240" id="kDc-2P-84V"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In With Google" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCt-QK-X1q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where You At" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCt-QK-X1q">
                                 <rect key="frame" x="198" y="97" width="205" height="69"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="205" id="YmZ-tw-Vtq"/>
@@ -1068,7 +1068,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mq9-jy-mgc">
-                            <rect key="frame" x="0.0" y="644" width="600" height="49"/>
+                            <rect key="frame" x="0.0" y="556" width="600" height="49"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Update"/>
                             <connections>
@@ -1151,7 +1151,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Gender" id="2aG-bx-xDV">
+                            <tableViewSection headerTitle="Gender  -  Class" id="2aG-bx-xDV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="gqB-Ig-HF7">
                                         <rect key="frame" x="0.0" y="320" width="600" height="60"/>
@@ -1188,45 +1188,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Classification" id="kLA-wq-VNb">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Xl2-KI-7Ai">
-                                        <rect key="frame" x="0.0" y="408" width="600" height="60"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xl2-KI-7Ai" id="xfj-gk-VcT">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <pickerView contentMode="scaleToFill" restorationIdentifier="classPicker" translatesAutoresizingMaskIntoConstraints="NO" id="W1s-ci-9DT" userLabel="Class Picker">
-                                                    <rect key="frame" x="8" y="-2" width="584" height="63.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="43.5" id="ZdD-df-XgS"/>
-                                                    </constraints>
-                                                    <variation key="default">
-                                                        <mask key="constraints">
-                                                            <exclude reference="ZdD-df-XgS"/>
-                                                        </mask>
-                                                    </variation>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="sij-bv-fhj" id="20y-GJ-Snk"/>
-                                                        <outlet property="delegate" destination="sij-bv-fhj" id="5TU-3k-kHW"/>
-                                                    </connections>
-                                                </pickerView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="W1s-ci-9DT" secondAttribute="trailing" id="Ea1-N2-99c"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="W1s-ci-9DT" secondAttribute="bottom" constant="-10" id="Uv6-pq-sBo"/>
-                                                <constraint firstItem="W1s-ci-9DT" firstAttribute="leading" secondItem="xfj-gk-VcT" secondAttribute="leadingMargin" id="caQ-vN-PQx"/>
-                                                <constraint firstItem="W1s-ci-9DT" firstAttribute="top" secondItem="xfj-gk-VcT" secondAttribute="topMargin" constant="-10" id="mnb-gA-fGW"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Date of Birth" id="JO3-Za-5Ek">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gk3-sp-GZ7">
-                                        <rect key="frame" x="0.0" y="496" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="408" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gk3-sp-GZ7" id="19L-Va-YTh">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -1255,7 +1220,7 @@
                             <tableViewSection headerTitle="Dorm" id="8kX-dy-hnk">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CC3-zJ-aqT">
-                                        <rect key="frame" x="0.0" y="584" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="496" width="600" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CC3-zJ-aqT" id="8E7-Gb-M3k">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
@@ -1286,7 +1251,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="classPicker" destination="W1s-ci-9DT" id="Hka-v5-vx4"/>
                         <outlet property="datePicker" destination="Xgv-uI-Mql" id="CMv-78-LdD"/>
                         <outlet property="dormPicker" destination="smJ-UO-iKb" id="5cA-Zf-WT5"/>
                         <outlet property="firstName" destination="jt6-P7-cPb" id="5qv-8g-1Ud"/>
@@ -1456,6 +1420,6 @@
         <image name="trends" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GIX-bb-Cre"/>
+        <segue reference="hrl-il-SLq"/>
     </inferredMetricsTieBreakers>
 </document>

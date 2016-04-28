@@ -42,7 +42,6 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
         "Zahm"]
     
     @IBOutlet var genderPicker: UIPickerView!
-    @IBOutlet var classPicker: UIPickerView!
     @IBOutlet var datePicker: UIDatePicker!
     @IBOutlet var dormPicker: UIPickerView!
     @IBOutlet weak var firstName: UITextField!
@@ -72,7 +71,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
         case .Grad: c = 4
         }
         genderPicker.selectRow(g, inComponent: 0, animated: false)
-        classPicker.selectRow(c, inComponent: 0, animated: false)
+        genderPicker.selectRow(c, inComponent: 1, animated: false)
         phoneNumber.text = profile?.phone
 
         let dateFormatter = NSDateFormatter()
@@ -102,7 +101,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 8
+        return 7
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,26 +115,34 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
     
     //MARK: Data Sources
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+        if pickerView.isEqual(genderPicker) {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.isEqual(genderPicker) {
-            return Profile.Gender.allValues.count
-        } else if pickerView.isEqual(dormPicker) {
-            return dorms.count
+            if component == 0 {
+                return Profile.Gender.allValues.count
+            } else {
+                return Profile.Year.allValues.count
+            }
         } else {
-            return Profile.Year.allValues.count
+            return dorms.count
         }
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.isEqual(genderPicker) {
-            return Profile.Gender.allValues[row]
-        } else if pickerView.isEqual(dormPicker) {
-            return dorms[row]
+            if component == 0 {
+                return Profile.Gender.allValues[row]
+            } else {
+                return Profile.Year.allValues[row]
+            }
         } else {
-            return Profile.Year.allValues[row]
+            return dorms[row]
         }
     }
     
@@ -160,7 +167,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
             let gender = Profile.Gender(rawValue: Profile.Gender.allValues[genderIndex])
             
             //Get the year
-            let yearIndex = self.classPicker.selectedRowInComponent(0)
+            let yearIndex = self.genderPicker.selectedRowInComponent(1)
             let year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])
             
             let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: gender!, year: year!, phoneNumber: phoneNumber.text!)
