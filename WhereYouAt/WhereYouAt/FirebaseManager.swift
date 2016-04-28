@@ -87,7 +87,7 @@ class FirebaseManager {
         var friends : [String : String] = [:]
         let friendsRef = userRef.childByAppendingPath("Friends/Accepted")
         
-        friendsRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        friendsRef.observeEventType(.Value, withBlock: { snapshot in
             if snapshot.exists() {
                 for child in snapshot.children {
                     let uid = child.key as String
@@ -106,7 +106,7 @@ class FirebaseManager {
         var requests : [String:String] = [:]
         let requestRef = userRef.childByAppendingPath("Friends/Requests")
         
-        requestRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        requestRef.observeEventType(.Value, withBlock: { snapshot in
             if snapshot.exists() {
                 for child in snapshot.children {
                     let uid = child.key as String
@@ -125,7 +125,7 @@ class FirebaseManager {
         var pending : [String:String] = [:]
         let pendingRef = userRef.childByAppendingPath("Friends/Pending")
         
-        pendingRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        pendingRef.observeEventType(.Value, withBlock: { snapshot in
             if snapshot.exists() {
                 for child in snapshot.children {
                     let uid = child.key as String
@@ -145,7 +145,7 @@ class FirebaseManager {
         var users : [String:String] = [:]
         let usersRef = rootRef.childByAppendingPath("Users")
         
-        usersRef.observeSingleEventOfType(.Value, withBlock:  { snapshot in
+        usersRef.observeEventType(.Value, withBlock:  { snapshot in
             if snapshot.exists() {
                 for user in snapshot.children {
                     let uid = user.key as String
