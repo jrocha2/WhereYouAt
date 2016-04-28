@@ -372,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="3348" y="1853"/>
         </scene>
-        <!--Title-->
+        <!--Where Are You Going Tonight?-->
         <scene sceneID="YC3-2r-mgM">
             <objects>
                 <viewController id="nRD-SC-nrH" customClass="NewStatusViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -384,7 +384,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Start typing..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1G-JJ-Yde">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Say something about your location..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r1G-JJ-Yde">
                                 <rect key="frame" x="20" y="125" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -396,13 +396,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/50" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="etI-4e-0qh">
-                                <rect key="frame" x="20" y="160" width="122" height="15"/>
+                                <rect key="frame" x="20" y="160" width="560" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="122" id="SFp-kQ-qlM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="SFp-kQ-qlM"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="5dp-y2-O0J">
                                 <rect key="frame" x="20" y="205" width="560" height="375"/>
@@ -426,14 +431,21 @@
                             <constraint firstItem="r1G-JJ-Yde" firstAttribute="leading" secondItem="pLF-F4-QO7" secondAttribute="leading" id="Pws-rX-Zqf"/>
                             <constraint firstItem="5dp-y2-O0J" firstAttribute="trailing" secondItem="r1G-JJ-Yde" secondAttribute="trailing" id="TV4-Ap-XGI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="r1G-JJ-Yde" secondAttribute="trailing" id="WRB-Ph-JbM"/>
+                            <constraint firstItem="etI-4e-0qh" firstAttribute="trailing" secondItem="r1G-JJ-Yde" secondAttribute="trailing" id="aFF-Qd-cc9"/>
                             <constraint firstItem="r1G-JJ-Yde" firstAttribute="top" secondItem="pLF-F4-QO7" secondAttribute="bottom" constant="20" id="e5V-lZ-8D9"/>
                             <constraint firstItem="5dp-y2-O0J" firstAttribute="leading" secondItem="r1G-JJ-Yde" secondAttribute="leading" id="otY-Ef-vSL"/>
                             <constraint firstItem="etI-4e-0qh" firstAttribute="top" secondItem="r1G-JJ-Yde" secondAttribute="bottom" constant="5" id="pox-4z-4JB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="etI-4e-0qh" secondAttribute="trailing" id="qcH-Gx-HuS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hJo-SE-PFA" secondAttribute="trailing" constant="6" id="y8l-Pa-NxN"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="qcH-Gx-HuS"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="gxH-ta-CQ0">
-                        <barButtonItem key="rightBarButtonItem" title="Send" id="CuW-Q1-MQB">
+                    <navigationItem key="navigationItem" title="Where Are You Going Tonight?" id="gxH-ta-CQ0">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="CuW-Q1-MQB">
                             <connections>
                                 <action selector="submitStatus:" destination="nRD-SC-nrH" id="SqE-0V-6Iu"/>
                             </connections>
