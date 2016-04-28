@@ -30,7 +30,7 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
         
         status.addTarget(self, action: #selector(NewStatusViewController.updateCharCount), forControlEvents: UIControlEvents.EditingChanged)
         
-        let placeholder = NSAttributedString(string: "Say something about \(location.name)...")
+        let placeholder = NSAttributedString(string: "Tell your friends about \(location.name)!")
         status.attributedPlaceholder = placeholder
 
         self.map.delegate = self

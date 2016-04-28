@@ -67,7 +67,25 @@ class LocationsTableViewController: UITableViewController {
 
         let loc = filteredLocations[indexPath.row]
         cell.locationName.text = loc.name
-        cell.locationType.text = loc.type.rawValue
+        switch loc.type {
+        case .Apartment:
+            cell.typeImage.image = UIImage(named: "housePin")
+        case .Bar:
+            cell.typeImage.image = UIImage(named: "barPin")
+        case .Club:
+            cell.typeImage.image = UIImage(named: "clubPin")
+        case .Dorm:
+            cell.typeImage.image = UIImage(named: "dormPin")
+        case .House:
+            cell.typeImage.image = UIImage(named: "homePin")
+        case .OutOfTown:
+            cell.typeImage.image = UIImage(named: "outoftownPin")
+        case .Rave:
+            cell.typeImage.image = UIImage(named: "ravePin")
+        case .Tailgate:
+            cell.typeImage.image = UIImage(named: "tailgatePin")
+        }
+
 
         return cell
     }
