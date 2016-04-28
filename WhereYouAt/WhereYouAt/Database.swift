@@ -56,7 +56,6 @@ class Database {
             (profile) in
             self.profile = profile
             self.profile!.userId = self.userId
-            print(self.profile)
         }
     }
     
@@ -158,7 +157,13 @@ class Database {
     
     // Return locations sorted by most number of people in attendence
     func getCampusTrends() -> [Location] {
-        var locs = locations
+        var locs: [Location] = []
+        
+        // Filter locations so that only those with people are shown
+        locs = locations.filter { loc in
+            return loc.numberOfPeople > 0
+        }
+        
         locs.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
         return locs
     }

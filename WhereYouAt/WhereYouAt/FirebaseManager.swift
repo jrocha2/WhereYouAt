@@ -212,7 +212,6 @@ class FirebaseManager {
                     
                     //Check if this status is older than a day, if it is, don't add to array, and delete from Firebase
                     let duration = NSDate(timeIntervalSince1970: timestamp).timeIntervalSinceDate(NSDate())
-                    print("Duration of status: \(duration)")
                     let numberOfDays: Double = 7
                     let maxDuration: Double = -86400 * numberOfDays //One day times numberOfDays
                     if duration < maxDuration {
