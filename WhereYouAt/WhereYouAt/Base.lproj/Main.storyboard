@@ -295,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="2382" y="2673"/>
         </scene>
-        <!--Select a Location-->
+        <!--Where Are You Going Tonight?-->
         <scene sceneID="y5C-9L-eEv">
             <objects>
                 <tableViewController id="lNx-ge-ETP" customClass="LocationsTableViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -355,7 +355,7 @@
                             <outlet property="delegate" destination="lNx-ge-ETP" id="IhM-KA-D9E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select a Location" id="xrR-OR-RBM">
+                    <navigationItem key="navigationItem" title="Where Are You Going Tonight?" id="xrR-OR-RBM">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="acf-J9-lbQ">
                             <connections>
                                 <action selector="cancelPost:" destination="lNx-ge-ETP" id="5Qc-25-zGk"/>

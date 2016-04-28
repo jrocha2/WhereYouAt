@@ -12,6 +12,9 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
 
     var db : Database!
     var locations : [Location] = []
+    var filteredLocations : [Location] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var selectedScope = "All"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,6 +30,13 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         
         // Whenever the new location data received, call a function to update table
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
+        
+        self.searchController.searchResultsUpdater = self
+        self.searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.scopeButtonTitles = ["All", "Bar", "House", "Dorm"]
+        searchController.searchBar.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +56,11 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        if( searchController.active ) {
+            return filteredLocations.count
+        } else {
+            return locations.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -88,6 +102,27 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.reloadData()
     }
     
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredLocations.removeAll()
+        filteredLocations = locations.filter { location in
+            let scope2 = self.selectedScope
+            var correctType: Bool = false
+            if(scope2 == "All") { correctType = true }
+            else if(scope2 == "Bar" && location.type == .Bar) { correctType = true }
+            else if(scope2 == "Dorm" && location.type == .Dorm) { correctType = true }
+            else if(scope2 == "House" && location.type == .House) { correctType = true }
+            
+            let blankMatch = (searchText == "")
+            
+            let nameMatch = location.name.lowercaseString.containsString(searchText.lowercaseString)
+            
+            return correctType && (blankMatch || nameMatch)
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -98,4 +133,17 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
 
+}
+
+extension TrendsViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension TrendsViewController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.selectedScope = searchBar.scopeButtonTitles![selectedScope]
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
 }
