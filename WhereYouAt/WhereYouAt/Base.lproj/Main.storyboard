@@ -683,63 +683,77 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Type (Bar, House, etc.)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SrA-3X-rKK">
-                                <rect key="frame" x="20" y="120" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vU0-kt-AoW">
-                                <rect key="frame" x="20" y="234.5" width="560" height="345.5"/>
+                                <rect key="frame" x="20" y="326" width="560" height="254"/>
                             </mapView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGt-lV-c1b">
-                                <rect key="frame" x="20" y="70" width="560" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="113 E Wayne St, South Bend, IN 46601" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-2O-vf7">
-                                <rect key="frame" x="20" y="170" width="446" height="30"/>
+                                <rect key="frame" x="20" y="84" width="560" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEK-26-bxf">
-                                <rect key="frame" x="476" y="170" width="104" height="30"/>
+                                <rect key="frame" x="470" y="134" width="110" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="110" id="2cA-JQ-bGL"/>
+                                </constraints>
                                 <state key="normal" title="Check Address"/>
                                 <connections>
                                     <action selector="checkAddress:" destination="LwA-q6-9eJ" eventType="touchUpInside" id="bhY-Le-yjF"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address Error" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UqB-3i-pAr">
-                                <rect key="frame" x="20" y="210" width="78" height="15"/>
+                                <rect key="frame" x="20" y="169" width="78" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="113 E Wayne St, South Bend, IN 46601" borderStyle="roundedRect" placeholder="Address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h4G-2O-vf7">
+                                <rect key="frame" x="20" y="134" width="440" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <pickerView contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="5KX-Hc-jYC" userLabel="Location Type">
+                                <rect key="frame" x="8" y="189" width="584" height="127"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="127" id="cTc-iD-Rj1"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="LwA-q6-9eJ" id="Q61-T8-1I2"/>
+                                    <outlet property="delegate" destination="LwA-q6-9eJ" id="CpD-eJ-9Xu"/>
+                                </connections>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Type:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2N-bx-gVL">
+                                <rect key="frame" x="244" y="184" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kGt-lV-c1b" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="leading" id="06W-VW-9Rf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="3Qc-z3-1tt"/>
-                            <constraint firstItem="vU0-kt-AoW" firstAttribute="top" secondItem="UqB-3i-pAr" secondAttribute="bottom" constant="10" id="9Bq-Bc-PkB"/>
-                            <constraint firstItem="SrA-3X-rKK" firstAttribute="top" secondItem="kGt-lV-c1b" secondAttribute="bottom" constant="20" id="AID-W7-PJI"/>
+                            <constraint firstItem="vU0-kt-AoW" firstAttribute="top" secondItem="5KX-Hc-jYC" secondAttribute="bottom" constant="10" id="3s5-Ty-yYi"/>
+                            <constraint firstItem="z2N-bx-gVL" firstAttribute="centerX" secondItem="spU-l2-qPH" secondAttribute="centerX" id="4dC-OB-pZu"/>
+                            <constraint firstItem="5KX-Hc-jYC" firstAttribute="leading" secondItem="spU-l2-qPH" secondAttribute="leadingMargin" constant="-12" id="83f-AL-Dbv"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="trailing" secondItem="h4G-2O-vf7" secondAttribute="trailing" id="AU4-YW-pZ3"/>
+                            <constraint firstItem="pEK-26-bxf" firstAttribute="trailing" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="DkK-tW-4dg"/>
                             <constraint firstItem="zIg-8H-Kim" firstAttribute="top" secondItem="vU0-kt-AoW" secondAttribute="bottom" constant="20" id="Fdu-mk-m3I"/>
-                            <constraint firstItem="h4G-2O-vf7" firstAttribute="trailing" secondItem="SrA-3X-rKK" secondAttribute="trailing" id="GAc-Hn-I9K"/>
+                            <constraint firstItem="z2N-bx-gVL" firstAttribute="top" secondItem="h4G-2O-vf7" secondAttribute="bottom" constant="20" id="MBc-Pc-x8w"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="trailing" secondItem="pEK-26-bxf" secondAttribute="trailing" id="UcA-eE-EtZ"/>
-                            <constraint firstItem="UqB-3i-pAr" firstAttribute="top" secondItem="h4G-2O-vf7" secondAttribute="bottom" constant="10" id="VXQ-lf-RTs"/>
-                            <constraint firstItem="pEK-26-bxf" firstAttribute="centerY" secondItem="h4G-2O-vf7" secondAttribute="centerY" id="VaH-vR-3Gq"/>
-                            <constraint firstItem="pEK-26-bxf" firstAttribute="trailing" secondItem="SrA-3X-rKK" secondAttribute="trailing" id="WZN-4c-yxV"/>
-                            <constraint firstItem="SrA-3X-rKK" firstAttribute="leading" secondItem="kGt-lV-c1b" secondAttribute="leading" id="XsL-GR-waz"/>
-                            <constraint firstItem="SrA-3X-rKK" firstAttribute="trailing" secondItem="kGt-lV-c1b" secondAttribute="trailing" id="fe8-p2-tAw"/>
+                            <constraint firstItem="5KX-Hc-jYC" firstAttribute="top" secondItem="h4G-2O-vf7" secondAttribute="bottom" constant="25" id="UqZ-NV-uQg"/>
+                            <constraint firstItem="UqB-3i-pAr" firstAttribute="top" secondItem="h4G-2O-vf7" secondAttribute="bottom" constant="5" id="VXQ-lf-RTs"/>
+                            <constraint firstItem="h4G-2O-vf7" firstAttribute="top" secondItem="kGt-lV-c1b" secondAttribute="bottom" constant="20" id="YXS-da-vv0"/>
                             <constraint firstAttribute="leadingMargin" secondItem="kGt-lV-c1b" secondAttribute="leading" id="fqe-4E-5wb"/>
-                            <constraint firstItem="kGt-lV-c1b" firstAttribute="top" secondItem="D7D-hM-cln" secondAttribute="bottom" constant="6" id="g3X-69-IXX"/>
+                            <constraint firstItem="kGt-lV-c1b" firstAttribute="top" secondItem="D7D-hM-cln" secondAttribute="bottom" constant="20" id="g3X-69-IXX"/>
                             <constraint firstItem="pEK-26-bxf" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="trailing" constant="10" id="gRD-lv-5eu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5KX-Hc-jYC" secondAttribute="trailing" constant="-12" id="hka-Lg-3rW"/>
                             <constraint firstItem="UqB-3i-pAr" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="leading" id="tew-yh-Yu1"/>
-                            <constraint firstItem="h4G-2O-vf7" firstAttribute="leading" secondItem="SrA-3X-rKK" secondAttribute="leading" id="uU9-Vg-hsE"/>
-                            <constraint firstItem="h4G-2O-vf7" firstAttribute="top" secondItem="SrA-3X-rKK" secondAttribute="bottom" constant="20" id="wS9-vh-JNt"/>
                             <constraint firstItem="vU0-kt-AoW" firstAttribute="leading" secondItem="h4G-2O-vf7" secondAttribute="leading" id="wV2-pe-97e"/>
+                            <constraint firstItem="pEK-26-bxf" firstAttribute="centerY" secondItem="h4G-2O-vf7" secondAttribute="centerY" id="z6K-2h-ZlI"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="GAc-Hn-I9K"/>
                                 <exclude reference="AU4-YW-pZ3"/>
                             </mask>
                         </variation>
@@ -755,7 +769,7 @@
                         <outlet property="address" destination="h4G-2O-vf7" id="CFW-Og-nGm"/>
                         <outlet property="addressError" destination="UqB-3i-pAr" id="Ovc-mI-vJc"/>
                         <outlet property="locationName" destination="kGt-lV-c1b" id="v6C-cM-OU3"/>
-                        <outlet property="locationType" destination="SrA-3X-rKK" id="JND-X8-HW8"/>
+                        <outlet property="locationTypePicker" destination="5KX-Hc-jYC" id="pLT-3k-gXV"/>
                         <outlet property="map" destination="vU0-kt-AoW" id="X7h-DI-2xf"/>
                     </connections>
                 </viewController>

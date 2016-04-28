@@ -36,6 +36,10 @@ class LocationsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.reloadData()
     }
+    
+    deinit {
+        self.searchController.loadViewIfNeeded()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

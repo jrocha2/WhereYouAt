@@ -9,10 +9,10 @@
 import UIKit
 import MapKit
 
-class NewLocationViewController: UIViewController, MKMapViewDelegate {
+class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    @IBOutlet var locationTypePicker: UIPickerView!
     @IBOutlet var locationName: UITextField!
-    @IBOutlet var locationType: UITextField!
     @IBOutlet var address: UITextField!
     @IBOutlet var addressError: UILabel!
     @IBOutlet var map: MKMapView!
@@ -29,7 +29,9 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
                 self.map.addAnnotation(dropPin)
                 self.map.setRegion(region, animated: true)
                 
-                self.location = Location(locationName: self.locationName.text!, locationType: LocationType(rawValue: self.locationType.text!)!, latitude: finder.latitude, longitude: finder.longitude)
+                let index = self.locationTypePicker?.selectedRowInComponent(0)
+                let type = LocationType(rawValue: LocationType.allValues[index!])!
+                self.location = Location(locationName: self.locationName.text!, locationType: type, latitude: finder.latitude, longitude: finder.longitude)
                 self.addressError.text = ""
                 self.checkedAddress = true
             }
@@ -37,13 +39,15 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func saveLocation(sender: UIBarButtonItem) {
-        if checkedAddress == true {
+        if locationName.text == "" {
+            addressError.text = "Enter the name of your new location!"
+        } else if checkedAddress == true {
             print("Saving location \(location?.fbDescription)")
             db.createNewLocation(location!, callback: {
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         } else {
-            addressError.text = "You must check the address before you save the location"
+            addressError.text = "You must check the address before you save the location!"
         }
     }
     
@@ -70,6 +74,23 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
         return nil
     }
 
+    // MARK: - UIPickerViewDataSource
+    
+    //MARK: Data Sources
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return LocationType.allValues.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return LocationType.allValues[row]
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

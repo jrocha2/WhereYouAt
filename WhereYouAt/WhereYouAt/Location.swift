@@ -62,12 +62,14 @@ class Location: CustomStringConvertible {
 }
 
 enum LocationType: String {
-    case Bar
-    case House
-    case Dorm
-    case Club
-    case Tailgate
-    case Apartment
-    case Rave
-    case OutOfTown
+    case Bar = "Bar"
+    case House = "House"
+    case Dorm = "Dorm"
+    case Club = "Club"
+    case Tailgate = "Tailgate"
+    case Apartment = "Apartment"
+    case Rave = "Rave"
+    case OutOfTown = "Out Of Town"
+    
+    static let allValues = ["Bar", "House", "Dorm", "Club", "Tailgate", "Apartment", "Rave", "Out Of Town"]
 }

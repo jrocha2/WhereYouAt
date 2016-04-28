@@ -41,6 +41,10 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         searchController.searchBar.scopeButtonTitles = ["All", "Bar", "House", "Dorm"]
         searchController.searchBar.delegate = self
     }
+    
+    deinit {
+        self.searchController.loadViewIfNeeded()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
