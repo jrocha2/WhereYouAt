@@ -59,7 +59,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FeedTableViewCell
         let row = indexPath.row
         let status = friendStatuses[row]
-        // Need to edit data hierarchy somewhere so we have access to location name here too
         cell.nameLabel.text = status.userName
         cell.statusLabel.text = status.body
         let formatter = NSDateFormatter()
