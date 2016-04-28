@@ -62,7 +62,10 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Need to edit data hierarchy somewhere so we have access to location name here too
         cell.nameLabel.text = status.userName
         cell.statusLabel.text = status.body
-        cell.timeLabel.text = NSDateFormatter.localizedStringFromDate(status.time, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "EEEE 'at' h:mm a"
+        let date = NSDate(timeIntervalSince1970: status.timestamp!)
+        cell.timeLabel.text = formatter.stringFromDate(date)
         cell.locationLabel.text = status.location?.name
         
         return cell
