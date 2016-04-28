@@ -11,6 +11,9 @@ import MapKit
 
 class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    var latitude: Double = 0
+    var longitude: Double = 0
+    
     @IBOutlet var locationTypePicker: UIPickerView!
     @IBOutlet var locationName: UITextField!
     @IBOutlet var address: UITextField!
@@ -29,10 +32,9 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerVi
                 self.map.addAnnotation(dropPin)
                 self.map.setRegion(region, animated: true)
                 
-                let index = self.locationTypePicker?.selectedRowInComponent(0)
-                let type = LocationType(rawValue: LocationType.allValues[index!])!
-                self.location = Location(locationName: self.locationName.text!, locationType: type, latitude: finder.latitude, longitude: finder.longitude)
-                self.addressError.text = ""
+                self.latitude = finder.latitude
+                self.longitude = finder.longitude
+                
                 self.checkedAddress = true
             }
         }
@@ -42,6 +44,10 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerVi
         if locationName.text == "" {
             addressError.text = "Enter the name of your new location!"
         } else if checkedAddress == true {
+            let index = self.locationTypePicker?.selectedRowInComponent(0)
+            let type = LocationType(rawValue: LocationType.allValues[index!])!
+            self.location = Location(locationName: self.locationName.text!, locationType: type, latitude: self.latitude, longitude: self.longitude)
+            self.addressError.text = ""
             print("Saving location \(location?.fbDescription)")
             db.createNewLocation(location!, callback: {
                 self.dismissViewControllerAnimated(true, completion: nil)
