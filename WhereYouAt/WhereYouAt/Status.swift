@@ -22,7 +22,7 @@ class Status: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(userName): \(body)"
+        return "\(userName) at \(location!.name): \(body)"
     }
     
     var fbDescription: [String: AnyObject] {

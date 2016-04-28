@@ -21,11 +21,13 @@ class Location: CustomStringConvertible {
     }
     
     var numberOfPeople: Int {
+        /********** This is good for deployment, but for dev it is not good ***********
         var uniquePeople = Set<String>()
         for status in statuses {
             uniquePeople.insert(status.userId)
         }
-        return uniquePeople.count
+        return uniquePeople.count*/
+        return statuses.count
     }
     
     var fbDescription: [String:AnyObject] {
@@ -33,7 +35,7 @@ class Location: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(locationId!): \(name)"
+        return "\(name): \(numberOfPeople) people here"
     }
     
     func setLocationId(id: String) {
