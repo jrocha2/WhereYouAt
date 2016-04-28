@@ -25,6 +25,9 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         let tabBar = self.tabBarController as! MainMenuTabBarController
         db = tabBar.db
         
+        updateTableView()
+        filteredLocations = locations
+        
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -66,7 +69,7 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("trendCell", forIndexPath: indexPath) as! TrendTableViewCell
         let row = indexPath.row
-        let loc = locations[row]
+        let loc = filteredLocations[row]
         cell.numberOfPeopleLabel.text = String(loc.numberOfPeople)
         cell.locationNameLabel.text = "Going to " + loc.name
         switch loc.type {
@@ -93,11 +96,6 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func updateTableView() {
         locations = db.getCampusTrends()
-        
-        // Filter locations so that only those with people are shown
-        locations = locations.filter { loc in
-            return loc.numberOfPeople > 0
-        }
         
         tableView.reloadData()
     }
