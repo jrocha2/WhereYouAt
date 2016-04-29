@@ -11,35 +11,6 @@ import UIKit
 class UpdateProfileTableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var db: Database!
-    var dorms = ["Alumni",
-        "Badin",
-        "Breen-Phillips",
-        "Carroll",
-        "Cavanaugh",
-        "Dillon",
-        "Duncan",
-        "Farley",
-        "Fisher",
-        "Howard",
-        "Keenan",
-        "Keough",
-        "Knott",
-        "Lewis",
-        "Lyons",
-        "McGlinn",
-        "Morrissey",
-        "O’Neill",
-        "Pangborn",
-        "Pasquerilla East",
-        "Pasquerilla West",
-        "Ryan",
-        "Saint Edward’s",
-        "Siegfried",
-        "Sorin",
-        "Stanford",
-        "Walsh",
-        "Welsh Family",
-        "Zahm"]
     
     @IBOutlet var genderPicker: UIPickerView!
     @IBOutlet var datePicker: UIDatePicker!
@@ -80,7 +51,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
         datePicker.date = date!
         
         var d: Int = 0
-        if let i = dorms.indexOf({$0 == profile?.dorm}) {
+        if let i = db.dorms.indexOf({$0 == profile?.dorm}) {
              d = i
         }
         dormPicker.selectRow(d, inComponent: 0, animated: false)
@@ -130,7 +101,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
                 return Profile.Year.allValues.count
             }
         } else {
-            return dorms.count
+            return db.dorms.count
         }
     }
     
@@ -142,7 +113,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
                 return Profile.Year.allValues[row]
             }
         } else {
-            return dorms[row]
+            return db.dorms[row]
         }
     }
     
@@ -178,7 +149,7 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
             newProfile.dateOfBirth = strDate
             
             let dormIndex = self.dormPicker.selectedRowInComponent(0)
-            let dorm = dorms[dormIndex]
+            let dorm = db.dorms[dormIndex]
             newProfile.dorm = dorm
             
             db.updateProfile(newProfile, call: {
