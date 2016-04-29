@@ -220,8 +220,16 @@ class FirebaseManager {
                     } else {
                         //Status is fine, add to array
                         let userId = status.childSnapshotForPath("userId").value as! String
-                        let userName = status.childSnapshotForPath("userName").value as! String
-                        let newStatus = Status(statusId: statusId, userId: userId, userName: userName, body: body, time: timestamp, loc: loc)
+                        let p = status.childSnapshotForPath("profile")
+                        let fname = p.childSnapshotForPath("firstName").value as! String
+                        let lname = p.childSnapshotForPath("lastName").value as! String
+                        let gender = Profile.Gender(rawValue: p.childSnapshotForPath("gender").value as! String)!
+                        let year = Profile.Year(rawValue: p.childSnapshotForPath("year").value as! String)!
+                        let phone = p.childSnapshotForPath("phoneNumber").value as! String
+                        let dob = p.childSnapshotForPath("dateOfBirth").value as! String
+                        let dorm = p.childSnapshotForPath("dorm").value as! String
+                        let profile = Profile(firstName: fname, lastName: lname, gender: gender, year: year, phoneNumber: phone, dateOfBirth: dob, dorm: dorm)
+                        let newStatus = Status(statusId: statusId, userId: userId, body: body, time: timestamp, loc: loc, profile: profile)
                         statusData.append(newStatus)
                     }
                 }

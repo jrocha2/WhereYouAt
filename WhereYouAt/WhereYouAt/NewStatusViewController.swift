@@ -58,9 +58,9 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
     @IBAction func submitStatus(sender: UIBarButtonItem) {
         var s: Status
         if let text = status.text {
-            s = Status(userId: db.profile!.userId!, userName: db.profile!.name, body: text)
+            s = Status(userId: db.profile!.userId!, profile: db.profile!, body: text)
         } else {
-            s = Status(userId: db.profile!.userId!, userName: db.profile!.name, body: "")
+            s = Status(userId: db.profile!.userId!, profile: db.profile!, body: "")
         }
         
         if status.text!.characters.count > maxCharacters {

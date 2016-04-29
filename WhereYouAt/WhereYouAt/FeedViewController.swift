@@ -15,7 +15,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var friendStatuses : [Status] = []
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +58,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FeedTableViewCell
         let row = indexPath.row
         let status = friendStatuses[row]
-        cell.nameLabel.text = status.userName
+        cell.nameLabel.text = status.profile.name
         cell.statusLabel.text = status.body
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEEE 'at' h:mm a"
