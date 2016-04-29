@@ -34,11 +34,10 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
         status.attributedPlaceholder = placeholder
 
         self.map.delegate = self
-        let dropPin = MKPointAnnotation()
-        dropPin.coordinate = location.coordinate
-        dropPin.title = location.name
         let region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-        map.addAnnotation(dropPin)
+        let annotation = LocationAnnotation(loc: location)
+        map.addAnnotation(annotation)
+        map.selectAnnotation(annotation, animated: true)
         map.region = region
         if location.numberOfPeople == 1 {
             peopleHere.text = "\(location.numberOfPeople) Person Here"
@@ -76,6 +75,35 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? LocationAnnotation {
+            let identifier = "locationMarker"
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            
+            // Images from https://icons8.com/
+            switch annotation.locationType {
+            case .Apartment:
+                view.image = UIImage(named: "housePin")
+            case .Bar:
+                view.image = UIImage(named: "barPin")
+            case .Club:
+                view.image = UIImage(named: "clubPin")
+            case .Dorm:
+                view.image = UIImage(named: "dormPin")
+            case .House:
+                view.image = UIImage(named: "homePin")
+            case .OutOfTown:
+                view.image = UIImage(named: "outoftownPin")
+            case .Rave:
+                view.image = UIImage(named: "ravePin")
+            case .Tailgate:
+                view.image = UIImage(named: "tailgatePin")
+            }
+            
+            return view
+        }
+        
         return nil
     }
     
