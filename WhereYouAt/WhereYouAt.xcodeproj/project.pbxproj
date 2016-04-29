@@ -21,6 +21,8 @@
 		9142CA981CB1EB0D009B78E1 /* WhereYouAtUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9142CA971CB1EB0D009B78E1 /* WhereYouAtUITests.swift */; };
 		91733F211CB9AF9400C760A2 /* NewLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */; };
 		91CC34271CD2E0B900D133E8 /* NewLocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC34261CD2E0B900D133E8 /* NewLocationAnnotation.swift */; };
+		91CC34291CD31A3F00D133E8 /* UpdateTrendsSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC34281CD31A3F00D133E8 /* UpdateTrendsSettingsViewController.swift */; };
+		91CC342B1CD31B2D00D133E8 /* TrendsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC342A1CD31B2D00D133E8 /* TrendsSettings.swift */; };
 		91F7265F1CB1EBF3008A3618 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F7265E1CB1EBF3008A3618 /* Database.swift */; };
 		91F726611CB1EC6D008A3618 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726601CB1EC6D008A3618 /* Profile.swift */; };
 		91F726651CB1EE5A008A3618 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F726641CB1EE5A008A3618 /* Location.swift */; };
@@ -92,6 +94,8 @@
 		9142CA991CB1EB0D009B78E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91733F201CB9AF9400C760A2 /* NewLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationViewController.swift; sourceTree = "<group>"; };
 		91CC34261CD2E0B900D133E8 /* NewLocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewLocationAnnotation.swift; sourceTree = "<group>"; };
+		91CC34281CD31A3F00D133E8 /* UpdateTrendsSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateTrendsSettingsViewController.swift; sourceTree = "<group>"; };
+		91CC342A1CD31B2D00D133E8 /* TrendsSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendsSettings.swift; sourceTree = "<group>"; };
 		91F7265E1CB1EBF3008A3618 /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		91F726601CB1EC6D008A3618 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		91F726641CB1EE5A008A3618 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -311,6 +315,7 @@
 				91F726661CB1EF3B008A3618 /* Status.swift */,
 				91F726641CB1EE5A008A3618 /* Location.swift */,
 				9130A5A11CB9ACC0001A3276 /* LocationFinder.swift */,
+				91CC342A1CD31B2D00D133E8 /* TrendsSettings.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				E7CE67541CC5F8B90067F133 /* CustomPresentationController.swift */,
 				E7CE67551CC5F8B90067F133 /* CustomPresentationAnimationController.swift */,
 				E79B09E41CCCC6CC00797583 /* UpdateProfileTableViewController.swift */,
+				91CC34281CD31A3F00D133E8 /* UpdateTrendsSettingsViewController.swift */,
 				E79B09E61CCDB4D600797583 /* CurrentFriendsViewController.swift */,
 				E79B09EA1CCDD66900797583 /* FindFriendsViewController.swift */,
 				E79B09EC1CCDE05100797583 /* PendingFriendsTableViewController.swift */,
@@ -633,8 +639,10 @@
 				E72C77BB1CB39C7D002E3A3E /* FirebaseManager.swift in Sources */,
 				9142CA781CB1EB0D009B78E1 /* AppDelegate.swift in Sources */,
 				91CC34271CD2E0B900D133E8 /* NewLocationAnnotation.swift in Sources */,
+				91CC34291CD31A3F00D133E8 /* UpdateTrendsSettingsViewController.swift in Sources */,
 				9130A59C1CB5F064001A3276 /* LocationTableViewCell.swift in Sources */,
 				E7B231701CCB1139003B2C4A /* MenuTableViewController.swift in Sources */,
+				91CC342B1CD31B2D00D133E8 /* TrendsSettings.swift in Sources */,
 				91F726651CB1EE5A008A3618 /* Location.swift in Sources */,
 				E72C77BF1CB48164002E3A3E /* NewUserTableViewController.swift in Sources */,
 				E74343B11CBF1DD200EF461D /* LocationAnnotation.swift in Sources */,

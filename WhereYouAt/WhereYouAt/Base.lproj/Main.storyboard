@@ -904,8 +904,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvy-fA-UNl">
-                                                    <rect key="frame" x="30" y="11" width="57" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvy-fA-UNl">
+                                                    <rect key="frame" x="30" y="11" width="110" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -920,10 +920,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Trends Settings" id="fFg-Ns-l9t">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="eTz-Fe-GER">
+                                        <rect key="frame" x="0.0" y="216" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eTz-Fe-GER" id="HFN-li-2of">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Trends Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WDS-oe-nvA">
+                                                    <rect key="frame" x="30" y="11" width="181" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WDS-oe-nvA" firstAttribute="leading" secondItem="HFN-li-2of" secondAttribute="leadingMargin" constant="22" id="RWh-9f-5xs"/>
+                                                <constraint firstItem="WDS-oe-nvA" firstAttribute="centerY" secondItem="HFN-li-2of" secondAttribute="centerY" id="hJD-oo-y9v"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Sign Out" id="iUE-vz-Z6K">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Pd7-ao-Gwz">
-                                        <rect key="frame" x="0.0" y="216" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="288" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Pd7-ao-Gwz" id="Tlx-fR-Hvl">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -956,12 +981,13 @@
                         <segue destination="a6w-Mb-TJa" kind="unwind" identifier="signOut" unwindAction="unwindToAuth:" id="4Wx-Nh-UiH"/>
                         <segue destination="vCA-jW-MEL" kind="presentation" identifier="currentFriends" modalTransitionStyle="flipHorizontal" id="mPf-eW-Nei"/>
                         <segue destination="aWY-xb-GcM" kind="presentation" identifier="addFriend" modalTransitionStyle="flipHorizontal" id="jrq-Nr-Cj9"/>
+                        <segue destination="Yne-gv-H3J" kind="presentation" identifier="updateTrendsSettings" modalTransitionStyle="flipHorizontal" id="uBl-wD-9Tm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTc-ha-nYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="a6w-Mb-TJa" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3743" y="317.5"/>
+            <point key="canvasLocation" x="3855" y="169.5"/>
         </scene>
         <!--Current Friends View Controller-->
         <scene sceneID="lWL-Un-H46">
@@ -1304,7 +1330,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UdU-8M-TfB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="2gp-Md-EHO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4902" y="826"/>
+            <point key="canvasLocation" x="4866" y="934"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="hNi-st-5ig">
@@ -1449,6 +1475,89 @@
                 <exit id="VHQ-3w-Vv9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5638" y="134"/>
+        </scene>
+        <!--Update Profile Table View Controller-->
+        <scene sceneID="iPq-I1-awV">
+            <objects>
+                <tableViewController id="Yne-gv-H3J" customClass="UpdateProfileTableViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="erZ-qv-8Cv">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uUw-uG-Wuq">
+                            <rect key="frame" x="0.0" y="380" width="600" height="49"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" title="Update Trends Preferences"/>
+                            <connections>
+                                <action selector="userDone:" destination="Yne-gv-H3J" eventType="touchUpInside" id="R74-fS-Nah"/>
+                            </connections>
+                        </button>
+                        <sections>
+                            <tableViewSection headerTitle="   " id="PaG-Ud-KRW">
+                                <cells/>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Update Whether You Only See Your Friends in Trends" id="trc-yX-TDB">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4Xm-6k-NdT">
+                                        <rect key="frame" x="0.0" y="56" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Xm-6k-NdT" id="4wp-V1-6YV">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Update What Classes You See in Trends" id="8zg-HS-xo9">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fv8-XL-MiQ">
+                                        <rect key="frame" x="0.0" y="144" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fv8-XL-MiQ" id="T1j-tU-q4W">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Update What Genders You See in Trends" id="LRw-cC-cGL">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ca9-eW-vNZ">
+                                        <rect key="frame" x="0.0" y="232" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ca9-eW-vNZ" id="dMo-1V-DgN">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Update What Dorms You See in Trends" id="VY7-KC-LTz">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="dz1-jX-Ie9">
+                                        <rect key="frame" x="0.0" y="320" width="600" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dz1-jX-Ie9" id="pSV-3Q-i6d">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="59.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Yne-gv-H3J" id="r7C-fg-zAs"/>
+                            <outlet property="delegate" destination="Yne-gv-H3J" id="5HN-s6-gsi"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="S66-QP-jUI" kind="unwind" identifier="unwindFromUpdateProfile" unwindAction="unwindToMainMenu:" id="XHc-h9-ngp"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZDU-mu-4Db" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="S66-QP-jUI" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3807" y="859"/>
         </scene>
     </scenes>
     <resources>

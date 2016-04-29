@@ -9,36 +9,6 @@
 import UIKit
 
 class NewUserTableViewController: UITableViewController {
-    
-    var dorms = ["Alumni",
-                 "Badin",
-                 "Breen-Phillips",
-                 "Carroll",
-                 "Cavanaugh",
-                 "Dillon",
-                 "Duncan",
-                 "Farley",
-                 "Fisher",
-                 "Howard",
-                 "Keenan",
-                 "Keough",
-                 "Knott",
-                 "Lewis",
-                 "Lyons",
-                 "McGlinn",
-                 "Morrissey",
-                 "O’Neill",
-                 "Pangborn",
-                 "Pasquerilla East",
-                 "Pasquerilla West",
-                 "Ryan",
-                 "Saint Edward’s",
-                 "Siegfried",
-                 "Sorin",
-                 "Stanford",
-                 "Walsh",
-                 "Welsh Family",
-                 "Zahm"]
 
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
@@ -109,7 +79,7 @@ class NewUserTableViewController: UITableViewController {
             newProfile.dateOfBirth = strDate
             
             let dormIndex = self.dormPicker.selectedRowInComponent(0)
-            let dorm = dorms[dormIndex]
+            let dorm = db.dorms[dormIndex]
             newProfile.dorm = dorm
             
             db.updateProfile(newProfile, call: {
@@ -138,7 +108,7 @@ class NewUserTableViewController: UITableViewController {
                 return Profile.Year.allValues.count
             }
         } else {
-            return dorms.count
+            return db.dorms.count
         }
     }
     
@@ -150,7 +120,7 @@ class NewUserTableViewController: UITableViewController {
                 return Profile.Year.allValues[row]
             }
         } else {
-            return dorms[row]
+            return db.dorms[row]
         }
     }
     

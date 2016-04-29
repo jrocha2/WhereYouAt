@@ -22,6 +22,35 @@ class Database {
     var friendsList: [String: String] = [:]
     var friendRequests : [String : String] = [:]
     var friendsPending : [String : String] = [:]
+    var dorms = ["Alumni",
+                 "Badin",
+                 "Breen-Phillips",
+                 "Carroll",
+                 "Cavanaugh",
+                 "Dillon",
+                 "Duncan",
+                 "Farley",
+                 "Fisher",
+                 "Howard",
+                 "Keenan",
+                 "Keough",
+                 "Knott",
+                 "Lewis",
+                 "Lyons",
+                 "McGlinn",
+                 "Morrissey",
+                 "O’Neill",
+                 "Pangborn",
+                 "Pasquerilla East",
+                 "Pasquerilla West",
+                 "Ryan",
+                 "Saint Edward’s",
+                 "Siegfried",
+                 "Sorin",
+                 "Stanford",
+                 "Walsh",
+                 "Welsh Family",
+                 "Zahm"]
     
     //The init method calls the methods in the Firebase class
     init(myUID: String, hasProfile: Bool, callback: () -> Void) {
@@ -160,7 +189,7 @@ class Database {
         return self.getFilteredCampusTrends(false, getOnlyYear: nil, getOnlyDorm: nil, getOnlyGender: nil, getType: nil)
     }
     
-    func getFilteredCampusTrends(getOnlyFriends: Bool, getOnlyYear: Profile.Year?, getOnlyDorm: String?, getOnlyGender: Profile.Gender?, getType: LocationType?) -> [Location] {
+    func getFilteredCampusTrends(getOnlyFriends: Bool, getOnlyYear: Profile.Year?, getOnlyDorm: [String]?, getOnlyGender: Profile.Gender?, getType: LocationType?) -> [Location] {
         var locs: [Location] = []
         
         //If getType is not nil, only include events of a particular type
@@ -201,7 +230,7 @@ class Database {
         if let dorm = getOnlyDorm {
             for location in locations {
                 location.statuses = location.statuses.filter({ (stat) -> Bool in
-                    return stat.profile.dorm == dorm
+                    return dorm.contains(stat.profile.dorm!)
                 })
             }
         }
