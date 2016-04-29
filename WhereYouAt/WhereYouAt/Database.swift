@@ -157,7 +157,54 @@ class Database {
     
     // Return locations sorted by most number of people in attendence
     func getCampusTrends() -> [Location] {
+        return self.getFilteredCampusTrends(false, getOnlyYear: nil, getOnlyDorm: nil, getOnlyGender: nil, getType: nil)
+    }
+    
+    func getFilteredCampusTrends(getOnlyFriends: Bool, getOnlyYear: Profile.Year?, getOnlyDorm: String?, getOnlyGender: Profile.Gender?, getType: LocationType?) -> [Location] {
         var locs: [Location] = []
+        
+        //If getType is not nil, only include events of a particular type
+        if let type = getType {
+            locations = locations.filter({ (locat) -> Bool in
+                return locat.type == type
+            })
+        }
+        
+        //If getOnlyFriends is true, only include the friends
+        if getOnlyFriends {
+            for location in locations {
+                location.statuses = location.statuses.filter({ (stat) -> Bool in
+                    return self.friendsList[stat.profile.userId!] != nil
+                })
+            }
+        }
+        
+        //If getOnlyGender is not nil, get only people of particular gender
+        if let gender = getOnlyGender {
+            for location in locations {
+                location.statuses = location.statuses.filter({ (stat) -> Bool in
+                    return stat.profile.gender == gender
+                })
+            }
+        }
+        
+        //If getOnlyYear is not nil, get only people from a particular year
+        if let year = getOnlyYear {
+            for location in locations {
+                location.statuses = location.statuses.filter({ (stat) -> Bool in
+                    return stat.profile.year == year
+                })
+            }
+        }
+        
+        //If getOnlyDorm is true, return only those statuses from a particular dorm
+        if let dorm = getOnlyDorm {
+            for location in locations {
+                location.statuses = location.statuses.filter({ (stat) -> Bool in
+                    return stat.profile.dorm == dorm
+                })
+            }
+        }
         
         // Filter locations so that only those with people are shown
         locs = locations.filter { loc in
@@ -167,16 +214,4 @@ class Database {
         locs.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
         return locs
     }
-    
-    /*//Returns an array of events with a particular category
-    func getTrendWithCategory(category: LocationType) -> [Event] {
-        var events: [Event] = []
-        for event in eventData {
-            if event.location.type == category {
-                events.append(event)
-            }
-        }
-        events.sortInPlace({$0.numberOfPeople > $1.numberOfPeople})
-        return events
-    }*/
 }
