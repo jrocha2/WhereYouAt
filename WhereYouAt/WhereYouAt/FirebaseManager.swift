@@ -186,61 +186,65 @@ class FirebaseManager {
  
     //Gets every location in the database and the statuses for the location
     func getLocations(callback: ([Location]) -> ()) {
+        let usersRef = self.rootRef.childByAppendingPath("Users")
         let locationRef = rootRef.childByAppendingPath("Locations")
         var locationData: [Location] = []
         var statusData: [Status] = []
         locationRef.observeEventType(.Value, withBlock: {
-            (snapshot) in
-            for child in snapshot.children {
-                let locId = child.key as String
-                let info = child.childSnapshotForPath("Info")
-                let statuses = child.childSnapshotForPath("Statuses")
-                
-                //Create the location
-                let lat = info.childSnapshotForPath("latitude").value as! Double
-                let lon = info.childSnapshotForPath("longitude").value as! Double
-                let name = info.childSnapshotForPath("name").value as! String
-                let type = LocationType(rawValue: String(info.childSnapshotForPath("type").value))!
-                let loc = Location(locationId: locId, locationName: name, locationType: type, latitude: lat, longitude: lon)
-                
-                for status in statuses.children {
+            (locationSnap) in
+            usersRef.observeEventType(.Value, withBlock: {
+                (usersSnap) in
+                for child in locationSnap.children {
+                    let locId = child.key as String
+                    let info = child.childSnapshotForPath("Info")
+                    let statuses = child.childSnapshotForPath("Statuses")
                     
-                    //For each status, add this to a status array
-                    let statusId = status.key as String
-                    let body = status.childSnapshotForPath("body").value as! String
-                    let timestamp = status.childSnapshotForPath("timestamp").value as! Double
+                    //Create the location
+                    let lat = info.childSnapshotForPath("latitude").value as! Double
+                    let lon = info.childSnapshotForPath("longitude").value as! Double
+                    let name = info.childSnapshotForPath("name").value as! String
+                    let type = LocationType(rawValue: String(info.childSnapshotForPath("type").value))!
+                    let loc = Location(locationId: locId, locationName: name, locationType: type, latitude: lat, longitude: lon)
                     
-                    //Check if this status is older than a day, if it is, don't add to array, and delete from Firebase
-                    let duration = NSDate(timeIntervalSince1970: timestamp).timeIntervalSinceDate(NSDate())
-                    let numberOfDays: Double = 7
-                    let maxDuration: Double = -86400 * numberOfDays //One day times numberOfDays
-                    if duration < maxDuration {
-                        //The status is too old, remove it
-                        self.removeStatus(statusId, locationId: locId)
-                    } else {
-                        //Status is fine, add to array
-                        let userId = status.childSnapshotForPath("userId").value as! String
-                        let p = status.childSnapshotForPath("profile")
-                        let fname = p.childSnapshotForPath("firstName").value as! String
-                        let lname = p.childSnapshotForPath("lastName").value as! String
-                        let gender = Profile.Gender(rawValue: p.childSnapshotForPath("gender").value as! String)!
-                        let year = Profile.Year(rawValue: p.childSnapshotForPath("year").value as! String)!
-                        let phone = p.childSnapshotForPath("phoneNumber").value as! String
-                        let dob = p.childSnapshotForPath("dateOfBirth").value as! String
-                        let dorm = p.childSnapshotForPath("dorm").value as! String
-                        let profile = Profile(firstName: fname, lastName: lname, gender: gender, year: year, phoneNumber: phone, dateOfBirth: dob, dorm: dorm)
-                        let newStatus = Status(statusId: statusId, userId: userId, body: body, time: timestamp, loc: loc, profile: profile)
-                        statusData.append(newStatus)
+                    for status in statuses.children {
+                        
+                        //For each status, add this to a status array
+                        let statusId = status.key as String
+                        let body = status.childSnapshotForPath("body").value as! String
+                        let timestamp = status.childSnapshotForPath("timestamp").value as! Double
+                        
+                        //Check if this status is older than a day, if it is, don't add to array, and delete from Firebase
+                        let duration = NSDate(timeIntervalSince1970: timestamp).timeIntervalSinceDate(NSDate())
+                        let numberOfDays: Double = 7
+                        let maxDuration: Double = -86400 * numberOfDays //One day times numberOfDays
+                        if duration < maxDuration {
+                            //The status is too old, remove it
+                            self.removeStatus(statusId, locationId: locId)
+                        } else {
+                            //Status is fine, add to array
+                            let userId = status.childSnapshotForPath("userId").value as! String
+                            let user = usersSnap.childSnapshotForPath(userId).childSnapshotForPath("Profile")
+                            let fname = user.childSnapshotForPath("firstName").value as! String
+                            let lname = user.childSnapshotForPath("lastName").value as! String
+                            let gender = Profile.Gender(rawValue: user.childSnapshotForPath("gender").value as! String)!
+                            let year = Profile.Year(rawValue: user.childSnapshotForPath("year").value as! String)!
+                            let phone = user.childSnapshotForPath("phone").value as! String
+                            let dob = user.childSnapshotForPath("dateOfBirth").value as! String
+                            let dorm = user.childSnapshotForPath("dorm").value as! String
+                            let profile = Profile(firstName: fname, lastName: lname, gender: gender, year: year, phoneNumber: phone, dateOfBirth: dob, dorm: dorm)
+                            let newStatus = Status(statusId: statusId, userId: userId, body: body, time: timestamp, loc: loc, profile: profile)
+                            statusData.append(newStatus)
+                        }
                     }
+                    locationData.append(loc)
+                    loc.addStatuses(statusData)
+                    
+                    //Reset status data
+                    statusData = []
                 }
-                locationData.append(loc)
-                loc.addStatuses(statusData)
-                
-                //Reset status data
-                statusData = []
-            }
-            callback(locationData)
-            locationData = []
+                callback(locationData)
+                locationData = []
+            })
         })
         
     }

@@ -26,7 +26,7 @@ class Status: CustomStringConvertible {
     }
     
     var fbDescription: [String: AnyObject] {
-        return ["userId": userId, "userName": profile.name, "profile": ["firstName": profile.firstName, "lastName": profile.lastName, "dorm": profile.dorm!, "dateOfBirth": profile.dateOfBirth!, "gender": profile.gender.rawValue, "year": profile.year.rawValue, "phoneNumber": profile.phone], "body": body, "timestamp": NSDate().timeIntervalSince1970]
+        return ["userId": userId, "userName": profile.name, "body": body, "timestamp": NSDate().timeIntervalSince1970]
     }
     
     func setStatusId(id: String) {
