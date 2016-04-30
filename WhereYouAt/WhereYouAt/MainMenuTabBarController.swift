@@ -26,6 +26,10 @@ class MainMenuTabBarController: UITabBarController {
         // Set the theme
         Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withSecondaryColor: UIColor.flatBlueColorDark(), usingFontName: "SF UI Display", andContentStyle: .Light)
         UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         
         // Setup tab bar color scheme
         self.tabBar.tintColor = UIColor.whiteColor()
@@ -38,7 +42,6 @@ class MainMenuTabBarController: UITabBarController {
                 item.image = image.imageWithColor(UIColor.whiteColor()).imageWithRenderingMode(.AlwaysOriginal)
             }
         }
-
     }
     
     // Segue to the menu and remove the gesture
