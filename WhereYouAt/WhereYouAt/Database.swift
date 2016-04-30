@@ -22,6 +22,7 @@ class Database {
     var friendsList: [String: String] = [:]
     var friendRequests : [String : String] = [:]
     var friendsPending : [String : String] = [:]
+    var profilePictures : [String : String] = [:]
     var dorms = ["Alumni",
                  "Badin",
                  "Breen-Phillips",
@@ -64,6 +65,7 @@ class Database {
         self.getPendingFriends({})
         self.getLocationsAndStatuses()
         self.getAllUsers({})
+        self.getProfilePics({})
         if( hasProfile ) {
             self.getProfile()
         }
@@ -182,6 +184,14 @@ class Database {
             }
         }
         callback(friendStatuses)
+    }
+    
+    func getProfilePics(callback: () -> Void) {
+        self.firebase.getProfilePictures({
+            (pictures) in
+            self.profilePictures = pictures
+            callback()
+        })
     }
     
     // Return locations sorted by most number of people in attendence

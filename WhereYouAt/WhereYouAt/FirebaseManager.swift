@@ -254,4 +254,24 @@ class FirebaseManager {
         let ref = rootRef.childByAppendingPath("Locations/\(locationId)/Statuses/\(statusId)")
         ref.removeValue()
     }
+    
+    // Add profile pic to firebase node
+    func updateProfilePicture(url: String) {
+        rootRef.childByAppendingPath("Images/\(myUID)").setValue(url)
+    }
+    
+    // Receive dictionary of uids and picture urls
+    func getProfilePictures(callback: [String:String] -> ()) {
+        var picURLs : [String:String] = [:]
+        
+        rootRef.childByAppendingPath("Images").observeSingleEventOfType(.Value, withBlock: {
+            (snapshot) in
+            for child in snapshot.children {
+                let key = child.key as String
+                let value = child.value as String
+                picURLs[key] = value
+            }
+            callback(picURLs)
+        })
+    }
 }

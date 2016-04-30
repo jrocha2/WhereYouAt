@@ -16,6 +16,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
 
     var ref: Firebase!
     var userId : String = ""
+    var picURL : String = ""
     var appJustOpened : Bool = true
     
     override func viewDidLoad() {
@@ -65,7 +66,8 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 let userEmail = authData.providerData["email"] as! String
                 self.userId = authData.providerData["id"] as! String
                 let userName = authData.providerData["displayName"] as! String
-                print(userEmail, " ", self.userId, " ", userName)
+                self.picURL = authData.providerData["profileImageURL"] as! String
+                print(userEmail, " ", self.userId, " ", userName, " ", self.picURL)
                 
                 let manager = FirebaseManager(myUID: self.userId)
                 manager.checkForUserId(self.userId, callback: {
