@@ -186,11 +186,23 @@ class Database {
         callback(friendStatuses)
     }
     
+    func setProfilePic(url: String) {
+        self.firebase.updateProfilePicture(url)
+        self.firebase.getProfilePictures({_ in })
+    }
+    
     func getProfilePics(callback: () -> Void) {
         self.firebase.getProfilePictures({
             (pictures) in
             self.profilePictures = pictures
             callback()
+        })
+    }
+    
+    func loadImage(url: String, callback: UIImage? -> Void) {
+        self.firebase.retrievePicFromURL(url, callback: {
+            (image) in
+            callback(image)
         })
     }
     

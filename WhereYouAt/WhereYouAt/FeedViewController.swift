@@ -11,6 +11,7 @@ import UIKit
 class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var myUID: String = ""
+    var picURL : String = ""
     var db: Database!
     var friendStatuses : [Status] = []
     
@@ -24,6 +25,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             // Do any additional setup after loading the view.
             self.db.firebase.getProfile(self.myUID, callback: {_ in })
+            self.db.setProfilePic(self.picURL)
             
             self.tableView.dataSource = self
             self.tableView.delegate = self

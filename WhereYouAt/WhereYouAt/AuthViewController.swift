@@ -96,11 +96,13 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let dest = segue.destinationViewController as? NewUserTableViewController {
             dest.myUID = self.userId
+            dest.picURL = self.picURL
         }
         if let dest = segue.destinationViewController as? UINavigationController {
             if let tab = dest.topViewController as? MainMenuTabBarController {
                 if let first = tab.viewControllers![0] as? FeedViewController {
                     first.myUID = self.userId
+                    first.picURL = self.picURL
                 }
             }
         }

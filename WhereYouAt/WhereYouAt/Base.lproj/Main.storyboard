@@ -1369,6 +1369,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="imageView" destination="LHN-sG-zQP" id="w3L-Ja-2hD"/>
                         <outlet property="nameLabel" destination="Qyz-dr-UQX" id="f87-AA-hz2"/>
                         <segue destination="Ml0-o5-ObF" kind="unwind" identifier="unwindToMenu" unwindAction="unwindToMainMenu:" id="9Dl-x6-Htw"/>
                     </connections>
