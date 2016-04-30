@@ -1,9 +1,6 @@
-CONFIGURATION_BUILD_DIR = $PODS_SHARED_BUILD_DIR/Firebase
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/GoogleAppUtilities" "${PODS_ROOT}/Headers/Public/GoogleAuthUtilities" "${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities" "${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities" "${PODS_ROOT}/Headers/Public/GoogleSignIn" "${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities" "${PODS_ROOT}/Headers/Public/GoogleUtilities"
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Firebase" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Google" "${PODS_ROOT}/Headers/Public/GoogleAppUtilities" "${PODS_ROOT}/Headers/Public/GoogleAuthUtilities" "${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities" "${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities" "${PODS_ROOT}/Headers/Public/GoogleSignIn" "${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities" "${PODS_ROOT}/Headers/Public/GoogleUtilities"
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Firebase"
 OTHER_LDFLAGS = -ObjC -l"FirebaseStatic" -l"c++" -l"icucore" -framework "CFNetwork" -framework "Security" -framework "SystemConfiguration"
 PODS_ROOT = ${SRCROOT}
-PODS_SHARED_BUILD_DIR = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
-PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
 SKIP_INSTALL = YES
