@@ -60,14 +60,26 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FeedTableViewCell
         let row = indexPath.row
         let status = friendStatuses[row]
-        cell.nameLabel.text = status.profile.name
+        cell.nameLabel.text = status.profile.name + " @ \(status.location!.name)"
         cell.statusLabel.text = status.body
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "EEEE 'at' h:mm a"
+        formatter.dateFormat = "EEE 'at' h:mm a"
         let date = NSDate(timeIntervalSince1970: status.timestamp!)
         cell.timeLabel.text = formatter.stringFromDate(date)
-        cell.locationLabel.text = status.location?.name
+        cell.timeLabel.adjustsFontSizeToFitWidth = true
         
+        let uid = status.userId 
+        if let url = db.profilePictures[uid] {
+            db.loadImage(url, callback: {
+                (image) in
+                if image != nil {
+                    var pic = image?.rounded
+                    pic = image?.circle
+                    cell.picture.image = pic
+                    self.tableView.reloadData()
+                }
+            })
+        }
         return cell
     }
     
