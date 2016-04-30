@@ -8,6 +8,7 @@
 //  Subclass of UITabBarController to maintain a common database accessible by all the tabs
 
 import UIKit
+import ChameleonFramework
 
 class MainMenuTabBarController: UITabBarController {
 
@@ -19,7 +20,12 @@ class MainMenuTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addRevealMenuGesture()
+        
+        // Set the theme
+        Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withSecondaryColor: UIColor.flatBlueColorDark(), usingFontName: "SF UI Display", andContentStyle: .Light)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
         
         // Setup tab bar color scheme
         self.tabBar.tintColor = UIColor.whiteColor()

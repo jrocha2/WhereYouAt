@@ -295,7 +295,7 @@
             </objects>
             <point key="canvasLocation" x="2382" y="2673"/>
         </scene>
-        <!--Where Are You Going Tonight?-->
+        <!--Select Location-->
         <scene sceneID="y5C-9L-eEv">
             <objects>
                 <tableViewController id="lNx-ge-ETP" customClass="LocationsTableViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -359,7 +359,7 @@
                             <outlet property="delegate" destination="lNx-ge-ETP" id="IhM-KA-D9E"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Where Are You Going Tonight?" id="xrR-OR-RBM">
+                    <navigationItem key="navigationItem" title="Select Location" id="xrR-OR-RBM">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="acf-J9-lbQ">
                             <connections>
                                 <action selector="cancelPost:" destination="lNx-ge-ETP" id="5Qc-25-zGk"/>
@@ -376,7 +376,7 @@
             </objects>
             <point key="canvasLocation" x="3348" y="1853"/>
         </scene>
-        <!--Where Are You Going Tonight?-->
+        <!--New Status View Controller-->
         <scene sceneID="YC3-2r-mgM">
             <objects>
                 <viewController id="nRD-SC-nrH" customClass="NewStatusViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -448,7 +448,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Where Are You Going Tonight?" id="gxH-ta-CQ0">
+                    <navigationItem key="navigationItem" id="gxH-ta-CQ0">
                         <barButtonItem key="rightBarButtonItem" title="Post" id="CuW-Q1-MQB">
                             <connections>
                                 <action selector="submitStatus:" destination="nRD-SC-nrH" id="SqE-0V-6Iu"/>
@@ -474,6 +474,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dn4-VE-xiq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="lNx-ge-ETP" kind="relationship" relationship="rootViewController" id="6EH-zJ-oTe"/>
@@ -699,6 +703,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aJD-E3-RM0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -709,7 +717,7 @@
             </objects>
             <point key="canvasLocation" x="420" y="280"/>
         </scene>
-        <!--Add Location-->
+        <!--New Location View Controller-->
         <scene sceneID="V0s-cm-lp8">
             <objects>
                 <viewController id="LwA-q6-9eJ" customClass="NewLocationViewController" customModule="WhereYouAt" customModuleProvider="target" sceneMemberID="viewController">
@@ -734,7 +742,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="2cA-JQ-bGL"/>
                                 </constraints>
-                                <state key="normal" title="Check Address"/>
+                                <state key="normal" title="Check "/>
                                 <connections>
                                     <action selector="checkAddress:" destination="LwA-q6-9eJ" eventType="touchUpInside" id="bhY-Le-yjF"/>
                                 </connections>
@@ -796,7 +804,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Location" id="fLD-yx-3gN">
+                    <navigationItem key="navigationItem" id="fLD-yx-3gN">
                         <barButtonItem key="rightBarButtonItem" title="Save Location" id="7Ke-NG-C7P">
                             <connections>
                                 <action selector="saveLocation:" destination="LwA-q6-9eJ" id="nY1-ca-2o5"/>
@@ -978,6 +986,10 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VkS-vS-jVw">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="My Friends" id="rrW-Ih-ZrZ">
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="EUG-Wg-obd">

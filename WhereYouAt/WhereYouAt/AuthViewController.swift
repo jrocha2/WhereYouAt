@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Google
+import ChameleonFramework
 
 
 class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
@@ -19,6 +20,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Firebase(url: "https://whereareu.firebaseio.com/")
         
         // Setup delegates

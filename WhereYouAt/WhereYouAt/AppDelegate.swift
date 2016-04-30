@@ -20,8 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withContentStyle: .Light)
         
-        Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withSecondaryColor: UIColor.flatBlueColorDark(), usingFontName: "SF UI Display", andContentStyle: .Light)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+        
         
         // Configure Sign-In
         var configureError: NSError?
