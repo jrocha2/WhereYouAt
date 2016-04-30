@@ -17,7 +17,7 @@ class MenuTableViewController: UITableViewController {
         
         // Hide any extra cells
         tableView.tableFooterView = UIView()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -66,6 +66,12 @@ class MenuTableViewController: UITableViewController {
             self.performSegueWithIdentifier("signOut", sender: self)
         }
     }
+    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let view = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 30))
+//        view.backgroundColor = UIColor.flatBlueColor()
+//        return view
+//    }
     
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
