@@ -27,7 +27,9 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         db.loadImage(db.profilePictures[db.userId]!, callback: {
             (image) in
             if image != nil {
-                self.imageView.image = image
+                var pic = image?.rounded
+                pic = image?.circle
+                self.imageView.image = pic
             }
         })
         
