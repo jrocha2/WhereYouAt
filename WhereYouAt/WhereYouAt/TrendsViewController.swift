@@ -12,6 +12,9 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
 
     var db : Database!
     var locations : [Location] = []
+    var filteredLocations : [Location] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var selectedScope = "All"
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,11 +25,25 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         let tabBar = self.tabBarController as! MainMenuTabBarController
         db = tabBar.db
         
+        updateTableView()
+        filteredLocations = locations
+        
         tableView.dataSource = self
         tableView.delegate = self
         
         // Whenever the new location data received, call a function to update table
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.updateTableView), name: newLocationDataNotification, object: nil)
+        
+        self.searchController.searchResultsUpdater = self
+        self.searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+        searchController.searchBar.scopeButtonTitles = ["All", "Bar", "House", "Dorm"]
+        searchController.searchBar.delegate = self
+    }
+    
+    deinit {
+        self.searchController.loadViewIfNeeded()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,13 +63,17 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        if( searchController.active ) {
+            return filteredLocations.count
+        } else {
+            return locations.count
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("trendCell", forIndexPath: indexPath) as! TrendTableViewCell
         let row = indexPath.row
-        let loc = locations[row]
+        let loc = filteredLocations[row]
         cell.numberOfPeopleLabel.text = String(loc.numberOfPeople)
         cell.locationNameLabel.text = "Going to " + loc.name
         switch loc.type {
@@ -80,12 +101,28 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     func updateTableView() {
         locations = db.getCampusTrends()
         
-        // Filter locations so that only those with people are shown
-        locations = locations.filter { loc in
-            return loc.numberOfPeople > 0
+        tableView.reloadData()
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredLocations.removeAll()
+        filteredLocations = locations.filter { location in
+            let scope2 = self.selectedScope
+            var correctType: Bool = false
+            if(scope2 == "All") { correctType = true }
+            else if(scope2 == "Bar" && location.type == .Bar) { correctType = true }
+            else if(scope2 == "Dorm" && location.type == .Dorm) { correctType = true }
+            else if(scope2 == "House" && location.type == .House) { correctType = true }
+            
+            let blankMatch = (searchText == "")
+            
+            let nameMatch = location.name.lowercaseString.containsString(searchText.lowercaseString)
+            
+            return correctType && (blankMatch || nameMatch)
         }
         
         tableView.reloadData()
+        
     }
     
     /*
@@ -98,4 +135,17 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     */
 
+}
+
+extension TrendsViewController: UISearchResultsUpdating {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
+
+extension TrendsViewController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.selectedScope = searchBar.scopeButtonTitles![selectedScope]
+        filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
+    }
 }

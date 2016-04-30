@@ -12,7 +12,7 @@ import Firebase
 class Status: CustomStringConvertible {
     var statusId: String?
     var userId: String
-    var userName: String
+    var profile: Profile
     var body: String
     var timestamp: Double?
     var location: Location?
@@ -22,30 +22,30 @@ class Status: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(userName): \(body)"
+        return "\(profile.name) at \(location!.name): \(body)"
     }
     
     var fbDescription: [String: AnyObject] {
-        return ["userId": userId, "userName": userName, "body": body, "timestamp": NSDate().timeIntervalSince1970]
+        return ["userId": userId, "userName": profile.name, "body": body, "timestamp": NSDate().timeIntervalSince1970]
     }
     
     func setStatusId(id: String) {
         self.statusId = id
     }
     
-    init(userId: String, userName: String, body: String) {
+    init(userId: String, profile: Profile, body: String) {
         self.userId = userId
-        self.userName = userName
+        self.profile = profile
         self.body = body
         self.timestamp = nil
         self.statusId = nil
         self.location = nil
     }
     
-    init(statusId: String, userId: String, userName: String, body: String, time: Double, loc: Location) {
+    init(statusId: String, userId: String, body: String, time: Double, loc: Location, profile: Profile) {
         self.statusId = statusId
         self.userId = userId
-        self.userName = userName
+        self.profile = profile
         self.body = body
         self.timestamp = time
         self.location = loc

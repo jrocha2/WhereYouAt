@@ -15,7 +15,6 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var friendStatuses : [Status] = []
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var name: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,10 +58,12 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FeedTableViewCell
         let row = indexPath.row
         let status = friendStatuses[row]
-        // Need to edit data hierarchy somewhere so we have access to location name here too
-        cell.nameLabel.text = status.userName
+        cell.nameLabel.text = status.profile.name
         cell.statusLabel.text = status.body
-        cell.timeLabel.text = NSDateFormatter.localizedStringFromDate(status.time, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "EEEE 'at' h:mm a"
+        let date = NSDate(timeIntervalSince1970: status.timestamp!)
+        cell.timeLabel.text = formatter.stringFromDate(date)
         cell.locationLabel.text = status.location?.name
         
         return cell

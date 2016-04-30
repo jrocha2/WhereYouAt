@@ -27,6 +27,7 @@ class CurrentFriendsViewController: UIViewController, UITableViewDataSource, UIT
         
         // Reload the friends in the database to ensure they are up to date
         db.getFriends({
+            self.friends.removeAll()
             for friend in self.db.friendsList {
                 self.friends.append(friend.1)
             }

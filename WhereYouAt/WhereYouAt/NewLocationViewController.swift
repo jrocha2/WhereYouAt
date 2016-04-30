@@ -9,41 +9,58 @@
 import UIKit
 import MapKit
 
-class NewLocationViewController: UIViewController, MKMapViewDelegate {
+class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    var latitude: Double = 0
+    var longitude: Double = 0
+    
+    @IBOutlet var locationTypePicker: UIPickerView!
     @IBOutlet var locationName: UITextField!
-    @IBOutlet var locationType: UITextField!
     @IBOutlet var address: UITextField!
     @IBOutlet var addressError: UILabel!
     @IBOutlet var map: MKMapView!
     @IBAction func checkAddress(sender: UIButton) {
-        let _ = LocationFinder(address: address.text!) {
-            (finder) in
-            if finder.error == true {
-                self.addressError.text = "No address results found"
-            } else {
-                let dropPin = MKPointAnnotation()
-                dropPin.coordinate = finder.coordinate
-                dropPin.title = self.locationName.text
-                let region = MKCoordinateRegionMake(finder.coordinate, MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-                self.map.addAnnotation(dropPin)
-                self.map.setRegion(region, animated: true)
-                
-                self.location = Location(locationName: self.locationName.text!, locationType: LocationType(rawValue: self.locationType.text!)!, latitude: finder.latitude, longitude: finder.longitude)
-                self.addressError.text = ""
-                self.checkedAddress = true
+        if locationName.text == "" {
+            addressError.text = "Enter the name of your new location!"
+        } else {
+            let _ = LocationFinder(address: address.text!) {
+                (finder) in
+                self.view.endEditing(true)
+                if finder.error == true {
+                    self.addressError.text = "No address results found"
+                } else {
+                    self.map.delegate = self
+                    let region = MKCoordinateRegionMake(finder.coordinate, MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
+                    let index = self.locationTypePicker?.selectedRowInComponent(0)
+                    let type = LocationType(rawValue: LocationType.allValues[index!])!
+                    let annotation = NewLocationAnnotation(name: self.locationName.text!, type: type, coordinate: finder.coordinate)
+                    self.map.addAnnotation(annotation)
+                    self.map.selectAnnotation(annotation, animated: true)
+                    self.map.region = region
+                    
+                    self.latitude = finder.latitude
+                    self.longitude = finder.longitude
+                    
+                    self.checkedAddress = true
+                }
             }
         }
     }
     
     @IBAction func saveLocation(sender: UIBarButtonItem) {
-        if checkedAddress == true {
+        if locationName.text == "" {
+            addressError.text = "Enter the name of your new location!"
+        } else if checkedAddress == true {
+            let index = self.locationTypePicker?.selectedRowInComponent(0)
+            let type = LocationType(rawValue: LocationType.allValues[index!])!
+            self.location = Location(locationName: self.locationName.text!, locationType: type, latitude: self.latitude, longitude: self.longitude)
+            self.addressError.text = ""
             print("Saving location \(location?.fbDescription)")
             db.createNewLocation(location!, callback: {
                 self.dismissViewControllerAnimated(true, completion: nil)
             })
         } else {
-            addressError.text = "You must check the address before you save the location"
+            addressError.text = "You must check the address before you save the location!"
         }
     }
     
@@ -67,9 +84,54 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? NewLocationAnnotation {
+            let identifier = "locationMarker"
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            
+            // Images from https://icons8.com/
+            switch annotation.locationType {
+            case .Apartment:
+                view.image = UIImage(named: "housePin")
+            case .Bar:
+                view.image = UIImage(named: "barPin")
+            case .Club:
+                view.image = UIImage(named: "clubPin")
+            case .Dorm:
+                view.image = UIImage(named: "dormPin")
+            case .House:
+                view.image = UIImage(named: "homePin")
+            case .OutOfTown:
+                view.image = UIImage(named: "outoftownPin")
+            case .Rave:
+                view.image = UIImage(named: "ravePin")
+            case .Tailgate:
+                view.image = UIImage(named: "tailgatePin")
+            }
+            
+            return view
+        }
         return nil
     }
 
+    // MARK: - UIPickerViewDataSource
+    
+    //MARK: Data Sources
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return LocationType.allValues.count
+    }
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return LocationType.allValues[row]
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

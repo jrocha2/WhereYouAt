@@ -11,7 +11,7 @@ import UIKit
 class LocationTableViewCell: UITableViewCell {
 
     @IBOutlet var locationName: UILabel!
-    @IBOutlet var locationType: UILabel!
+    @IBOutlet var typeImage: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

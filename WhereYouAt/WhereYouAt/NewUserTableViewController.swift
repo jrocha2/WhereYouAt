@@ -9,14 +9,14 @@
 import UIKit
 
 class NewUserTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var firstName: UITextField!
     @IBOutlet weak var lastName: UITextField!
-    @IBOutlet weak var gender: UITextField!
-    @IBOutlet weak var classification: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
-    @IBOutlet weak var dateOfBirth: UITextField!
-    @IBOutlet weak var dorm: UITextField!
+    @IBOutlet var genderPicker: UIPickerView!
+    @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var dormPicker: UIPickerView!
+    
     var db : Database!
     var myUID : String = ""
     
@@ -35,7 +35,7 @@ class NewUserTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 8
+        return 7
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,8 +50,8 @@ class NewUserTableViewController: UITableViewController {
     @IBAction func userDone(sender: AnyObject) {
         
         // Check the non-optional information
-        if firstName.text == "" || lastName.text == "" || gender.text == "" || classification.text == "" || phoneNumber.text == "" {
-            let alert = UIAlertController(title: "Incomplete Form!", message: "Make sure to fill out all the info that is not marked as optional", preferredStyle: .Alert)
+        if firstName.text == "" || lastName.text == "" || phoneNumber.text == "" {
+            let alert = UIAlertController(title: "Incomplete Form!", message: "Make sure to fill out all the info", preferredStyle: .Alert)
             
             let confirmAction = UIAlertAction(title: "Ok",
                                               style: .Default,
@@ -63,13 +63,24 @@ class NewUserTableViewController: UITableViewController {
             presentViewController(alert, animated: true, completion: nil)
             
         } else {
-            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: Profile.Gender(rawValue: gender.text!)!, year: Profile.Year(rawValue: classification.text!)!, phoneNumber: phoneNumber.text!)
-            if dateOfBirth.text != "" {
-                newProfile.dateOfBirth = dateOfBirth.text
-            }
-            if dorm.text != "" {
-                newProfile.dorm = dorm.text
-            }
+            //Get the gender
+            let genderIndex = self.genderPicker.selectedRowInComponent(0)
+            let gender = Profile.Gender(rawValue: Profile.Gender.allValues[genderIndex])
+            
+            //Get the year
+            let yearIndex = self.genderPicker.selectedRowInComponent(1)
+            let year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])
+            
+            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: gender!, year: year!, phoneNumber: phoneNumber.text!)
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "MM-dd-yyyy"
+            let strDate = dateFormatter.stringFromDate(datePicker.date)
+            newProfile.dateOfBirth = strDate
+            
+            let dormIndex = self.dormPicker.selectedRowInComponent(0)
+            let dorm = db.dorms[dormIndex]
+            newProfile.dorm = dorm
             
             db.updateProfile(newProfile, call: {
                 () in
@@ -80,51 +91,38 @@ class NewUserTableViewController: UITableViewController {
         }
     }
     
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    //MARK: Data Sources
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        if pickerView.isEqual(genderPicker) {
+            return 2
+        } else {
+            return 1
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView.isEqual(genderPicker) {
+            if component == 0 {
+                return Profile.Gender.allValues.count
+            } else {
+                return Profile.Year.allValues.count
+            }
+        } else {
+            return db.dorms.count
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.isEqual(genderPicker) {
+            if component == 0 {
+                return Profile.Gender.allValues[row]
+            } else {
+                return Profile.Year.allValues[row]
+            }
+        } else {
+            return db.dorms[row]
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 

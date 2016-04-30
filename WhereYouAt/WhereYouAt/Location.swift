@@ -21,11 +21,13 @@ class Location: CustomStringConvertible {
     }
     
     var numberOfPeople: Int {
+        /********** This is good for deployment, but for dev it is not good ***********
         var uniquePeople = Set<String>()
         for status in statuses {
             uniquePeople.insert(status.userId)
         }
-        return uniquePeople.count
+        return uniquePeople.count*/
+        return statuses.count
     }
     
     var fbDescription: [String:AnyObject] {
@@ -33,7 +35,7 @@ class Location: CustomStringConvertible {
     }
     
     var description: String {
-        return "\(locationId!): \(name)"
+        return "\(name): \(numberOfPeople) people here"
     }
     
     func setLocationId(id: String) {
@@ -60,12 +62,14 @@ class Location: CustomStringConvertible {
 }
 
 enum LocationType: String {
-    case Bar
-    case House
-    case Dorm
-    case Club
-    case Tailgate
-    case Apartment
-    case Rave
-    case OutOfTown
+    case Bar = "Bar"
+    case House = "House"
+    case Dorm = "Dorm"
+    case Club = "Club"
+    case Tailgate = "Tailgate"
+    case Apartment = "Apartment"
+    case Rave = "Rave"
+    case OutOfTown = "Out Of Town"
+    
+    static let allValues = ["Bar", "House", "Dorm", "Club", "Tailgate", "Apartment", "Rave", "Out Of Town"]
 }

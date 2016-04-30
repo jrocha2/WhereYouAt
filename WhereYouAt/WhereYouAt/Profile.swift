@@ -45,6 +45,8 @@ class Profile: CustomStringConvertible {
     enum Gender: String {
         case Male = "Male"
         case Female = "Female"
+        
+        static let allValues = ["Male", "Female"]
     }
     
     enum Year: String {
@@ -52,6 +54,9 @@ class Profile: CustomStringConvertible {
         case Junior = "Junior"
         case Sophomore = "Sophomore"
         case Freshman = "Freshman"
+        case Grad = "Grad Student"
+        
+        static let allValues = ["Freshman", "Sophomore", "Junior", "Senior", "Grad Student"]
     }
     
     init(firstName: String, lastName: String, gender: Gender, year: Year, phoneNumber: String) {

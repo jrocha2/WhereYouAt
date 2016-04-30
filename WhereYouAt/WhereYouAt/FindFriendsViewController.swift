@@ -73,6 +73,10 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         
     }
     
+    deinit {
+        self.searchController.loadViewIfNeeded()
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.active && searchController.searchBar.text != "" {
             return filteredUsers.count

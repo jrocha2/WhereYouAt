@@ -13,6 +13,7 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
 
     var db: Database!
     var location: Location!
+    let maxCharacters = 50
     
     @IBOutlet var name: UILabel!
     @IBOutlet var status: UITextField!
@@ -25,33 +26,84 @@ class NewStatusViewController: UIViewController, MKMapViewDelegate {
 
         // Do any additional setup after loading the view.
         name.text = location.name
-        charCount.text = "0/50"
+        charCount.text = "0/\(maxCharacters)"
         
         status.addTarget(self, action: #selector(NewStatusViewController.updateCharCount), forControlEvents: UIControlEvents.EditingChanged)
+        
+        let placeholder = NSAttributedString(string: "Tell your friends about \(location.name)!")
+        status.attributedPlaceholder = placeholder
 
         self.map.delegate = self
-        let dropPin = MKPointAnnotation()
-        dropPin.coordinate = location.coordinate
-        dropPin.title = location.name
         let region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005))
-        map.addAnnotation(dropPin)
+        let annotation = LocationAnnotation(loc: location)
+        map.addAnnotation(annotation)
+        map.selectAnnotation(annotation, animated: true)
         map.region = region
-        peopleHere.text = "\(location.numberOfPeople) People Here"
+        if location.numberOfPeople == 1 {
+            peopleHere.text = "\(location.numberOfPeople) Person Here"
+        } else {
+            peopleHere.text = "\(location.numberOfPeople) People Here"
+        }
     }
     
     func updateCharCount() {
-        charCount.text = "\(status.text!.characters.count)/50"
+        charCount.text = "\(status.text!.characters.count)/\(maxCharacters)"
+        if status.text!.characters.count > maxCharacters {
+            charCount.textColor = UIColor.redColor()
+        } else {
+            charCount.textColor = UIColor.blackColor()
+        }
     }
 
     @IBAction func submitStatus(sender: UIBarButtonItem) {
-        let s = Status(userId: db.profile!.userId!, userName: db.profile!.name, body: status.text!)
-        db.createNewStatus(s, locationId: location.locationId!, callback: {
-            () in
-            self.dismissViewControllerAnimated(true, completion: nil)
-        })
+        var s: Status
+        if let text = status.text {
+            s = Status(userId: db.profile!.userId!, profile: db.profile!, body: text)
+        } else {
+            s = Status(userId: db.profile!.userId!, profile: db.profile!, body: "")
+        }
+        
+        if status.text!.characters.count > maxCharacters {
+            print("Too many characters")
+            charCount.text = "\(status.text!.characters.count)/\(maxCharacters) Too many characters"
+        } else {
+            db.createNewStatus(s, locationId: location.locationId!, callback: {
+                () in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let annotation = annotation as? LocationAnnotation {
+            let identifier = "locationMarker"
+            let view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            
+            // Images from https://icons8.com/
+            switch annotation.locationType {
+            case .Apartment:
+                view.image = UIImage(named: "housePin")
+            case .Bar:
+                view.image = UIImage(named: "barPin")
+            case .Club:
+                view.image = UIImage(named: "clubPin")
+            case .Dorm:
+                view.image = UIImage(named: "dormPin")
+            case .House:
+                view.image = UIImage(named: "homePin")
+            case .OutOfTown:
+                view.image = UIImage(named: "outoftownPin")
+            case .Rave:
+                view.image = UIImage(named: "ravePin")
+            case .Tailgate:
+                view.image = UIImage(named: "tailgatePin")
+            }
+            
+            return view
+        }
+        
         return nil
     }
     
