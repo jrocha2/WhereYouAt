@@ -25,7 +25,7 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             // Do any additional setup after loading the view.
             self.db.firebase.getProfile(self.myUID, callback: {_ in })
-            self.db.setProfilePic(self.picURL)
+            //self.db.setProfilePic(self.picURL)
             
             self.tableView.dataSource = self
             self.tableView.delegate = self
@@ -68,25 +68,28 @@ class FeedViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.timeLabel.text = formatter.stringFromDate(date)
         cell.timeLabel.adjustsFontSizeToFitWidth = true
         
-        let uid = status.userId 
-        if let url = db.profilePictures[uid] {
-            db.loadImage(url, callback: {
+        let uid = status.userId
+        
+        if let url = self.db.profilePictures[uid] {
+            self.db.loadImage(url, callback: {
                 (image) in
                 if image != nil {
                     var pic = image?.rounded
                     pic = image?.circle
                     cell.picture.image = pic
-                    self.tableView.reloadData()
                 }
             })
         }
+
         return cell
     }
     
     func updateTableView() {
         db.getFriendStatuses { (friends) in
-            self.friendStatuses = friends
-            self.tableView.reloadData()
+            self.db.getProfilePics {
+                self.friendStatuses = friends
+                self.tableView.reloadData()
+            }
         }
     }
 }
