@@ -109,7 +109,7 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.searchBar(self.searchController.searchBar, selectedScopeButtonIndexDidChange: 1)
+        self.searchBar(self.searchController.searchBar, selectedScopeButtonIndexDidChange: 0)
     }
     
     // Returns to unfiltered before exiting to avoid seg fault

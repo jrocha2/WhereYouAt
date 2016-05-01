@@ -33,6 +33,10 @@ class LocationsTableViewController: UITableViewController {
         searchController.searchBar.scopeButtonTitles = ["All", "Bar", "House", "Dorm"]
         searchController.searchBar.delegate = self
         
+        // Somewhat keep the scope consistent
+        searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 17)!], forState: UIControlState.Normal)
+        searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.flatMintColorDark(), NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 17)!], forState: UIControlState.Selected)
+        
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.reloadData()
     }
@@ -44,6 +48,11 @@ class LocationsTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Returns to unfiltered before exiting to avoid seg fault
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar(self.searchController.searchBar, selectedScopeButtonIndexDidChange: 0)
     }
 
     // MARK: - Table view data source
