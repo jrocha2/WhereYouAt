@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class TrendsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -40,6 +41,10 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.scopeButtonTitles = ["All", "Bar", "House", "Dorm"]
         searchController.searchBar.delegate = self
+        
+        // Somewhat keep the scope consistent
+        searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 17)!], forState: UIControlState.Normal)
+        searchController.searchBar.setScopeBarButtonTitleTextAttributes([NSForegroundColorAttributeName: UIColor.flatMintColorDark(), NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 17)!], forState: UIControlState.Selected)
     }
     
     deinit {
@@ -56,7 +61,6 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewWillAppear(true)
         updateTableView()
     }
-    
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -102,6 +106,15 @@ class TrendsViewController: UIViewController, UITableViewDataSource, UITableView
         locations = db.getCampusTrends()
         
         tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.searchBar(self.searchController.searchBar, selectedScopeButtonIndexDidChange: 1)
+    }
+    
+    // Returns to unfiltered before exiting to avoid seg fault
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.searchBar(self.searchController.searchBar, selectedScopeButtonIndexDidChange: 0)
     }
     
     func filterContentForSearchText(searchText: String, scope: String = "All") {
