@@ -84,10 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$CONFIGURATION_BUILD_DIR/Firebase/Firebase.framework"
-  install_framework "$CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "Pods-WhereYouAt/ChameleonFramework.framework"
+  install_framework "Pods-WhereYouAt/Firebase.framework"
+  install_framework "Pods-WhereYouAt/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$CONFIGURATION_BUILD_DIR/Firebase/Firebase.framework"
-  install_framework "$CONFIGURATION_BUILD_DIR/SwiftyJSON/SwiftyJSON.framework"
+  install_framework "Pods-WhereYouAt/ChameleonFramework.framework"
+  install_framework "Pods-WhereYouAt/Firebase.framework"
+  install_framework "Pods-WhereYouAt/SwiftyJSON.framework"
 fi

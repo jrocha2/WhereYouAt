@@ -14,6 +14,7 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     
     var db: Database!
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
@@ -22,6 +23,15 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
         let swipe = UISwipeGestureRecognizer(target: self, action: #selector(self.dismiss))
         swipe.direction = .Left
         self.view.addGestureRecognizer(swipe)
+        
+        db.loadImage(db.profilePictures[db.userId]!, callback: {
+            (image) in
+            if image != nil {
+                var pic = image?.rounded
+                pic = image?.circle
+                self.imageView.image = pic
+            }
+        })
         
         nameLabel.text = "\(db.profile!.firstName) \(db.profile!.lastName)"
     }
@@ -45,6 +55,7 @@ class MenuViewController: UIViewController, UIViewControllerTransitioningDelegat
     @IBAction func dismiss() {
         self.performSegueWithIdentifier("unwindToMenu", sender: self)
     }
+    
 
     // ---- UIViewControllerTransitioningDelegate methods
 

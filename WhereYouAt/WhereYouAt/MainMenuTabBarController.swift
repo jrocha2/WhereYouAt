@@ -8,6 +8,7 @@
 //  Subclass of UITabBarController to maintain a common database accessible by all the tabs
 
 import UIKit
+import ChameleonFramework
 
 class MainMenuTabBarController: UITabBarController {
 
@@ -19,7 +20,28 @@ class MainMenuTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addRevealMenuGesture()
+        
+        // Set the theme
+        Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withSecondaryColor: UIColor.flatBlueColorDark(), usingFontName: "SF UI Display", andContentStyle: .Light)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: UIControlState.Normal)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // Setup tab bar color scheme
+        self.tabBar.tintColor = UIColor.whiteColor()
+        self.tabBar.barTintColor = UIColor.flatBlueColor()
+        
+        self.tabBar.selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor.flatMintColor(), size: CGSizeMake(tabBar.frame.width/CGFloat(tabBar.items!.count), tabBar.frame.height))
+        
+        for item in tabBar.items! as [UITabBarItem] {
+            if let image = item.image {
+                item.image = image.imageWithColor(UIColor.whiteColor()).imageWithRenderingMode(.AlwaysOriginal)
+            }
+        }
     }
     
     // Segue to the menu and remove the gesture
@@ -60,3 +82,65 @@ class MainMenuTabBarController: UITabBarController {
  
 
 }
+
+// http://stackoverflow.com/questions/33583693/how-to-change-tint-color-of-tab-bar-in-swift
+
+extension UIImage {
+    func makeImageWithColorAndSize(color: UIColor, size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+        color.setFill()
+        UIRectFill(CGRectMake(0, 0, size.width, size.height))
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
+
+extension UIImage {
+    func imageWithColor(tintColor: UIColor) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        
+        let context = UIGraphicsGetCurrentContext()! as CGContextRef
+        CGContextTranslateCTM(context, 0, self.size.height)
+        CGContextScaleCTM(context, 1.0, -1.0);
+        CGContextSetBlendMode(context, CGBlendMode.Normal)
+        
+        let rect = CGRectMake(0, 0, self.size.width, self.size.height) as CGRect
+        CGContextClipToMask(context, rect, self.CGImage)
+        tintColor.setFill()
+        CGContextFillRect(context, rect)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext() as UIImage
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
+    
+    // http://stackoverflow.com/questions/29046571/cut-a-uiimage-into-a-circle-swiftios
+    var rounded: UIImage? {
+        let imageView = UIImageView(image: self)
+        imageView.layer.cornerRadius = min(size.height/2, size.width/2)
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.renderInContext(context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+    var circle: UIImage? {
+        let square = CGSize(width: min(size.width, size.height), height: min(size.width, size.height))
+        let imageView = UIImageView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: square))
+        imageView.contentMode = .ScaleAspectFill
+        imageView.image = self
+        imageView.layer.cornerRadius = square.width/2
+        imageView.layer.masksToBounds = true
+        UIGraphicsBeginImageContext(imageView.bounds.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        imageView.layer.renderInContext(context)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return result
+    }
+}
+

@@ -254,4 +254,44 @@ class FirebaseManager {
         let ref = rootRef.childByAppendingPath("Locations/\(locationId)/Statuses/\(statusId)")
         ref.removeValue()
     }
+    
+    // Add profile pic to firebase node
+    func updateProfilePicture(url: String) {
+        rootRef.childByAppendingPath("Images/\(myUID)").setValue(url)
+    }
+    
+    // Receive dictionary of uids and picture urls
+    func getProfilePictures(callback: [String:String] -> ()) {
+        var picURLs : [String:String] = [:]
+        
+        rootRef.childByAppendingPath("Images").observeSingleEventOfType(.Value, withBlock: {
+            (snapshot) in
+            for child in snapshot.children {
+                let key = child.key as String
+                let value = child.value as String
+                picURLs[key] = value
+            }
+            callback(picURLs)
+        })
+    }
+    
+    // Utilizes async queue to retrieve picture from a remotre server
+    func retrievePicFromURL(url: String, callback: UIImage? -> ()) {
+        
+        let asyncQueue = dispatch_queue_create("com.whereyouat.getimage", nil)
+        
+        dispatch_async(asyncQueue) {
+            let data = NSData(contentsOfURL: NSURL(string: url)!)
+            
+            var image : UIImage?
+            
+            if data != nil {
+                image = UIImage(data: data!)
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                callback(image)
+            })
+        }
+    }
 }

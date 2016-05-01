@@ -19,12 +19,16 @@ class NewUserTableViewController: UITableViewController {
     
     var db : Database!
     var myUID : String = ""
+    var picURL : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Initialize the Database for this instance of the app
-        db = Database(myUID: myUID, hasProfile: false, callback: {} )
+        db = Database(myUID: myUID, hasProfile: false, callback: {
+            self.db.setProfilePic(self.picURL)
+        })
+        
     }
 
     override func didReceiveMemoryWarning() {

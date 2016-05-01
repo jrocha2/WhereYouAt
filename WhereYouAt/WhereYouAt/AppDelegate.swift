@@ -8,6 +8,7 @@
 
 import UIKit
 import Google
+import ChameleonFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColor(), withContentStyle: .Light)
+        
+        
+        
         // Configure Sign-In
         var configureError: NSError?
         GGLContext.sharedInstance().configureWithError(&configureError)

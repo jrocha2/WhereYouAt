@@ -29,6 +29,19 @@ class FindFriendsViewController: UIViewController, UITableViewDataSource, UITabl
         searchController.dimsBackgroundDuringPresentation = false
         definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
+        
+        let tabBar = self.tabBarController?.tabBar
+        
+        // Setup tab bar color scheme
+        tabBar!.tintColor = UIColor.whiteColor()
+        tabBar!.barTintColor = UIColor.flatBlueColor()
+        
+        tabBar!.selectionIndicatorImage = UIImage().makeImageWithColorAndSize(UIColor.flatMintColor(), size: CGSizeMake(tabBar!.frame.width/CGFloat(tabBar!.items!.count), tabBar!.frame.height))
+        for item in tabBar!.items! as [UITabBarItem] {
+            if let image = item.image {
+                item.image = image.imageWithColor(UIColor.whiteColor()).imageWithRenderingMode(.AlwaysOriginal)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

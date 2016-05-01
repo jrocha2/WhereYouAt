@@ -7,6 +7,7 @@ target 'WhereYouAt' do
 pod 'Firebase', '>=2.5.1'
 pod 'Google/SignIn'
 pod 'SwiftyJSON'
+pod 'ChameleonFramework'
 end
 
 target 'WhereYouAtTests' do

@@ -56,6 +56,11 @@ class CurrentFriendsViewController: UIViewController, UITableViewDataSource, UIT
         self.performSegueWithIdentifier("unwindFromCurrentFriends", sender: self)
     }
 
+    // Hide status bar due to weird tableview
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 

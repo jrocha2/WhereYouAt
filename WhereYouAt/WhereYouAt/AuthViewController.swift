@@ -9,16 +9,19 @@
 import UIKit
 import Firebase
 import Google
+import ChameleonFramework
 
 
 class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
 
     var ref: Firebase!
     var userId : String = ""
+    var picURL : String = ""
     var appJustOpened : Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         ref = Firebase(url: "https://whereareu.firebaseio.com/")
         
         // Setup delegates
@@ -63,7 +66,8 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
                 let userEmail = authData.providerData["email"] as! String
                 self.userId = authData.providerData["id"] as! String
                 let userName = authData.providerData["displayName"] as! String
-                print(userEmail, " ", self.userId, " ", userName)
+                self.picURL = authData.providerData["profileImageURL"] as! String
+                print(userEmail, " ", self.userId, " ", userName, " ", self.picURL)
                 
                 let manager = FirebaseManager(myUID: self.userId)
                 manager.checkForUserId(self.userId, callback: {
@@ -92,11 +96,13 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let dest = segue.destinationViewController as? NewUserTableViewController {
             dest.myUID = self.userId
+            dest.picURL = self.picURL
         }
         if let dest = segue.destinationViewController as? UINavigationController {
             if let tab = dest.topViewController as? MainMenuTabBarController {
                 if let first = tab.viewControllers![0] as? FeedViewController {
                     first.myUID = self.userId
+                    first.picURL = self.picURL
                 }
             }
         }
