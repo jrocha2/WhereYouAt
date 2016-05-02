@@ -50,10 +50,10 @@ class Profile: CustomStringConvertible {
     }
     
     enum Year: String {
-        case Senior = "Senior"
-        case Junior = "Junior"
-        case Sophomore = "Sophomore"
         case Freshman = "Freshman"
+        case Sophomore = "Sophomore"
+        case Junior = "Junior"
+        case Senior = "Senior"
         case Grad = "Grad Student"
         
         static let allValues = ["Freshman", "Sophomore", "Junior", "Senior", "Grad Student"]
@@ -90,7 +90,12 @@ class Profile: CustomStringConvertible {
         self.firstName = userData["firstName"]!
         self.lastName = userData["lastName"]!
         self.gender = Gender(rawValue: userData["gender"]!)!
-        self.year = Year(rawValue: userData["year"]!)!
+        let newYear = Year(rawValue: userData["year"]!)
+        if (newYear == nil) {
+            self.year = .Grad
+        } else{
+            self.year = newYear!
+        }
         self.phone = userData["phone"]!
         
         if let dob = userData["dateOfBirth"] {

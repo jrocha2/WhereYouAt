@@ -215,7 +215,7 @@ class FirebaseManager {
                         
                         //Check if this status is older than a day, if it is, don't add to array, and delete from Firebase
                         let duration = NSDate(timeIntervalSince1970: timestamp).timeIntervalSinceDate(NSDate())
-                        let numberOfDays: Double = 7
+                        let numberOfDays: Double = 1
                         let maxDuration: Double = -86400 * numberOfDays //One day times numberOfDays
                         if duration < maxDuration {
                             //The status is too old, remove it
@@ -227,11 +227,14 @@ class FirebaseManager {
                             let fname = user.childSnapshotForPath("firstName").value as! String
                             let lname = user.childSnapshotForPath("lastName").value as! String
                             let gender = Profile.Gender(rawValue: user.childSnapshotForPath("gender").value as! String)!
-                            let year = Profile.Year(rawValue: user.childSnapshotForPath("year").value as! String)!
+                            var year = Profile.Year(rawValue: user.childSnapshotForPath("year").value as! String)
+                            if year == nil {
+                                year = .Grad
+                            }
                             let phone = user.childSnapshotForPath("phone").value as! String
                             let dob = user.childSnapshotForPath("dateOfBirth").value as! String
                             let dorm = user.childSnapshotForPath("dorm").value as! String
-                            let profile = Profile(firstName: fname, lastName: lname, gender: gender, year: year, phoneNumber: phone, dateOfBirth: dob, dorm: dorm)
+                            let profile = Profile(firstName: fname, lastName: lname, gender: gender, year: year!, phoneNumber: phone, dateOfBirth: dob, dorm: dorm)
                             let newStatus = Status(statusId: statusId, userId: userId, body: body, time: timestamp, loc: loc, profile: profile)
                             statusData.append(newStatus)
                         }

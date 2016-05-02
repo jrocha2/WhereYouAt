@@ -73,8 +73,13 @@ class LocationsTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! LocationTableViewCell
-
-        let loc = filteredLocations[indexPath.row]
+        let row = indexPath.row
+        let loc: Location
+        if( searchController.active ) {
+            loc = filteredLocations[row]
+        } else {
+            loc = locations[row]
+        }
         cell.locationName.text = loc.name
         switch loc.type {
         case .Apartment:

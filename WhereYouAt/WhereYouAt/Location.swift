@@ -24,7 +24,11 @@ class Location: CustomStringConvertible {
         //********** This is good for deployment, but for dev it is not good ***********
         var uniquePeople = Set<String>()
         for status in statuses {
-            uniquePeople.insert(status.userId)
+            let duration = -1 * NSDate(timeIntervalSince1970: status.timestamp!).timeIntervalSinceDate(NSDate())
+            let maxDuration: Double = 86400
+            if(duration < maxDuration) {
+                uniquePeople.insert(status.userId)
+            }
         }
         return uniquePeople.count
         //return statuses.count

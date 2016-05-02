@@ -73,7 +73,10 @@ class NewUserTableViewController: UITableViewController {
             
             //Get the year
             let yearIndex = self.genderPicker.selectedRowInComponent(1)
-            let year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])
+            var year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])
+            if year == nil {
+                year = .Grad
+            }
             
             let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: gender!, year: year!, phoneNumber: phoneNumber.text!)
             

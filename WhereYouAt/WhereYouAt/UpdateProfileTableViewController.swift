@@ -139,9 +139,14 @@ class UpdateProfileTableViewController: UITableViewController, UIPickerViewDeleg
             
             //Get the year
             let yearIndex = self.genderPicker.selectedRowInComponent(1)
-            let year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])
+            let year: Profile.Year
+            if yearIndex == 4 {
+                year = .Grad
+            } else {
+                year = Profile.Year(rawValue: Profile.Year.allValues[yearIndex])!
+            }
             
-            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: gender!, year: year!, phoneNumber: phoneNumber.text!)
+            let newProfile = Profile(firstName: firstName.text!, lastName: lastName.text!, gender: gender!, year: year, phoneNumber: phoneNumber.text!)
             
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy"
