@@ -13,7 +13,7 @@ import ChameleonFramework
 
 
 class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelegate {
-
+    
     var ref: Firebase!
     var userId : String = ""
     var picURL : String = ""
@@ -42,7 +42,7 @@ class AuthViewController: UIViewController, GIDSignInDelegate, GIDSignInUIDelega
             print("LOGGED OUT!")
             signOut()
         }
-    
+        
     }
     
     func authenticateWithGoogle(sender: UIButton) {

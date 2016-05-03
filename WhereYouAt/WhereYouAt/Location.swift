@@ -21,7 +21,6 @@ class Location: CustomStringConvertible {
     }
     
     var numberOfPeople: Int {
-        //********** This is good for deployment, but for dev it is not good ***********
         var uniquePeople = Set<String>()
         for status in statuses {
             let duration = -1 * NSDate(timeIntervalSince1970: status.timestamp!).timeIntervalSinceDate(NSDate())
@@ -31,7 +30,6 @@ class Location: CustomStringConvertible {
             }
         }
         return uniquePeople.count
-        //return statuses.count
     }
     
     var fbDescription: [String:AnyObject] {
