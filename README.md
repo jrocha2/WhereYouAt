@@ -25,3 +25,10 @@ All of the above status information is pulled from Firebase and only corresponds
 <p align="center">
   <img src="/documentation/readmeAssets/map.png">
 </p>
+
+
+#### Creating a Status
+By selecting the compose icon in the top right of the main interface, a user can create a status. First, the user must choose a location and is presented with a list of all those already in the application's database. If none of these locations are suitable, the user can add a new location to the database by pressing the plus icon in the top right of this view. Adding a new location simply consists of specifying the name, address, and type of location. The user must enter the address and select the adjacent "Check" button at least once before saving to ensure that the map shows the location and icon they intend.
+
+![loc1](/documentation/readmeAssets/chooselocation.png)
+![loc2](/documentation/readmeAssets/addlocation.png)
