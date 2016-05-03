@@ -39,3 +39,10 @@ Finally, once the user has specified the location they are at, they can create a
   <img src="/documentation/readmeAssets/addstatus.png">
 </p>
 
+#### Slide-Out Menu
+A slide-out menu is present on the left edge of the screen in all three tabs of the main application interface. This menu can be accessed either by pressing the menu icon in the top-left corner of any of the tabs, or through touch by sliding out from the left edge of the screen. This menu provides access to all of the other details of the application such as viewing your current friends, adding more friends, updating your profile information, and signing out of the app. This menu can be similarly hidden again by swiping from the right edge of the menu back to the left. 
+
+<p align="center">
+  <img src="/documentation/readmeAssets/slideout.png">
+</p>
+
