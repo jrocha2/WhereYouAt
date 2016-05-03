@@ -116,8 +116,6 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerVi
     }
 
     // MARK: - UIPickerViewDataSource
-    
-    //MARK: Data Sources
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -130,16 +128,4 @@ class NewLocationViewController: UIViewController, MKMapViewDelegate, UIPickerVi
         return LocationType.allValues[row]
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

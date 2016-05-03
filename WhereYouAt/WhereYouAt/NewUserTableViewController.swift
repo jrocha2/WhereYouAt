@@ -30,18 +30,18 @@ class NewUserTableViewController: UITableViewController {
         })
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 7
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 0
@@ -49,7 +49,7 @@ class NewUserTableViewController: UITableViewController {
             return 1
         }
     }
-
+    
     // User taps this button when they are supposedly done filling out info
     @IBAction func userDone(sender: AnyObject) {
         
@@ -132,7 +132,7 @@ class NewUserTableViewController: UITableViewController {
     }
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
@@ -145,6 +145,6 @@ class NewUserTableViewController: UITableViewController {
             }
         }
     }
- 
-
+    
+    
 }
