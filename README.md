@@ -32,3 +32,10 @@ By selecting the compose icon in the top right of the main interface, a user can
 
 ![loc1](/documentation/readmeAssets/chooselocation.png)
 ![loc2](/documentation/readmeAssets/addlocation.png)
+
+Finally, once the user has specified the location they are at, they can create a corresponding status message to be seen by their friends. A limit of 50 characters ensures that it's short and sweet, just enough to let friends know what's going down. In this view, the user can even see how many people are at that location based on the trends in the database.
+
+<p align="center">
+  <img src="/documentation/readmeAssets/addstatus.png">
+</p>
+
