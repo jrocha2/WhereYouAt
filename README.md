@@ -10,3 +10,18 @@ Upon start up, you must authenticate with some form of Google email address. Thi
 
 ![auth1](/documentation/readmeAssets/auth1.png)
 ![auth2](/documentation/readmeAssets/auth2.png)
+
+
+#### Main Interface
+Once the user profile is all set, the main application interface is presented in the form of three tabs: *Feed*, *Trends*, and *Map*.  
+- The *Feed* tab is where all of a users' friend activity will appear including where they are at, what time they logged their location, and their own little status about their outing.
+- The *Trends* tab provides anonymous statistics as to the whereabouts of everyone creating statuses with the application, whether they are on a user's friend list or not. This allows users to see the popular locations on any given night.
+- The *Map* tab provides a map-view of the above trends so that the user can see what locations are active nearby. By tapping on the various location icons, the user can see how many people are at a given place.   
+
+All of the above status information is pulled from Firebase and only corresponds to statuses made in the last 24 hours. This way, any activity or trends are relatively recent and still relevant to the user
+
+![main1](/documentation/readmeAssets/feed.png)
+![main2](/documentation/readmeAssets/trends.png)
+<p align="center">
+  <img src="/documentation/readmeAssets/map.png">
+</p>
