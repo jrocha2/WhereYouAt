@@ -35,11 +35,11 @@
                                     <constraint firstAttribute="width" constant="205" id="i9D-Pd-7fy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" red="0.41282051279999998" green="0.41282051279999998" blue="0.41282051279999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.90823972225189209" green="0.92638683319091797" blue="0.9317171573638916" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25005361437797546" green="0.30566063523292542" blue="0.58369332551956177" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XJL-VY-NKJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2Tg-0H-4el"/>
                             <constraint firstItem="XJL-VY-NKJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Pwh-zi-9sh"/>
@@ -707,6 +707,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aJD-E3-RM0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.53409618139266968" green="0.59629547595977783" blue="0.81492191553115845" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1479,6 +1480,6 @@
         <image name="trends" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GIX-bb-Cre"/>
+        <segue reference="hrl-il-SLq"/>
     </inferredMetricsTieBreakers>
 </document>
